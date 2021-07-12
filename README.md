@@ -1,6 +1,11 @@
 # AT-BC-LAT-01
 Repository for Automation bootcamp LAT 01
 
+## Project pre-requisites
+- NodeJS (Latest stable)
+- Git (Latest stable)
+- Text Editor or IDE
+
 ## Project setup
 - npm install
 
