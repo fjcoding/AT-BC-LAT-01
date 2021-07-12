@@ -18,7 +18,7 @@ Repository for Automation bootcamp LAT 01
 3. Push branch to origin repository (Github). NOTE: Never push to "main" branch
 4. Create a pull request (PR) in GitHub that points from your pushed branch to the target branch specified for the kata or feature development
 5. Add reviewers and wait for review comments. Once PR is approved, it can be merged to target branch
-6. After PR is merged, remove your PR from origin
+6. After PR is merged, remove your branch from origin
 
 ## Git commands cheatsheet
 - git clone <repo url>
