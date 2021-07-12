@@ -13,7 +13,7 @@ Repository for Automation bootcamp LAT 01
 - npm test
 
 ## Development process
-1. Create branch with a meaningful name related to solution/feature being implemented
+1. Create branch with the following format for the name: <your name>/<kata or feature name being implemented>
 2. Commit changes in the branch created. For each commit created, make sure to add a meaningful commit message that describes the group of changes being committed
 3. Push branch to origin repository (Github). NOTE: Never push to "main" branch
 4. Create a pull request (PR) in GitHub that points from your pushed branch to the target branch specified for the kata or feature development
