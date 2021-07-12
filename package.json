@@ -1,0 +1,32 @@
+{
+  "name": "at-bc-01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "jest": "^27.0.6"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ]
+  },
+  "scripts": {
+    "test": "jest  --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fjcoding/AT-BC-LAT-01.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fjcoding/AT-BC-LAT-01/issues"
+  },
+  "homepage": "https://github.com/fjcoding/AT-BC-LAT-01#readme",
+  "type": "module"
+}
