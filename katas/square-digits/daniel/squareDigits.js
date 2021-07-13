@@ -4,7 +4,7 @@ export function squareDigits(num) {
     const num_str = num.toString();
     let result = "";
 
-    for (let i=0; i < num_str.length; i++){
+    for (let i = 0; i < num_str.length; i++){
         result = result + (Math.pow(parseInt(num_str[i]),2)).toString();
     }
     
