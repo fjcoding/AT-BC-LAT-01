@@ -6,7 +6,7 @@ export function squareDigits(num) {
         element = Math.pow(element, 2);
         result = result + "" + element;
     }
-    );
+    )
     result = Number(result);
     return result;
 }
