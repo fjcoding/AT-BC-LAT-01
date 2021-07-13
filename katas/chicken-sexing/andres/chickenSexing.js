@@ -1,9 +1,9 @@
 export function correctness(bobsDecisions, expertDecisions) {
     var score = 0;
-    for(var i=0; i<bobsDecisions.length; i++){
-        if (bobsDecisions[i]==expertDecisions[i]) {
+    for (var index = 0; index < bobsDecisions.length; index++) {
+        if (bobsDecisions[index] == expertDecisions[index]) {
             score += 1;
-        }else if(bobsDecisions[i]=='?'||expertDecisions[i]=='?'){
+        } else if (bobsDecisions[index] == '?' || expertDecisions[index] == '?') {
             score += 0.5;
         }
     }
