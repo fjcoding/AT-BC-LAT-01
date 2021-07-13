@@ -1,15 +1,15 @@
 export function squareDigits(num) {
 
-    let final = "";
+    let result = "";
     let str = num.toString();
 
-    for (var i = 0; i < str.length; i++) {
-        let y = parseInt(str[i]);
-        let z = y * y;
-        z.toString();
-        final = final + z;
+    for (var index = 0; index < str.length; index++) {
+        let tempNum = parseInt(str[index]);
+        let tempResult = tempNum * tempNum;
+        tempResult.toString();
+        result += tempResult;
     }
 
-    let x = parseInt(final);
-    return x;
+    let finalResult = parseInt(result);
+    return finalResult;
 }
