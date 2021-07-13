@@ -1,14 +1,14 @@
 export function correctness(bobsDecisions, expertDecisions) {
-    var final = 0;
+    var score = 0;
     var length = bobsDecisions.length;
 
-    for (let i = 0; i < length; i++) {
-        if (bobsDecisions[i] == expertDecisions[i]) {
-            final = final + 1;
-        } else if ((bobsDecisions[i] != expertDecisions[i]) && ((bobsDecisions[i] == '?') || (expertDecisions[i] == '?'))) {
-            final = final + 0.5;
+    for (let index = 0; index < length; index++) {
+        if (bobsDecisions[index] == expertDecisions[index]) {
+            score += 1;
+        } else if (bobsDecisions[index] == '?' || expertDecisions[index] == '?') {
+            score += 0.5;
         }
     }
 
-    return final;
+    return score;
 }
