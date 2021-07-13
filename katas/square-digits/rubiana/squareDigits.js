@@ -1,3 +1,13 @@
 export function squareDigits(num) {
-    return 0;
+    let final = "";
+    let str = num.toString();
+
+    for (var i = 0; i < str.length; i++) {
+        let y = parseInt(str[i]);
+        let z = y * y;
+        z.toString();
+        final = final + z;
+    }
+
+    return final;
 }
