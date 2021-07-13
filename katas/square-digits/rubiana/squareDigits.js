@@ -1,5 +1,4 @@
 export function squareDigits(num) {
-
     let result = "";
     let str = num.toString();
 
