@@ -1,14 +1,12 @@
 export function squareDigits(num) {
-    let div = [...`${num}`].map(c => parseInt(c)); //Divide input number in an array
-    var i = div.length;
-    var j = 0;
-    let resa =[];
-    while (j<i){
-        resa[j] = Math.pow(div[j],2);
-        /*console.log(resa[j],div[j]);*/
+    let divideArr = [...`${num}`].map(c => parseInt(c)); // Divide input number in an array
+    var i = divideArr.length;                            // Get the length of the Array created
+    var j = 0;                                           // Declare the var j for looping
+    let resultArr = [];                                  // Declare the Array which will contain the result
+    while (j<i) {
+        resultArr[j] = Math.pow(divideArr[j],2);         // Get the numbers elevated by 2
         j++;
     }
-    var resint = resa.join('');
-    /*console.log(resint);*/
-    return parseInt(resint);
+    var resultInt = resultArr.join('');                  // Get the result concatenated
+    return parseInt(resultInt);                          // Return the concatenated result as Integer
 }
