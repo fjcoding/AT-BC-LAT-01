@@ -1,4 +1,5 @@
 export function squareDigits(num) {
+
     let final = "";
     let str = num.toString();
 
@@ -9,5 +10,6 @@ export function squareDigits(num) {
         final = final + z;
     }
 
-    return final;
+    let x = parseInt(final);
+    return x;
 }
