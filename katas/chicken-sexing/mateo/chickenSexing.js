@@ -1,11 +1,11 @@
 export function correctness(bobsDecisions, expertDecisions) {
+
     let points = 0;
-    for (let i = 0; i < bobsDecisions.length; i++){
-        if (bobsDecisions[i] == expertDecisions[i]){
+
+    for (let index = 0; index < bobsDecisions.length; i++){
+        if (bobsDecisions[index] == expertDecisions[index]){
             points++;
-        } else if (bobsDecisions [i] == '?'){
-            points += 0.5;
-        } else if (expertDecisions [i] == '?'){
+        } else if (bobsDecisions [index] == '?' || expertDecisions [index] == '?'){
             points += 0.5;
         }
     }
