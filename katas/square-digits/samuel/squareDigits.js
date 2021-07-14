@@ -10,7 +10,5 @@ export function squareDigits(num) {
             sum += result.toString();
         });
     }
-    
-
     return parseInt(sum);
 }
