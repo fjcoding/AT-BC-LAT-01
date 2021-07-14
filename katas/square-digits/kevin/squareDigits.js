@@ -5,8 +5,7 @@ export function squareDigits(num) {
     squareDigits.forEach(element => {
         element = Math.pow(element, 2);
         result = result + "" + element;
-    }
-    )
+    })
     result = Number(result);
     return result;
 }
