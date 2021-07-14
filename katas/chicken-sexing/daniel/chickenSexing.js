@@ -4,8 +4,7 @@ export function correctness(bobsDecisions, expertDecisions) {
     for (let index = 0; index < bobsDecisions.length; index++) {  
         if (bobsDecisions[index] == expertDecisions[index]) {
             score = score + 1;
-        } else if ((bobsDecisions[index] != expertDecisions[index]) && 
-            ((bobsDecisions[index] == '?') || (expertDecisions[index] == '?'))) {
+        } else if (bobsDecisions[index] == '?' || expertDecisions[index] == '?') {
             score = score + 0.5;
         } 
     }
