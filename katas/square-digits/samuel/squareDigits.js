@@ -1,17 +1,16 @@
 export function squareDigits(num) {
-    let numero = num.toString();
-    let res
-    let suma = '';
+    let number = num.toString();
+    let result
+    let sum = '';
     if (num == 0) {
         return 0;
-    }
-    else {
-        numero.split('').forEach(c => {
-            res = Math.pow(parseInt(c),2);
-            suma += res.toString();
+    } else {
+        number.split('').forEach(c => {
+            result = Math.pow(parseInt(c), 2);
+            sum += res.toString();
         });
     }
     
 
-    return parseInt(suma);
+    return parseInt(sum);
 }
