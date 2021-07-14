@@ -14,7 +14,7 @@ export function correctness(bobsDecisions, expertDecisions) {
                 points = points + 0.5;                              
             }
         }
-        j++;
+        arrayindex++;
     }
     return points;                                                 
 }
