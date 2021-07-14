@@ -7,7 +7,7 @@ export function squareDigits(num) {
     } else {
         number.split('').forEach(c => {
             result = Math.pow(parseInt(c), 2);
-            sum += res.toString();
+            sum += result.toString();
         });
     }
     
