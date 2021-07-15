@@ -1,4 +1,4 @@
-import { splitCommand } from "./argsParser";
+import { splitCommand } from "./argsParser.js";
 import { Schema } from "./Schema";
 import { Parser } from "./Parser";
 import { Args } from "./Args";
