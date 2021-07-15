@@ -5,6 +5,8 @@
   "main": "",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+    "eslint": "^7.30.0",
+    "eslint-plugin-jest": "^24.3.6",
     "jest": "^27.0.6"
   },
   "jest": {
@@ -16,7 +18,9 @@
     ]
   },
   "scripts": {
-    "test": "jest  --coverage"
+    "test": "jest  --coverage",
+    "lint": "eslint . --ext .js",
+    "lint-fix": "eslint . --fix"
   },
   "repository": {
     "type": "git",
