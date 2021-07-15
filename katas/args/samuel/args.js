@@ -1,7 +1,3 @@
-class Parser {
-
-}
-
 export class Schema {
     argsSchema = {
         l : {
@@ -28,8 +24,6 @@ export class Schema {
 
 /*function flagCreation(input) {
     let inputArray = input.split('');
-    let beggining = 0;
-    let end = 0;
     let counter = 0;
     let listNumber = [];
     for (let index = 0; index < inputArray.length; index++) {
