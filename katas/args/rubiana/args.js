@@ -1,48 +1,49 @@
 //-l -p 8080 -d /usr/logs
 //-l (logging=boolean)  -p (port=number)  -d (directory=string)
 
-export class argsClass {
-    checkInputType(input) {
-        let arrInput = input.split(" ");
-
-        if (arrInput[0] == '-l') {
-            var bool = true;
-
-            if (arrInput[1] == '-p' && !isNaN(arrInput[2])) {
-                var num = parseInt(arrInput[2]);
-            } else {
-                return "Flag -p is missing or the parameter isn't an number"
+export class schemaClass {
+    constructor() {
+        this.argsSchema = [{
+                flag: "l",
+                name: "logging",
+                type: Boolean,
+                defaultValue: false,
+            },
+            {
+                flag: "p",
+                name: "port",
+                type: Number,
+                defaultValue: 0,
+            },
+            {
+                flag: "d",
+                name: "directory",
+                type: String,
+                defaultValue: "",
             }
+        ];
+    }
 
-            if (arrInput[3] == '-d' && typeof arrInput[4] === 'string') {
-                var dirct = arrInput[4];
-            } else {
-                return "Flag -d is missing or the parameter isn't a string"
-            }
+    validate(arg) {
+        let arrInput = arg.split(" ");
+        var arr = [];
 
-        } else {
-            var bool = false;
-
-            if (arrInput[0] == '-p' && !isNaN(arrInput[1])) {
-                var num = parseInt(arrInput[1]);
-            } else {
-                return "Flag -p is missing or the parameter isn't an number"
-            }
-
-            if (arrInput[2] == '-d' && typeof arrInput[3] === 'string') {
-                var dirct = arrInput[3];
-            } else {
-                return "Flag -d is missing or the parameter isn't a string"
+        for (let inputIndex = 0; inputIndex < arrInput.length; inputIndex++) { //tests each one of the inicial input array
+            if (arrInput[inputIndex].slice(0, 1) == "-" && isNaN(arrInput[inputIndex])) { //tests if the input has "-" and it isn't a number
+                let tempInput = arrInput[inputIndex].slice(1, 2); //considers the input as a flag and gets the letter
+                if (tempInput == "l") { //if is the flag "l" is just consider as "true" 
+                    arr.push("true")
+                } else {
+                    for (let schemaIndex = 0; schemaIndex < this.argsSchema.length; schemaIndex++) { //tests all the others possible flags if they mach our argsSchema
+                        if (tempInput == this.argsSchema[schemaIndex]['flag']) { //for each flag in argsSchema compares with the possible flag
+                            let tempValue = arrInput[inputIndex + 1]; //if matches, gets the value and adds to our final array
+                            arr.push(tempValue);
+                        }
+                    }
+                }
             }
         }
 
-        let arrFinal = [bool, num, dirct]
-        return arrFinal
+        return arr
     }
-
-
-    constructor(arrInput) {
-        this.bool = arrInput[1];
-    }
-
 }
