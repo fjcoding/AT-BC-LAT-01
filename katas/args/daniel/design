@@ -1,0 +1,35 @@
+Args(argsString) {
+    Args.splitArgs(argsString) {
+        return listOfArgs // All the values are string type
+    }
+}
+
+Schema() {
+    const ArgsSchemma = [
+        {flag='-x', type='xx', defaultValue=xx}
+        {flag='-y', type='yy', defaultValue=yy}
+    ]
+}
+
+Parser() {
+    let parserSchema = {}
+
+    constructor(Schema) {
+        ParserSchema = Parser.takeSchema()
+    }
+
+    Parser.takeSchema(Schema) {
+        return ArgProgramExpects
+    }
+
+
+    Parser.verifyArgs(Args) {
+        return matchWithSchema? // Error if dont match
+    }
+    
+    Parser.parse(Args) {
+        if verifyArgs()  {
+            return valuesOfEachFlag
+        }
+    }
+}
