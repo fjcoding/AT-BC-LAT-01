@@ -35,3 +35,12 @@ test('Args is expected ro return a list with flags and negative and empty values
         {flag: '-i', value: '-9'}
     ]);
 })
+
+test('Args is expected ro return a list with flags and empty values', () => {
+    const args = new Args('-p -d -b');
+    expect(args.getArgsList()).toStrictEqual([
+        {flag: '-p', value: ''},
+        {flag: '-d', value: ''},
+        {flag: '-b', value: ''}
+    ]);
+})
