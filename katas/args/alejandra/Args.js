@@ -1,31 +1,31 @@
 export class Args {
-  constructor() {
-    this.argsList = [];
-  }
-
-  addArg(flag, value) {
-    if (!isNaN(parseInt(value))) {
-      value = parseInt(value);
+    constructor() {
+        this.argsList = [];
     }
 
-    this.argsList.push({
-      flag: flag,
-      value: value,
-    });
-  }
+    addArg(flag, value) {
+        if (!isNaN(parseInt(value))) {
+            value = parseInt(value);
+        }
 
-  getArgsList() {
-    return this.argsList;
-  }
+        this.argsList.push({
+            flag: flag,
+            value: value,
+        });
+    }
 
-  findArg(flagToValidate) {
-    const args = this.argsList;
-    const resultArg = args.find((arg) => arg.flag === flagToValidate);
-    return resultArg;
-  }
+    getArgsList() {
+        return this.argsList;
+    }
 
-  getArgValue(flag) {
-    const arg = this.findArg(flag);
-    return arg.value;
-  }
+    findArg(flagToValidate) {
+        const args = this.argsList;
+        const resultArg = args.find((arg) => arg.flag === flagToValidate);
+        return resultArg;
+    }
+
+    getArgValue(flag) {
+        const arg = this.findArg(flag);
+        return arg.value;
+    }
 }
