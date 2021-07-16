@@ -3,47 +3,78 @@
 
 export class schemaClass {
     constructor() {
-        this.argsSchema = [{
+        this.flagsSchema = [{
                 flag: "l",
                 name: "logging",
                 type: Boolean,
                 defaultValue: false,
+                parameter: false,
             },
             {
                 flag: "p",
                 name: "port",
                 type: Number,
                 defaultValue: 0,
+                parameter: true,
             },
             {
                 flag: "d",
                 name: "directory",
                 type: String,
                 defaultValue: "",
+                parameter: true,
             }
         ];
     }
 
-    validate(arg) {
-        let arrInput = arg.split(" ");
-        var arr = [];
+    splitInputStr(inputStr) {
+        let arrInput = inputStr.split(" ");
+        return arrInput;
+    }
 
-        for (let inputIndex = 0; inputIndex < arrInput.length; inputIndex++) { //tests each one of the inicial input array
-            if (arrInput[inputIndex].slice(0, 1) == "-" && isNaN(arrInput[inputIndex])) { //tests if the input has "-" and it isn't a number
-                let tempInput = arrInput[inputIndex].slice(1, 2); //considers the input as a flag and gets the letter
-                if (tempInput == "l") { //if is the flag "l" is just consider as "true" 
-                    arr.push("true")
-                } else {
-                    for (let schemaIndex = 0; schemaIndex < this.argsSchema.length; schemaIndex++) { //tests all the others possible flags if they mach our argsSchema
-                        if (tempInput == this.argsSchema[schemaIndex]['flag']) { //for each flag in argsSchema compares with the possible flag
-                            let tempValue = arrInput[inputIndex + 1]; //if matches, gets the value and adds to our final array
-                            arr.push(tempValue);
-                        }
-                    }
-                }
+    validFlag(flag) {
+        if (this.flagIndex(flag) > -1) {
+            return true
+        } else {
+            return 'Invalid! The Flag does not exist.'
+        }
+    }
+
+    flagIndex(flag) {
+        var flagIndex;
+
+        this.flagsSchema.forEach(flags => {
+            if (flags['flag'] == flag) {
+                flagIndex = this.flagsSchema.indexOf(flags);
             }
+        });
+
+        return flagIndex
+    }
+
+    defaultValue(flag) {
+        let defaultValue = this.flagsSchema[this.flagIndex(flag)]['defaultValue'];
+        return defaultValue
+    }
+
+    setNewFlag(_flag, _name, _type, _defaultValue, _parameter) {
+        let tempArr = {
+            flag: _flag,
+            name: _name,
+            type: _type,
+            defaultValue: _defaultValue,
+            parameter: _parameter
+        };
+
+        if (this.flagsSchema.push(tempArr)) {
+            return "New Flag added to the Schema"
+        }
+    }
+
+    displaySchema() {
+        for (i = 0; i < this.flagsSchema.length; i++) {
+            document.writeln(this.flagsSchema[i]);
         }
 
-        return arr
     }
 }
