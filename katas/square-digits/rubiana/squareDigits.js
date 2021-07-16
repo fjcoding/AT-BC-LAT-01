@@ -1,5 +1,5 @@
 export function squareDigits(num) {
-    let result = "";
+    let result = '';
     let str = num.toString();
 
     for (var index = 0; index < str.length; index++) {

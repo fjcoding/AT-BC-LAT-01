@@ -5,7 +5,7 @@ export function correctness(bobsDecisions, expertDecisions) {
     while (arrayindex < arraylength) {
         if (bobsDecisions[arrayindex] == expertDecisions[arrayindex]) {     
             points = points + 1;                                             
-            }   
+        }
         else if (bobsDecisions[arrayindex] != expertDecisions [arrayindex]) {          
             if (bobsDecisions[arrayindex] == '?') {                          
                 points = points + 0.5;                              
