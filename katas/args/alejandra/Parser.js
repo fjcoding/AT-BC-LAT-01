@@ -2,7 +2,7 @@ import { Args } from './Args';
 import { Schema } from './Schema';
 
 export class Parser {
-    constructor(argumentList) {
+    constructor() {
         this.numberOfFlags = 3;
         this.ParserArgsList = new Args();
         this.Schema = new Schema();

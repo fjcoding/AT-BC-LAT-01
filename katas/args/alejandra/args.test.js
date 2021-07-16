@@ -1,7 +1,7 @@
 import { splitCommand } from './argsParser.js';
 
 describe('Parser', () => {
-    test('Test if the splitComand function splits the command by space', () => {
+    test('Given a string splits it in an array by spaces', () => {
         expect(splitCommand('-l true')).toEqual(['-l', 'true']);
         expect(splitCommand('-l false -d /usr/logs')).toEqual([
             '-l',
