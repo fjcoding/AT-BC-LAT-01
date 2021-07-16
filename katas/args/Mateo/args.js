@@ -5,17 +5,18 @@ class Parser {
 export class Schema {
     argsSchema = {
         l : {
-            value: true,
+            defaultValue: true,
             valueType: 'boolean'
         },
         p : {
-            value: 0,
+            defaultValue: 0,
             valueType: 'number'
         },
         d : {
-            value: '',
+            defaultValue: '',
             valueType: 'string'
         },
+
     }
     giveSchema() {
         return this.argsSchema;
