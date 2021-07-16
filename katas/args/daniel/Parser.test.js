@@ -1,7 +1,7 @@
-import { Parser } from "./Parser.js";
-import { Schema } from "./Schema.js";
-import { Args } from "./Args.js";
-import { expect } from "@jest/globals";
+import { Parser } from './Parser.js';
+import { Schema } from './Schema.js';
+import { Args } from './Args.js';
+import { expect } from '@jest/globals';
 
 test('Verifies if the Parser class return the values with the correct type', () => {
     const schema = new Schema([
@@ -31,5 +31,5 @@ test('Verifies if the Parser class return the values with the correct type', () 
     ]);
     
     args.putArgs('-p -d /usr/ -m');
-    expect( () => { parser.parse(args, schema) }).toThrow(Error('The argument does not exist in the schema'));
+    expect( () => { parser.parse(args, schema); }).toThrow(Error('The argument does not exist in the schema'));
 });

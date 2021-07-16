@@ -12,7 +12,7 @@ export class Parser {
         }
 
         return parsedArgs;
-    };
+    }
 
     parseArg( unparsedArg, schema ) {
         const flag = unparsedArg.flag;
@@ -20,21 +20,21 @@ export class Parser {
         let parsedArg = {};
 
         if ( value == '' ) {
-            parsedArg = {flag: flag, value: schema.getPropertyOfArg( flag, 'defaultValue')}
+            parsedArg = {flag: flag, value: schema.getPropertyOfArg( flag, 'defaultValue')};
         } else {
             switch ( schema.getPropertyOfArg(flag, 'type') ) {
-                case 'int':
-                    parsedArg = {flag: flag, value: parseInt(value)};
-                    break;
-                case 'bool':
-                    if ( value == 'false') {
-                        parsedArg = {flag: flag, value: false};
-                    } else {
-                        parsedArg = {flag: flag, value: true};
-                    };
-                    break;
-                default:
-                    parsedArg = {flag: flag, value: value};
+            case 'int':
+                parsedArg = {flag: flag, value: parseInt(value)};
+                break;
+            case 'bool':
+                if ( value == 'false') {
+                    parsedArg = {flag: flag, value: false};
+                } else {
+                    parsedArg = {flag: flag, value: true};
+                }
+                break;
+            default:
+                parsedArg = {flag: flag, value: value};
             }
         }
 

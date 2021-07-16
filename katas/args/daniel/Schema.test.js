@@ -1,5 +1,5 @@
-import { Schema } from "./Schema";
-import { Args } from "./Args";
+import { Schema } from './Schema';
+import { Args } from './Args';
 
 test('Schema class expected to return a list of flags with values according to the setted schema', () => {
     const schema = new Schema([
