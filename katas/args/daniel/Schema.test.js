@@ -23,8 +23,22 @@ test('Schema class expected to return a list of flags with values according to t
     ]);
 });
 
-/* test('Schema class is expected to validate if a list of args match with the schema', () => {
-    const schema = new Schema();
-    const argsList = new Args('-p -d -b').getArgsList();
-    expect(schema.validateSchema(argsList)).toBe(true);
-}) */
+test('Schema class is expected to validate if a list of args match with the schema', () => {
+    const schema = new Schema([
+        {name: 'port', flag: '-p', type: 'int', defaultValue: 8080},
+        {name: 'path', flag: '-d', type: 'string', defaultValue: '/usr/'},
+        {name: 'booleanExample', flag: '-b', type: 'bool', defaultValue: false}
+    ]);
+    
+    const args = new Args('-p -d -b');
+    expect(schema.validateSchema(args.getArgsList())).toBe(true);
+
+    args.putArgs('-i -e');
+    expect(schema.validateSchema(args.getArgsList())).toBe(false);
+    
+    args.putArgs('-p');
+    expect(schema.validateSchema(args.getArgsList())).toBe(true);
+    
+    args.putArgs('-p -e');
+    expect(schema.validateSchema(args.getArgsList())).toBe(false);
+});
