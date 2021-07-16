@@ -6,6 +6,5 @@ test('Class Schema should be able to give the schema to validate the input', () 
         l: { value: true, valueType: 'boolean' },
         p: { value: 0, valueType: 'number' },
         d: { value: '', valueType: 'string' },
-        h: { value: true, valueType: 'boolean' }
     });
 })

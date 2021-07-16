@@ -16,10 +16,6 @@ export class Schema {
             value: '',
             valueType: 'string'
         },
-        h : {
-            value: true,
-            valueType: 'boolean'
-        }
     }
     giveSchema() {
         return this.argsSchema;
