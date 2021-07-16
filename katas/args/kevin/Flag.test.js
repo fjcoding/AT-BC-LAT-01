@@ -4,7 +4,6 @@ test("Validate that the flag Logging was created correctly with his characther a
     expect(flagL.character).toBe("-l")
     expect(flagL.value).toBe(false);
 })
-
 test("Validate that the flag Port was created correctly with his characther and value", () => {
     const flagP = new Flag("-p", 8080);
     expect(flagP.character).toBe("-p")
