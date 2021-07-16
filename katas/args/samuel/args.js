@@ -1,7 +1,7 @@
 export class Schema {
     argsSchema = {
         l : {
-            defaultValue: true,
+            defaultValue: false,
             valueType: 'boolean'
         },
         p : {
@@ -13,7 +13,7 @@ export class Schema {
             valueType: 'string'
         },
         h : {
-            defaultValue: true,
+            defaultValue: false,
             valueType: 'boolean'
         }
     }

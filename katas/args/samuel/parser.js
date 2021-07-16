@@ -18,20 +18,29 @@ export class Parser {
     createArgsSchema(argsSplitted, flagPositions) {
         let argsSplit = argsSplitted;
         let flagPosition = flagPositions;
-        let args = {};
+        let argSchema = {};
         for (let index = 0; index < flagPosition.length; index++) {
-            let flagValue = flagPosition[index];
+            let flagValue = argsSplit[flagPosition[index]];
             let flag = flagValue.charAt(1);
             let argValue = argsSplit[flagPosition[index] + 1];
-            let valueType = typeof(argsSplit[flagPosition[index] + 1])
-            if (argsSplit[flagPosition[index] + 1].includes('-')) {
-                args[flag] = { value: true, valueType: 'boolean' }
-            } else if (typeOf(argsSplit[flagPosition[index] + 1]) === 'number') {
-                args[flag] = { value: argValue,  valueType: valueType };
-            } else if (typeOf(argsSplit[flagPosition[index] + 1]) === 'string') {
-                args[flag] = { value: argsValue, valueType: valueType };
+            if (flag == 'p') {
+                argValue = parseInt(argValue);
+            }
+            let valueType = typeof(argValue)
+            if (valueType === 'number') {
+                argSchema[flag] = { value: argValue,  valueType: valueType };
+            } else if (argValue === undefined){
+                argSchema[flag] = { value: true, valueType: 'boolean' };
+            } else if (argsSplit[flagPosition[index] + 1].includes('-')) {
+                argSchema[flag] = { value: true, valueType: 'boolean' };
+            } else if (valueType === 'string') {
+                argSchema[flag] = { value: argValue, valueType: valueType };
             }
         }
-        return args;
+        return argSchema;
     }
 }
+const parse = new Parser;
+let split1 = parse.argsSplitter('-p 6023 -l -h');
+let flagPositions1 = parse.getFlagsPosition(split1);
+parse.createArgsSchema(split1, flagPositions1);

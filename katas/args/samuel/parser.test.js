@@ -5,6 +5,8 @@ describe('Test for method getFlagsPositions()', () => {
         const argsIntance = new Parser;
         let split = argsIntance.argsSplitter('-l -p 8080 -d /usr/logs');
         expect(argsIntance.getFlagsPosition(split)).toEqual([0, 1, 3]);
+        let split1 = argsIntance.argsSplitter('-p 6023 -l -h');
+        expect(argsIntance.getFlagsPosition(split1)).toEqual([0, 2, 3]);
     })
 })
 describe('Test for method createArgsSchema()', () => {
@@ -16,6 +18,13 @@ describe('Test for method createArgsSchema()', () => {
             l: { value: true, valueType: 'boolean' },
             p: { value: 8080, valueType: 'number' },
             d: { value: '/usr/logs', valueType: 'string' }
+        })
+        let split1 = argsIntance.argsSplitter('-p 6023 -l -h');
+        let flagPositions1 = argsIntance.getFlagsPosition(split1);
+        expect(argsIntance.createArgsSchema(split1, flagPositions1)).toEqual({
+            p: { value: 6023, valueType: 'number' },
+            l: { value: true, valueType: 'boolean' },
+            h: { value: true, valueType: 'boolean' }
         })
     })
 })
