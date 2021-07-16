@@ -1,13 +1,13 @@
 import { FlagValidation, ValueValidation } from './FlagsValidation.js';
 
-test("Command should be separate part by part everytime that a space appears on it", () => {
+test("Command array is validated to verify if the flags were correctly initialized", () => {
     expect(FlagValidation([ '-l', '0', '', '8080', '-d', '/AT/AT-BC-LAT-01' ])).toEqual(["-l","Flag 'Port' not initialized","-d"]);
     expect(FlagValidation([ '', 'true', '-d', '8080', '-p', '/AT/AT-BC-LAT-01' ])).toEqual(["Flag 'Logging' not initialized","-p","-d"]);
     expect(FlagValidation([ '-m', 'true', '-', '8080', '-p', '/AT/AT-BC-LAT-01' ])).toEqual(["Flag 'Logging' not initialized","-p","Flag 'Directory' not initialized"]);
     expect(FlagValidation([ '-m', 'true', '-', '8080', '-p', '358415' ])).toEqual(["Flag 'Logging' not initialized","-p","Flag 'Directory' not initialized"]);    
 })
 
-test("Command should be separate part by part everytime that a space appears on it", () => {
+test("Command array is validated to verify if the data type after the flags is correctly typed", () => {
     expect(ValueValidation([ '-l', '0', '', '8080', '-d', '/AT/AT-BC-LAT-01' ])).toEqual([true,"","/AT/AT-BC-LAT-01"]);
     expect(ValueValidation([ '', 'true', '-d', '-8080', '-p', '/AT/AT-BC-LAT-01' ])).toEqual(["","Value type not valid","-8080"]);
     expect(ValueValidation([ '-l', '', '', '8080', '-d', '/AT/AT-BC-LAT-01' ])).toEqual([false,"","/AT/AT-BC-LAT-01"]);
