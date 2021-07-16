@@ -1,9 +1,9 @@
 export class Schema {
-  constructor(name, defaultValue, type) {
-    this.name = name;
-    this.defaultValue = defaultValue;
-    this.type = type;
-  }
+    constructor(name, defaultValue, type) {
+        this.name = name;
+        this.defaultValue = defaultValue;
+        this.type = type;
+    }
 }
 /*const SchemaL = new Schema("-l", false, "Boolean");
 const SchemaP = new Schema("-p", 0, "Number");
