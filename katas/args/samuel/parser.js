@@ -1,3 +1,5 @@
+import { Schema } from "./args";
+
 export class Parser {
     argsSplitter(argsInput) {
         let argsInputSplit = argsInput.split(' ');
@@ -39,8 +41,29 @@ export class Parser {
         }
         return argSchema;
     }
+    schemaValidation(schema, argSchema) {
+        let schemaTemplate = schema;
+        let argSchemaObject = argSchema;
+        let validationResult = false;
+        let argSchemaFlagName = Object.keys(argSchemaObject);
+        let schemaFlagName = Object.keys(schemaTemplate);
+        for (let index = 0; index < argSchemaFlagName.length; index++) {
+            for (let indexSchema = 0; indexSchema < schemaFlagName.length; indexSchema++) {
+                if (schemaFlagName[indexSchema].indexOf(argSchemaFlagName[index], 0) != -1) {
+                    validationResult = true;
+                } else if (schemaFlagName[indexSchema].indexOf(argSchemaFlagName[index], 0) != -1) {
+                    validationResult = false;
+                    break;
+                }
+            }
+        }
+        return validationResult;
+    }
 }
-const parse = new Parser;
-let split1 = parse.argsSplitter('-p 6023 -l -h');
-let flagPositions1 = parse.getFlagsPosition(split1);
-parse.createArgsSchema(split1, flagPositions1);
+const schemaInstance = new Schema;
+const parseInstance = new Parser;
+let schema = schemaInstance.giveSchema();
+let split = parseInstance.argsSplitter('-l -p 8080 -d /usr/logs');
+let flagPositions = parseInstance.getFlagsPosition(split);
+let argSchema = parseInstance.createArgsSchema(split, flagPositions);
+parseInstance.schemaValidation(schema, argSchema);

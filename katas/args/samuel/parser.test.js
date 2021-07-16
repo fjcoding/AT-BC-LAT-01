@@ -1,4 +1,5 @@
 import { Parser } from "./parser";
+import { Schema } from "./args" ; 
 
 describe('Test for method getFlagsPositions()', () => {
     test ('The position method will get us the flags position in the input', () => {
@@ -26,5 +27,16 @@ describe('Test for method createArgsSchema()', () => {
             l: { value: true, valueType: 'boolean' },
             h: { value: true, valueType: 'boolean' }
         })
+    })
+})
+describe('Test for method schemaValidation()', () => {
+    test ('The method receive the schema and search if the flag we have in the parser is valid, this method return a boolean', () => {
+        const schemaInstance = new Schema;
+        const parseInstance = new Parser;
+        let schema = schemaInstance.giveSchema();
+        let split = parseInstance.argsSplitter('-l -p 8080 -d /usr/logs');
+        let flagPositions = parseInstance.getFlagsPosition(split);
+        let argSchema = parseInstance.createArgsSchema(split, flagPositions);
+        expect(parseInstance.schemaValidation(schema, argSchema)).toEqual(true);
     })
 })
