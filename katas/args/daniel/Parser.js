@@ -22,7 +22,7 @@ export class Parser {
         if ( value == '' ) {
             parsedArg = {flag: flag, value: schema.getPropertyOfArg( flag, 'defaultValue')}
         } else {
-            switch ( schema.getPropertyOfArg(unparsedArg, 'type') ) {
+            switch ( schema.getPropertyOfArg(flag, 'type') ) {
                 case 'int':
                     parsedArg = {flag: flag, value: parseInt(value)};
                     break;
@@ -37,7 +37,7 @@ export class Parser {
                     parsedArg = {flag: flag, value: value};
             }
         }
-        
+
         return parsedArg;
     }
 }

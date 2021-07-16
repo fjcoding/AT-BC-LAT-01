@@ -17,10 +17,11 @@ test('Verifies if the Parser class return the values with the correct type', () 
         {flag: '-b', value: false}
     ]);
     
+    args.putArgs('-p 5000 -d /usr/gomez/ -b true');
     expect(parser.parse(args, schema)).toStrictEqual([
-        {flag: '-p', value: 8080},
-        {flag: '-d', value: '/usr/'},
-        {flag: '-b', value: false}
+        {flag: '-p', value: 5000},
+        {flag: '-d', value: '/usr/gomez/'},
+        {flag: '-b', value: true}
     ]);
 
     args.putArgs('-p -d /usr/');
