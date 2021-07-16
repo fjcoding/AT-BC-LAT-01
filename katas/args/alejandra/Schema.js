@@ -3,22 +3,22 @@ export class Schema {
     this.numberOfFlags = 3;
     this.schemaArgs = [
       {
-        flag: "l",
-        name: "logging",
-        type: "boolean",
+        flag: 'l',
+        name: 'logging',
+        type: 'boolean',
         defaultValue: false,
       },
       {
-        flag: "p",
-        name: "port",
-        type: "number",
+        flag: 'p',
+        name: 'port',
+        type: 'number',
         defaultValue: 0,
       },
       {
-        flag: "d",
-        name: "directory",
-        type: "string",
-        defaultValue: "",
+        flag: 'd',
+        name: 'directory',
+        type: 'string',
+        defaultValue: '',
       },
     ];
   }
