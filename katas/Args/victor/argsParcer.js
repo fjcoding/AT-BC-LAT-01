@@ -17,7 +17,7 @@ const logValidation = () => {
 logValidation();
 
 const flagsData = () => {
-  if (log && argsSplit[1].includes('-')) {
+  if (log && argsSplit[1].includes('-') && '-p') {
 
     porth = parseInt(argsSplit[2]);
 
@@ -27,5 +27,4 @@ const flagsData = () => {
 };
 
 flagsData();
-
 export { logValidation };

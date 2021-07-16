@@ -1,6 +1,6 @@
 import { logValidation } from "./argsParcer";
 
-jest.spyOn().mockImplementation(()=>{})
+/* jest.spyOn().mockImplementation(()=>{})
 
 describe('check if the logValidation method is called', () => {
     it('method gets the array', () => {
@@ -11,4 +11,4 @@ describe('check if the logValidation method is called', () => {
     });
     
     
-});
+}); */
