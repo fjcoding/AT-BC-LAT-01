@@ -1,4 +1,4 @@
-import { FlagsCreation, Command } from "./FlagsCreation.js";
+import { FlagsCreation, Command } from './FlagsCreation.js';
 
 export const FlagL = new FlagsCreation (
     '-l',
@@ -20,9 +20,9 @@ export const FlagD = new FlagsCreation (
 
 export const FlagNamesArray = [FlagL.FlagName,FlagP.FlagName,FlagD.FlagName];
 export const FlagTypesArray = [FlagL.FlagType,FlagP.FlagType,FlagD.FlagType];
-export const CommandArray = Command.split(" ");
+export const CommandArray = Command.split(' ');
 
 export function Split(Command){
-    const CommandArray = Command.split(" ");
+    const CommandArray = Command.split(' ');
     return CommandArray;   
 }

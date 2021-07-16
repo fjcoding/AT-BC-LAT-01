@@ -6,4 +6,4 @@ export class FlagsCreation {
         this.DefaultValue = DefaultValue;
     }
 }
-export const Command = "-l true -p 8080 -d /AT/AT-BC-LAT-01"
+export const Command = '-l true -p 8080 -d /AT/AT-BC-LAT-01';
