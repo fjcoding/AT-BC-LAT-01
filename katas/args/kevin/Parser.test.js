@@ -48,6 +48,11 @@ test('Validate if checkIfItsEmpty can determinate if value of the flag Logging i
     const flag3 = new Flag('-l');
     expect(parser.checkIfItsEmpty(flag3.value)).toBe(true);
 });
+test('Validate if checkIfItsEmpty can determinate if value of the flag Logging its not empty', () => {
+    const parser = new Parser();
+    const flag3 = new Flag('-l',true);
+    expect(parser.checkIfItsEmpty(flag3.value)).toBe(false);
+});
 test('Validate if replaceDefaultValue can replace the empty value of the flag for a default value of Directory', () => {
     const parser = new Parser();
     const flag1 = new Flag('-d', null);
@@ -62,7 +67,6 @@ test('Validate if replaceDefaultValue can replace the empty value of the flag fo
 test('Validate if replaceDefaultValue can replace the empty value of the flag for a default value of Port', () => {
     const parser = new Parser();
     const flag2 = new Flag('-p',);
-    const flag3 = new Flag('-l');
     let schemaL = new Schema('-l', false, 'boolean');
     let schemaP = new Schema('-p', 0, 'number');
     let schemaD = new Schema('-d', 'qwe', 'string');
@@ -91,16 +95,8 @@ test('Validate if itsAValidValue can compare the types of  String value of a fla
     const schema = [schemaL, schemaP, schemaD];
     expect(parser.itsAValidValue(schema, flag1)).toBe(true);
 });
+
 test('Validate if itsAValidValue can compare the types of  Number value of a flag with the schema value', () => {
-    const parser = new Parser();
-    const flag1 = new Flag('-d', '/usr/logs');
-    let schemaL = new Schema('-l', false, 'boolean');
-    let schemaP = new Schema('-p', 0, 'number');
-    let schemaD = new Schema('-d', 'qwe', 'string');
-    const schema = [schemaL, schemaP, schemaD];
-    expect(parser.itsAValidValue(schema, flag1)).toBe(true);
-});
-test('Validate if itsAValidValue can compare the types of  String value of a flag with the schema value', () => {
     const parser = new Parser();
     const flag2 = new Flag('-p', 8080);
     let schemaL = new Schema('-l', false, 'boolean');
@@ -109,7 +105,7 @@ test('Validate if itsAValidValue can compare the types of  String value of a fla
     const schema = [schemaL, schemaP, schemaD];
     expect(parser.itsAValidValue(schema, flag2)).toBe(true);
 });
-test('Validate if itsAValidValue can compare the types of  String value of a flag with the schema value', () => {
+test('Validate if itsAValidValue can compare the types of  Boolean value of a flag with the schema value', () => {
     const parser = new Parser();
     const flag3 = new Flag('-l', false);
     let schemaL = new Schema('-l', false, 'boolean');
@@ -119,7 +115,7 @@ test('Validate if itsAValidValue can compare the types of  String value of a fla
     expect(parser.itsAValidValue(schema, flag3)).toBe(true);
 });
 
-test('Validate if itsAValidValue can compare the types of  String value of a flag with the schema value', () => {
+test('Validate if itsAValidValue can compare the types of  Strin value of a flag with the schema value', () => {
     const parser = new Parser();
     let schemaL = new Schema('-l', false, 'boolean');
     let schemaP = new Schema('-p', 0, 'number');
