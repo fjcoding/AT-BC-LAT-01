@@ -1,4 +1,4 @@
-import { Schema } from "./args";
+import { Schema } from './args.js';
 
 export class Parser {
     argsSplitter(argsInput) {
@@ -28,7 +28,7 @@ export class Parser {
             if (flag == 'p') {
                 argValue = parseInt(argValue);
             }
-            let valueType = typeof(argValue)
+            let valueType = typeof(argValue);
             if (valueType === 'number') {
                 argSchema[flag] = { value: argValue,  valueType: valueType };
             } else if (argValue === undefined){
@@ -51,7 +51,7 @@ export class Parser {
             for (let indexSchema = 0; indexSchema < schemaFlagName.length; indexSchema++) {
                 if (schemaFlagName[indexSchema].indexOf(argSchemaFlagName[index], 0) != -1) {
                     validationResult = true;
-                } else if (schemaFlagName[indexSchema].indexOf(argSchemaFlagName[index], 0) != -1) {
+                } else if (schemaFlagName[indexSchema].indexOf(argSchemaFlagName[index], 0) == -1) {
                     validationResult = false;
                     break;
                 }
@@ -60,7 +60,7 @@ export class Parser {
         return validationResult;
     }
 }
-const schemaInstance = new Schema;
+const schemaInstance = new Schema();
 const parseInstance = new Parser;
 let schema = schemaInstance.giveSchema();
 let split = parseInstance.argsSplitter('-l -p 8080 -d /usr/logs');
