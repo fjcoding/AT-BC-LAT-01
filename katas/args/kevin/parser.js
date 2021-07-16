@@ -1,5 +1,5 @@
-import { Flag } from "./flag.js";
-import { Schema } from "./schema.js";
+import { Flag } from "./Flag.js";
+import { Schema } from "./Schema.js";
 export class Parser {
     separateArguments = (args) => {
         const separateArguments = args.split(" ");
@@ -31,9 +31,6 @@ export class Parser {
         return flagArray;
     };
 
-    fillEmptyField = (schema, flag, defaultValue) => {
-
-    }
     itsAValidValue = (schema, flag) => {
         let validValue = false;
         let typeOfValue = null;
@@ -61,31 +58,29 @@ export class Parser {
         if (flag == null) {
             itsEmpty = true;
         }
-        console.log(itsEmpty)
         return itsEmpty;
     }
     replaceDefaultValue = (flag, schema) => {
-        console.log(flag);
         schema.forEach(schema => {
             if (flag.character === schema.name && flag.value == null ) {
                 flag.value = schema.defaultValue;
             }
         });
-        console.log(flag);
         return flag;
     }
 
 }
 let schemaL = new Schema("-l", false, "boolean");
 let schemaP = new Schema("-p", 0, "number");
-let schemaD = new Schema("-d", "asd", "string");
+let schemaD = new Schema("-d", "qwe", "string");
 const schema = [schemaL, schemaP, schemaD];
-const flag = new Flag("-d", "qwert");
+const flag = new Flag("-d", "/usr/logs");
 let parse = new Parser();
 let arg = parse.separateArguments("-l -p 8080 -d /usr/logs");
 
-//parse.checkIfItsFlag("-l", schema);
-//parse.assignFlag(arg, schema);
+//console.log(parse.checkIfItsFlag("-l", schema));
+//console.log(parse.assignFlag(arg, schema));
 //console.log(parse.assignFlag(arg,schema))
-//parse.itsAValidValue(schema, flag);
-parse.replaceDefaultValue(flag, schema);
+//console.log(parse.itsAValidValue(schema, flag));
+//console.log(parse.replaceDefaultValue(flag, schema));
+//console.log(parse.checkIfItsEmpty(flag.value));
