@@ -1,5 +1,5 @@
 import { Args } from './Args.js';
 
-let myArgs = new Args('-p 8080 -d /usr/');
+let myArgs = new Args();
 
-console.log(myArgs.getArgsList());
+console.log(myArgs.putArgs('-p').getArgs());

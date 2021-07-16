@@ -1,6 +1,22 @@
 export class Args {
     constructor( inputArgs ) {
-        this.argsString = inputArgs;
+        if (inputArgs == undefined) {
+            this.argsString = '';
+        } else {
+            this.argsString = inputArgs;
+        };
+    };
+
+    putArgs( inputArgs ) {
+        if (inputArgs == undefined) {
+            this.argsString = '';
+        } else {
+            this.argsString = inputArgs;
+        };
+    };
+
+    getArgs () {
+        return this.argsString;
     }
 
     getArgsList() {
