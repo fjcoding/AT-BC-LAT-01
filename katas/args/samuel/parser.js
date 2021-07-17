@@ -1,10 +1,4 @@
-import { Schema } from './args.js';
-
 export class Parser {
-    argsSplitter(argsInput) {
-        let argsInputSplit = argsInput.split(' ');
-        return argsInputSplit;
-    }
     getFlagsPosition(argsSplitted) {
         let argsSplit = argsSplitted;
         let positionList = [];
@@ -60,10 +54,3 @@ export class Parser {
         return validationResult;
     }
 }
-const schemaInstance = new Schema();
-const parseInstance = new Parser;
-let schema = schemaInstance.giveSchema();
-let split = parseInstance.argsSplitter('-l -p 8080 -d /usr/logs');
-let flagPositions = parseInstance.getFlagsPosition(split);
-let argSchema = parseInstance.createArgsSchema(split, flagPositions);
-parseInstance.schemaValidation(schema, argSchema);

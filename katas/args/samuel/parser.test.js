@@ -1,14 +1,5 @@
 import { Parser } from './parser';
 
-describe('Test for method getFlagsPositions()', () => {
-    test ('The position method will get us the flags position in the input', () => {
-        const argsIntance = new Parser;
-        let split = argsIntance.argsSplitter('-l -p 8080 -d /usr/logs');
-        expect(argsIntance.getFlagsPosition(split)).toEqual([0, 1, 3]);
-        let split1 = argsIntance.argsSplitter('-p 6023 -l -h');
-        expect(argsIntance.getFlagsPosition(split1)).toEqual([0, 2, 3]);
-    });
-});
 describe('Test for method createArgsSchema()', () => {
     test ('The method have to create and appropiate object like the one in the schema and put the value and trype as attributes', () => {
         const argsIntance = new Parser;
