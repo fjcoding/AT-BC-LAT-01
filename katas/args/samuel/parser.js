@@ -2,7 +2,7 @@ export class Parser {
     createArgsSchema(argsSplitted, flagPositions) {
         let argsSplit = argsSplitted;
         let flagPosition = flagPositions;
-        let argSchema = {};
+        let argSchema = [];
         for (let index = 0; index < flagPosition.length; index++) {
             let flagValue = argsSplit[flagPosition[index]];
             let flag = flagValue.charAt(1);
@@ -12,13 +12,13 @@ export class Parser {
             }
             let valueType = typeof(argValue);
             if (valueType === 'number') {
-                argSchema[flag] = { value: argValue,  valueType: valueType };
+                argSchema[index] = { flag: flag, value: argValue,  valueType: valueType };
             } else if (argValue === undefined){
-                argSchema[flag] = { value: true, valueType: 'boolean' };
+                argSchema[index] = { flag: flag, value: true, valueType: 'boolean' };
             } else if (argsSplit[flagPosition[index] + 1].includes('-')) {
-                argSchema[flag] = { value: true, valueType: 'boolean' };
+                argSchema[index] = { flag: flag, value: true, valueType: 'boolean' };
             } else if (valueType === 'string') {
-                argSchema[flag] = { value: argValue, valueType: valueType };
+                argSchema[index] = { flag: flag, value: argValue, valueType: valueType };
             }
         }
         return argSchema;
