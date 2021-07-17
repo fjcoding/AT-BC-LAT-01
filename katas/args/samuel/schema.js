@@ -30,4 +30,12 @@ export class Schema {
     giveSchema() {
         return this.argsSchema;
     }
+    getFlagAndValueType(flagArray) {
+        let flagContainer = flagArray;
+        let arrayProperties = [];
+        for (let index = 0; index < flagContainer.length; index++) {
+            arrayProperties[index] = flagContainer[index].flag + ' ' + flagContainer[index].valueType;
+        }
+        return arrayProperties;
+    }
 }
