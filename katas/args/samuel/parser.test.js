@@ -20,4 +20,21 @@ describe('Test for method createArgsSchema()', () => {
         expect(argsIntance.schemaValidation(['l boolean', 'p number', 'd string', 'h boolean'], ['f number', 'd string'])).toEqual(false);
         expect(argsIntance.schemaValidation(['l boolean', 'p number', 'd string', 'h boolean'], [])).toEqual(false);
     });
+    test ('The method will print the command-line input parsed depending on the validation', () => {
+        const argsIntance = new Parser;
+        expect(argsIntance.showArgsSchema(true, [
+            { flag: 'p', value: 6023, valueType: 'number' },
+            { flag: 'l', value: true, valueType: 'boolean' },
+            { flag: 'h', value: true, valueType: 'boolean' }
+        ])).toEqual([
+            { flag: 'p', value: 6023, valueType: 'number' },
+            { flag: 'l', value: true, valueType: 'boolean' },
+            { flag: 'h', value: true, valueType: 'boolean' }
+        ]);
+        expect(argsIntance.showArgsSchema(false, [
+            { flag: 's', value: 6023, valueType: 'string' },
+            { flag: 'l', value: true, valueType: 'boolean' },
+            { flag: 'h', value: true, valueType: 'boolean' }
+        ])).toEqual('Error, the flag in command-line doesn\'t exist');
+    });
 });

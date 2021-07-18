@@ -37,4 +37,13 @@ export class Parser {
         }
         return validationResult;
     }
+    showArgsSchema(validation, argSchema){
+        let valid = validation;
+        let argArray = argSchema;
+        if (valid) {
+            return argArray;
+        } else {
+            return 'Error, the flag in command-line doesn\'t exist';
+        }
+    }
 }
