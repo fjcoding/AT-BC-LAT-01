@@ -1,24 +1,18 @@
-class Parser {
-
-}
-
-export class Schema {
-    argsSchema = {
-        l : {
-            defaultValue: true,
-            valueType: 'boolean'
-        },
-        p : {
-            defaultValue: 0,
-            valueType: 'number'
-        },
-        d : {
-            defaultValue: '',
-            valueType: 'string'
-        },
-
+export class Args {
+    stringSplitter(stringInput) {
+        let stringInputSplit = stringInput.split(' ');
+        return stringInputSplit;
     }
-    giveSchema() {
-        return this.argsSchema;
+    getFlagsPosition(stringSplitted) {
+        let stringSplit = stringSplitted;
+        let flagPositionList = [];
+        let flagCounter = 0;
+        for (let index = 0; index < stringSplit.length; index++) {
+            if (stringSplit[index].includes('-')) {
+                flagPositionList[flagCounter] = index;
+                flagCounter++;
+            }
+        }
+        return flagPositionList;
     }
 }
