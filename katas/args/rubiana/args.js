@@ -4,39 +4,44 @@
 export class schemaClass {
     constructor() {
         this.flagsSchema = [{
-                flag: "l",
-                name: "logging",
-                type: Boolean,
-                defaultValue: false,
-                parameter: false,
-            },
-            {
-                flag: "p",
-                name: "port",
-                type: Number,
-                defaultValue: 0,
-                parameter: true,
-            },
-            {
-                flag: "d",
-                name: "directory",
-                type: String,
-                defaultValue: "",
-                parameter: true,
-            }
+            flag: 'l',
+            name: 'logging',
+            type: Boolean,
+            defaultValue: false
+        },
+        {
+            flag: 'p',
+            name: 'port',
+            type: Number,
+            defaultValue: 0,
+        },
+        {
+            flag: 'd',
+            name: 'directory',
+            type: String,
+            defaultValue: ''
+        }
         ];
     }
 
     splitInputStr(inputStr) {
-        let arrInput = inputStr.split(" ");
+        let arrInput = inputStr.split(' ');
         return arrInput;
+    }
+
+    isFlag(str) {
+        if (str.substring(0, 1) == '-' && isNaN(str.substring(1, 2))) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     validFlag(flag) {
         if (this.flagIndex(flag) > -1) {
-            return true
+            return true;
         } else {
-            return 'Invalid! The Flag does not exist.'
+            return 'Invalid! The Flag does not exist.';
         }
     }
 
@@ -49,32 +54,64 @@ export class schemaClass {
             }
         });
 
-        return flagIndex
+        return flagIndex;
     }
 
     defaultValue(flag) {
         let defaultValue = this.flagsSchema[this.flagIndex(flag)]['defaultValue'];
-        return defaultValue
+        return defaultValue;
     }
 
-    setNewFlag(_flag, _name, _type, _defaultValue, _parameter) {
-        let tempArr = {
+    setNewFlag(_flag, _name, _type, _defaultValue) {
+        let tempObj = {
             flag: _flag,
             name: _name,
             type: _type,
-            defaultValue: _defaultValue,
-            parameter: _parameter
+            defaultValue: _defaultValue
         };
 
-        if (this.flagsSchema.push(tempArr)) {
-            return "New Flag added to the Schema"
+        if (this.checkInput(tempObj)) {
+            this.flagsSchema.push(tempObj);
+            return 'New Flag "' + _flag + '" added to the Schema';
+        } else {
+            return 'Missing parameters.';
+        }
+    }
+
+    checkInput(input) {
+        if (input.defaultValue !== undefined) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     displaySchema() {
-        for (i = 0; i < this.flagsSchema.length; i++) {
-            document.writeln(this.flagsSchema[i]);
-        }
+        console.log(this.flagsSchema);
+    }
+}
 
+export class parserClass extends schemaClass {
+
+    output(str) {
+        let inputArr = this.splitInputStr(str);
+
+        for (let index = 0; index < inputArr.length; index++) {
+            let input = inputArr[index];
+            let flag = input.substring(1, 2);
+
+            if (this.isFlag(input) && this.validFlag(flag) === true) {
+
+                if (!this.isFlag(inputArr[index + 1])) {
+                    console.log('Flag: ' + input + ' Value: ' + inputArr[index + 1]);
+
+                } else if (this.isFlag(inputArr[index + 1]) || index + 1 == inputArr.length) {
+                    console.log('Flag: ' + input + ' Value: ' + this.flagsSchema[this.flagIndex(flag)]['defaultValue']);
+                }
+
+            } else if (this.isFlag(input)) {
+                console.log(input + ' is not a valid flag');
+            }
+        }
     }
 }
