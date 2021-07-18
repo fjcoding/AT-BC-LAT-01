@@ -23,17 +23,15 @@ export class Parser {
         }
         return argSchema;
     }
-    schemaValidation(schema, argSchema) {
-        let schemaTemplate = schema;
-        let argSchemaObject = argSchema;
+    schemaValidation(schemaFlagArray, argFlagArray) {
+        let schemaTemplate = schemaFlagArray;
+        let argSchemaArray = argFlagArray;
         let validationResult = false;
-        let argSchemaFlagName = Object.keys(argSchemaObject);
-        let schemaFlagName = Object.keys(schemaTemplate);
-        for (let index = 0; index < argSchemaFlagName.length; index++) {
-            for (let indexSchema = 0; indexSchema < schemaFlagName.length; indexSchema++) {
-                if (schemaFlagName[indexSchema].indexOf(argSchemaFlagName[index], 0) != -1) {
+        for (let index = 0; index < argSchemaArray.length; index++) {
+            for (let indexSchema = 0; indexSchema < schemaTemplate.length; indexSchema++) {
+                if (schemaTemplate[indexSchema] == argSchemaArray[index]) {
                     validationResult = true;
-                } else if (schemaFlagName[indexSchema].indexOf(argSchemaFlagName[index], 0) == -1) {
+                } else if (schemaTemplate[indexSchema] != argSchemaArray[index]) {
                     validationResult = false;
                     break;
                 }
