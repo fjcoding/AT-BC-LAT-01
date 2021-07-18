@@ -1,7 +1,7 @@
 import { Parser } from './parser';
 
-describe('Test for method createArgsSchema()', () => {
-    test ('The method have to create and appropiate array like the one in the schema and put the flag, value and type as attributes', () => {
+describe('Test for class Parser', () => {
+    test ('The method createArgsSchema() have to create and appropiate array like the one in the schema and put the flag, value and type as attributes', () => {
         const argsIntance = new Parser;
         expect(argsIntance.createArgsSchema(['-l', '-p', '8080', '-d', '/usr/logs'], [0, 1, 3])).toEqual([
             { flag: 'l', value: true, valueType: 'boolean' },
@@ -14,13 +14,13 @@ describe('Test for method createArgsSchema()', () => {
             { flag: 'h', value: true, valueType: 'boolean' }
         ]);
     });
-    test ('The method have to tell us if the comman-line is valid or not using the array that has the flags and valueType', () => {
+    test ('The method schemaValidation() have to tell us if the comman-line is valid or not using the array that has the flags and valueType', () => {
         const argsIntance = new Parser;
         expect(argsIntance.schemaValidation(['l boolean', 'p number', 'd string', 'h boolean'], ['p number', 'd string'])).toEqual(true);
         expect(argsIntance.schemaValidation(['l boolean', 'p number', 'd string', 'h boolean'], ['f number', 'd string'])).toEqual(false);
         expect(argsIntance.schemaValidation(['l boolean', 'p number', 'd string', 'h boolean'], [])).toEqual(false);
     });
-    test ('The method will print the command-line input parsed depending on the validation', () => {
+    test ('The method showArgsSchema() will print the command-line input parsed depending on the validation', () => {
         const argsIntance = new Parser;
         expect(argsIntance.showArgsSchema(true, [
             { flag: 'p', value: 6023, valueType: 'number' },
