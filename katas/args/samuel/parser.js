@@ -28,13 +28,11 @@ export class Parser {
         let argSchemaArray = argFlagArray;
         let validationResult = false;
         for (let index = 0; index < argSchemaArray.length; index++) {
-            for (let indexSchema = 0; indexSchema < schemaTemplate.length; indexSchema++) {
-                if (schemaTemplate[indexSchema] == argSchemaArray[index]) {
-                    validationResult = true;
-                } else if (schemaTemplate[indexSchema] != argSchemaArray[index]) {
-                    validationResult = false;
-                    break;
-                }
+            if (schemaTemplate.includes(argSchemaArray[index]) == true) {
+                validationResult = true;
+            } else if (schemaTemplate.includes(argSchemaArray[index]) == false) {
+                validationResult = false;
+                break;
             }
         }
         return validationResult;
