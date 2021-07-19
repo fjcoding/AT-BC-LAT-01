@@ -1,14 +1,13 @@
-import { logValidation } from "./argsParcer";
+import { logValidation, portValadation, directoryValidation, argsbuild }  from './argsParcer';
 
-/* jest.spyOn().mockImplementation(()=>{})
 
-describe('check if the logValidation method is called', () => {
-    it('method gets the array', () => {
+describe('check if the functions are being is called', () => {
+    test('function should be called', () => {
         const argStrings = '-l -p 8080 -d /usr/logs';
         const argsSplit = argStrings.split(' ');
-        logValidation(argsSplit);
-        expect(logValidation).toBeCalledWith(argsSplit);
+
+        expect(logValidation()).toBe(true);
     });
     
     
-}); */
+}); 
