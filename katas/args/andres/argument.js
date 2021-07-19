@@ -1,4 +1,4 @@
-const Argument = class {
+export class Argument {
     constructor (newFlagName, newArgValue) {
         this.flag = newFlagName;
         this.argValue = newArgValue;
@@ -6,4 +6,4 @@ const Argument = class {
     returnArgument() {
         return this.flag + this.argValue;
     }
-};
+}
