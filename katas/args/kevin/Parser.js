@@ -9,7 +9,7 @@ export class Parser {
     assignFlag = (separateArguments, schema) => {
         let flagCharacter = null;
         let flagValue = null;
-        let flagArray = new Array();       
+        let flagArray = new Array();
         const parse = new Parser();
 
         for (let index = 0; index < separateArguments.length; index++) {
@@ -60,11 +60,26 @@ export class Parser {
     }
     replaceDefaultValue = (flag, schema) => {
         schema.forEach(schema => {
-            if (flag.character === schema.name && flag.value == null ) {
+            if (flag.character === schema.name && flag.value == null) {
                 flag.value = schema.defaultValue;
             }
         });
         return flag;
     }
-
+    errorControlMessages = (flag, schema, arg) => {
+        let returnVariable = false;
+        try {
+            const parse = new Parser();
+            if (parse.checkIfItsFlag(arg, schema) == false) {
+                throw (arg + ' its not a valid flag');
+            } else if (!parse.itsAValidValue(schema, flag)) {
+                throw ('The value of the ' + arg + ' flag, does not have the correct value type');
+            }
+            returnVariable = true;
+        }
+        catch (error) {
+            returnVariable = false;
+        }
+        return returnVariable;
+    }
 }
