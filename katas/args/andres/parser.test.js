@@ -30,3 +30,22 @@ test('testing splitArgumentValues with the Readme example #1 plus an extra flag 
     expect(obj.returnSchema()).toEqual(['l','p','8080','d','/usr/logs','m']);
 });
 
+test('testing takeArgumentList with null values', () => {
+    const obj = new Parser ('');
+    expect(obj.returnFlags()).toEqual([]);
+});
+
+test('testing takeArgumentList with a single boolean flag', () => {
+    const obj = new Parser ('-l');
+    expect(obj.returnFlags()).toEqual(expect.arrayContaining([expect.objectContaining({argValue: false })]));
+});
+
+test('testing takeArgumentList with negative numbers', () => {
+    const obj = new Parser ('-p -8080');
+    expect(obj.returnFlags()).toEqual(expect.arrayContaining([expect.objectContaining({argValue: -8080 })]));
+});
+
+test('testing takeArgumentList with the Readme example #1', () => {
+    const obj = new Parser ('-l -p 8080 -d /usr/logs');
+    expect(obj.returnFlags()).toEqual(expect.arrayContaining([expect.objectContaining({flag: 'p' })]));
+});
