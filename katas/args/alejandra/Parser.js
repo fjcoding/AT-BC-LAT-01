@@ -7,6 +7,13 @@ export class Parser {
         this.ParserArgsList = new Args();
         this.Schema = new Schema();
     }
+    getParsedArgs() {
+        return this.ParserArgsList.getArgsList();
+    }
+
+    getArgParsedValue(flag) {
+        return this.ParserArgsList.getArgValue(flag);
+    }
 
     isAFlag(flagString) {
         if (
@@ -33,17 +40,23 @@ export class Parser {
                 } else {
                     value = nextElement;
                 }
-                this.Schema.isAValidArg(element[1], value); //If its not a valid arg it throws an error
+                this.handleInvalidArgs(element[1], value); //If its not a valid arg it throws an error
                 this.ParserArgsList.addArg(element[1], value);
             }
         });
     }
 
-    getParsedArgs() {
-        return this.ParserArgsList.getArgsList();
-    }
-
-    getArgParsedValue(flag) {
-        return this.ParserArgsList.getArgValue(flag);
+    handleInvalidArgs(flagToValidate, value) {
+        if (!this.Schema.isAValidFlag(flagToValidate, value)) {
+            throw Error(
+                `The ${flagToValidate} flag its NOT recognized by the schema`
+            );
+        } else if (!this.Schema.isAValidValue(flagToValidate, value)) {
+            throw TypeError(
+                `The argument value {${value}} doesnt match the type {${this.Schema.getFlagType(
+                    flagToValidate
+                )}} required for the flag {${flagToValidate}}`
+            );
+        }
     }
 }

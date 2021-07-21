@@ -33,18 +33,16 @@ export class Schema {
         return resultArg;
     }
 
-    isAValidArg(flagToValidate, value) {
+    isAValidFlag(flagToValidate) {
         const foundedArg = this.findArg(flagToValidate);
-        if (!foundedArg) {
-            throw Error(
-                `The ${flagToValidate} flag its NOT recognized by the schema`
-            );
-        } else if (foundedArg.type !== typeof value) {
-            throw TypeError(
-                `The argument value {${value}} doesnt match the type {${foundedArg.type}} required for the flag {${flagToValidate}}`
-            );
-        }
+        return foundedArg ? true : false;
+    }
 
+    isAValidValue(flagToValidate, value) {
+        const foundedArg = this.findArg(flagToValidate);
+        if (foundedArg.type !== typeof value) {
+            return false;
+        }
         return true;
     }
 

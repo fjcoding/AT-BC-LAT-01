@@ -27,32 +27,31 @@ describe('Test if the class can return the list of schema arguments', () => {
     });
 });
 
-describe('Test if given a flag can return if its a value that exist on the schema and counts as a valid Arg', () => {
+describe('Test if given a flag is valid according with the schema', () => {
     const schemaInstance = new Schema();
     test('Given a flag that exist in the schema returns true', () => {
-        expect(schemaInstance.isAValidArg('p', 0)).toBe(true);
-        expect(schemaInstance.isAValidArg('l', true)).toBe(true);
+        expect(schemaInstance.isAValidFlag('p')).toBe(true);
+        expect(schemaInstance.isAValidFlag('l')).toBe(true);
+        expect(schemaInstance.isAValidFlag('d')).toBe(true);
     });
+    test('Given a flag that doesnt exist in the schema returns false', () => {
+        expect(schemaInstance.isAValidFlag('a')).toBe(false);
+        expect(schemaInstance.isAValidFlag('b')).toBe(false);
+        expect(schemaInstance.isAValidFlag('c')).toBe(false);
+    });
+});
 
-    test('Given a flag that doesnt exist in the schema returns an error', () => {
-        expect(() => {
-            schemaInstance.isAValidArg('w');
-        }).toThrow(Error);
-        expect(() => {
-            schemaInstance.isAValidArg('x');
-        }).toThrow(Error);
+describe('Test if given a flag and its value, the value matches the vale type for that specific flag', () => {
+    const schemaInstance = new Schema();
+    test('Given a flag and a valid value returns true', () => {
+        expect(schemaInstance.isAValidValue('p', 5000)).toBe(true);
+        expect(schemaInstance.isAValidValue('l', true)).toBe(true);
+        expect(schemaInstance.isAValidValue('d', '/dicetory')).toBe(true);
     });
-    test('Given an invalid arg throws the specific error', () => {
-        expect(() => {
-            schemaInstance.isAValidArg('w');
-        }).toThrow('The w flag its NOT recognized by the schema');
-        expect(() => {
-            schemaInstance.isAValidArg('p', 'testString');
-        }).toThrow(
-            TypeError(
-                'The argument value {testString} doesnt match the type {number} required for the flag {p}'
-            )
-        );
+    test('Given a flag that doesnt exist in the schema returns false', () => {
+        expect(schemaInstance.isAValidValue('p', 'a')).toBe(false);
+        expect(schemaInstance.isAValidValue('l', 8080)).toBe(false);
+        expect(schemaInstance.isAValidValue('d', false)).toBe(false);
     });
 });
 

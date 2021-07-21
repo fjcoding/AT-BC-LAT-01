@@ -54,3 +54,32 @@ describe('Test if given a flag returns the correct parsed value', () => {
         expect(parserInstance.getArgParsedValue('p')).toBe(8080);
     });
 });
+
+describe('Test if its not a valid arg throws the correct error', () => {
+    const parserInstance = new Parser();
+    test('Given a flag that doesnt exist in the schema returns an error', () => {
+        expect(() => {
+            parserInstance.handleInvalidArgs('w');
+        }).toThrow(Error);
+        expect(() => {
+            parserInstance.handleInvalidArgs('x');
+        }).toThrow(Error);
+    });
+
+    test('Given an invalid arg throws the specific error', () => {
+        expect(() => {
+            parserInstance.handleInvalidArgs('p', 'testString');
+        }).toThrow(
+            TypeError(
+                'The argument value {testString} doesnt match the type {number} required for the flag {p}'
+            )
+        );
+        expect(() => {
+            parserInstance.handleInvalidArgs('l', '/user');
+        }).toThrow(
+            TypeError(
+                'The argument value {/user} doesnt match the type {boolean} required for the flag {l}'
+            )
+        );
+    });
+});
