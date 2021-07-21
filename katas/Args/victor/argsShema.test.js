@@ -18,7 +18,7 @@ describe('default method of the constructor argss Class', () => {
         const argsObj = new ArgsShema();
         expect(argsObj.defaultMessage()).toEqual('log Data 0 ');
     });
-        
+    
 });
 
 
