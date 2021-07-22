@@ -1,4 +1,4 @@
-export class soldier {
+export class Soldier {
     constructor() {
         this.health = 1;
         this.atackDamage = 1;
