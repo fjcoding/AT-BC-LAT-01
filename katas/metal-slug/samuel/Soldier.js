@@ -5,6 +5,7 @@ export class Soldier {
     constructor() {
         this.resistance = 1;
         this.attackPower = 0;
+        this.lifes = 3;
     }
     changeWeapon(weaponAttackPower) {
         this.attackPower = 1;
