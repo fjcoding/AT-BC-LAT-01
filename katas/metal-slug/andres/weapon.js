@@ -4,8 +4,12 @@ export class Weapon {
         this.weaponAttackPower = attackPower;
         this.weaponHitsMultiple = multipleEnemies;
     }
+<<<<<<< HEAD
     
     dealsDamage(){
         return this.weaponAttackPower;
     }
+=======
+
+>>>>>>> db0c81b (changed file format to LF in weapon.js and its test)
 }
