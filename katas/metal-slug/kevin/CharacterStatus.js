@@ -1,14 +1,14 @@
 export class CharacterStatus {
     getLifePoints = (model, equipment) => {
-        const modelLifepoints = model.lifePoints;
-        const equipmentLifepoints = equipment.lifePoints;
+        const modelLifepoints = model;
+        const equipmentLifepoints = equipment;
         let totalLifePoints = modelLifepoints + equipmentLifepoints;
         return totalLifePoints;
     };
 
     getAttackPower = (model, equipment) => {
-        const modelAttackPower = model.attackPower;
-        const modelEquipment = equipment.attackPower;
+        const modelAttackPower = model;
+        const modelEquipment = equipment;
         let totalAttackPower = 0;
 
         if (modelEquipment > 1) {
