@@ -1,4 +1,4 @@
-import { Weapon, Handgun } from "./Weapon.js";
+import { Handgun } from './Weapon.js';
 
 describe('Handgun expected to reduce 1 pointOfHealt of a single enemy', () => {
     const handgun = new Handgun();
@@ -16,14 +16,14 @@ describe('Handgun expected to reduce 1 pointOfHealt of a single enemy', () => {
 
     test('when attacks multiple enemies', () => {
         expect( handgun.attack(enemies) ).toEqual([
-                {pointsOfHealth: 3},
-                {pointsOfHealth: 1},
-                {pointsOfHealth: 9}
+            {pointsOfHealth: 3},
+            {pointsOfHealth: 1},
+            {pointsOfHealth: 9}
         ]);
         expect( handgun.attack(enemies) ).toEqual([
-                {pointsOfHealth: 2},
-                {pointsOfHealth: 1},
-                {pointsOfHealth: 9}
+            {pointsOfHealth: 2},
+            {pointsOfHealth: 1},
+            {pointsOfHealth: 9}
         ]);
     });
 });

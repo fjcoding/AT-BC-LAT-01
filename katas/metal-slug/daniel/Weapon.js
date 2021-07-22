@@ -11,10 +11,10 @@ export class Weapon {
             enemies[0].pointsOfHealth--;
         }  else {
             enemies.pointsOfHealth--;
-        };  
+        }  
         return enemies;
-    };
-};
+    }
+}
 
 
 /* 
