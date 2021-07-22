@@ -7,12 +7,12 @@ export class Weapon {
 
     attack ( enemies ) {
         if ( Array.isArray(enemies) ){
-            return enemies;
+            // Several enemies were input, just reduce the pointsOfHealth of the first one
+            enemies[0].pointsOfHealth--;
         }  else {
             enemies.pointsOfHealth--;
-            // console.log(enemies);
-            return enemies;
         };  
+        return enemies;
     };
 };
 
@@ -32,15 +32,3 @@ export class Handgun extends Weapon {
         this.multipleEnemys = false;
     }
 }
-
-
-/////////////
-const handgun = new Handgun();
-const enemies = [
-    {pointsOfHealth: 5},
-    {pointsOfHealth: 2},
-    {pointsOfHealth: 10}
-];
-
-console.log( handgun.attack(enemies[0]) );
-
