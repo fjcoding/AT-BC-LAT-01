@@ -39,17 +39,71 @@ test('checkInput() returns true if all the inputs in the object is complete, or 
     expect(schemaClassInstance.checkInput({ flag: 'r', name: 'rubiana', type: String, defaultValue: undefined })).toBe(false);
 });
 
-test('displaySchema() console.log() the current schema', () => {
-    expect(schemaClassInstance.displaySchema()).toEqual(console.log([{ flag: 'l', name: 'logging', type: Boolean, defaultValue: false }, { flag: 'p', name: 'port', type: Number, defaultValue: 0, }, { flag: 'd', name: 'directory', type: String, defaultValue: '' }]));
+test('displaySchema() returns the current schema', () => {
+    let displaiedSchema = [{
+            flag: 'l',
+            name: 'logging',
+            type: Boolean,
+            defaultValue: false
+        },
+        {
+            flag: 'p',
+            name: 'port',
+            type: Number,
+            defaultValue: 0,
+        },
+        {
+            flag: 'd',
+            name: 'directory',
+            type: String,
+            defaultValue: ''
+        },
+        {
+            flag: 'r',
+            name: 'rubiana',
+            type: String,
+            defaultValue: 'student',
+        }
+    ];
+    let displaiedChangedSchema = [{
+            flag: 'l',
+            name: 'logging',
+            type: Boolean,
+            defaultValue: false
+        },
+        {
+            flag: 'p',
+            name: 'port',
+            type: Number,
+            defaultValue: 0,
+        },
+        {
+            flag: 'd',
+            name: 'directory',
+            type: String,
+            defaultValue: '',
+        },
+        {
+            flag: 'r',
+            name: 'rubiana',
+            type: String,
+            defaultValue: 'student',
+        },
+        {
+            flag: 'r',
+            name: 'rubiana',
+            type: String,
+            defaultValue: 'student',
+        }
+    ];
+    expect(schemaClassInstance.displaySchema()).toEqual(displaiedSchema);
     schemaClassInstance.setNewFlag('r', 'rubiana', String, 'student');
-    expect(schemaClassInstance.displaySchema()).toEqual(console.log([{ flag: 'l', name: 'logging', type: Boolean, defaultValue: false }, { flag: 'p', name: 'port', type: Number, defaultValue: 0, }, { flag: 'd', name: 'directory', type: String, defaultValue: '' }, { flag: 'r', name: 'rubiana', type: String, defaultValue: 'student' }]));
+    expect(schemaClassInstance.displaySchema()).toEqual(displaiedChangedSchema);
 });
 
 const parserClassInstance = new parserClass;
 test('output() supposed to bring the flags and the correspondents values or the default values when missing', () => {
-    expect(parserClassInstance.output('-l -p 8080 -d /usr/logs')).toBe(console.log('Flag: -l Value: false Flag: -p Value: 8080 Flag: -d Value: /usr/logs'));
-    expect(parserClassInstance.output('-l -p -d /usr/logs')).toBe(console.log('Flag: -l Value: false Flag: -p Value: 0 Flag: -d Value: /usr/logs'));
-    expect(parserClassInstance.output('-l -z -p 8080 -d /usr/logs')).toBe(console.log('Flag: -l Value: false -z is not a valid flag Flag: -p Value: 8080 Flag: -d Value: /usr/logs'));
-    schemaClassInstance.setNewFlag('r', 'rubiana', String, 'student');
-    expect(parserClassInstance.output('-l -r -p 8080 -d /usr/logs')).toBe(console.log('Flag: -l Value: false Flag: -r Value: student Value: false Flag: -p Value: 8080 Flag: -d Value: /usr/logs'));
+    expect(parserClassInstance.output('-l -p 8080 -d /usr/logs')).toBe('Flag: -l Value: false Flag: -p Value: 8080 Flag: -d Value: /usr/logs ');
+    expect(parserClassInstance.output('-l -p -d /usr/logs')).toBe('Flag: -l Value: false Flag: -p Value: 0 Flag: -d Value: /usr/logs ');
+    expect(parserClassInstance.output('-l -z -p 8080 -d /usr/logs')).toBe('Flag: -l Value: false -z is not a valid flag Flag: -p Value: 8080 Flag: -d Value: /usr/logs ');
 });
