@@ -4,6 +4,7 @@ export class Character {
         this._attackPoints = Number(attackPoints);
         this._haveGun = Boolean(haveGun);
         this._onVehicle = Boolean(onVehicle);
+    
     }
 
 }

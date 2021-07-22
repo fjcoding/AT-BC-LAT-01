@@ -11,5 +11,6 @@ describe('Constructor of the soldier class with default values', () => {
         expect(typeof soldier._gunType).toBe('string');
         expect(typeof soldier._onVehicle).toBe('boolean');
         expect(typeof soldier._vehicleType).toBe('string');
+    
     });
 });

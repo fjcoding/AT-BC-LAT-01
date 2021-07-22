@@ -8,6 +8,6 @@ describe('Constructor of the character class', () => {
         expect(typeof char1._attackPoints).toBe('number');
         expect(typeof char1._haveGun).toBe('boolean');
         expect(typeof char1._onVehicle).toBe('boolean');
-});
+    });
 });
 
