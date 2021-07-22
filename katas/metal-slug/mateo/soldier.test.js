@@ -14,6 +14,6 @@ describe('this test is for soldier class', () => {
         expect(soldierInstance.newVehicle(3)).toBe(4);
         expect(soldierInstance.newVehicle(4)).toBe(5);
         expect(soldierInstance.newVehicle(1)).toBe(2);
-        expect(soldierInstance.newVehicle(3)).toBe(7);
+        expect(soldierInstance.newVehicle(3)).toBe(4);
     })
 })
