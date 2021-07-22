@@ -1,4 +1,4 @@
-import { Soldier } from './Soldier';
+import { Soldier } from './soldier';
 
 describe('this test is for soldier class', () => {
     test('the method newWeapon gives the new atack damage of the soldier after he gets a new weapon', () => {
