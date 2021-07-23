@@ -9,22 +9,24 @@ describe('SingleEnemyWeapon expected to reduce 1 pointOfHealt of a single enemy'
     ];
 
     test('but the enemies are not in an array', () => {
-        expect( () => { handgun.useWeapon(enemies[0]); } ).toThrow(Error);
+        expect(() => {
+            handgun.useWeapon(enemies[0]);
+        }).toThrow(Error);
     });
 
     test('when attacks a single enemy', () => {
-        expect( handgun.useWeapon( [enemies[0]] )).toStrictEqual([ {pointsOfHealth: 4}]);
-        expect( handgun.useWeapon( [enemies[1]] )).toStrictEqual([ {pointsOfHealth: 1}]);
-        expect( handgun.useWeapon( [enemies[2]] )).toStrictEqual([ {pointsOfHealth: 9}]);
+        expect(handgun.useWeapon([enemies[0]])).toStrictEqual([ {pointsOfHealth: 4}]);
+        expect(handgun.useWeapon([enemies[1]])).toStrictEqual([ {pointsOfHealth: 1}]);
+        expect(handgun.useWeapon([enemies[2]])).toStrictEqual([ {pointsOfHealth: 9}]);
     });
 
     test('when attacks multiple enemies', () => {
-        expect( handgun.useWeapon(enemies) ).toEqual([
+        expect(handgun.useWeapon(enemies)).toEqual([
             {pointsOfHealth: 3},
             {pointsOfHealth: 1},
             {pointsOfHealth: 9}
         ]);
-        expect( handgun.useWeapon(enemies) ).toEqual([
+        expect(handgun.useWeapon(enemies)).toEqual([
             {pointsOfHealth: 2},
             {pointsOfHealth: 1},
             {pointsOfHealth: 9}
@@ -32,7 +34,7 @@ describe('SingleEnemyWeapon expected to reduce 1 pointOfHealt of a single enemy'
     });
 
     test('when attacks an enemy with 0 pointsOfHealth', () => {
-        expect( handgun.useWeapon([ {pointsOfHealth: 0} ]) ).toEqual([ {pointsOfHealth: 0} ]);
+        expect(handgun.useWeapon([ {pointsOfHealth: 0} ])).toEqual([ {pointsOfHealth: 0} ]);
     });
 });
 
@@ -46,22 +48,24 @@ describe('MultipleEnemiesWeapon expected to reduce 1 pointOfHealt of multiple en
     ];
 
     test('but the enemies are not in an array', () => {
-        expect( () => { handgun.useWeapon(enemies[0]); } ).toThrow(Error);
+        expect(() => {
+            handgun.useWeapon(enemies[0]);
+        }).toThrow(Error);
     });
 
     test('when attacks a single enemy', () => {
-        expect( handgun.useWeapon( [enemies[0]] )).toStrictEqual([ {pointsOfHealth: 4}]);
-        expect( handgun.useWeapon( [enemies[1]] )).toStrictEqual([ {pointsOfHealth: 1}]);
-        expect( handgun.useWeapon( [enemies[2]] )).toStrictEqual([ {pointsOfHealth: 9}]);
+        expect(handgun.useWeapon([enemies[0]])).toStrictEqual([ {pointsOfHealth: 4}]);
+        expect(handgun.useWeapon([enemies[1]])).toStrictEqual([ {pointsOfHealth: 1}]);
+        expect(handgun.useWeapon([enemies[2]])).toStrictEqual([ {pointsOfHealth: 9}]);
     });
 
     test('when attacks multiple enemies', () => {
-        expect( handgun.useWeapon(enemies) ).toEqual([
+        expect(handgun.useWeapon(enemies)).toEqual([
             {pointsOfHealth: 3},
             {pointsOfHealth: 0},
             {pointsOfHealth: 8}
         ]);
-        expect( handgun.useWeapon(enemies) ).toEqual([
+        expect(handgun.useWeapon(enemies)).toEqual([
             {pointsOfHealth: 2},
             {pointsOfHealth: 0},
             {pointsOfHealth: 7}
@@ -69,6 +73,6 @@ describe('MultipleEnemiesWeapon expected to reduce 1 pointOfHealt of multiple en
     });
 
     test('when attacks an enemy with 0 pointsOfHealth', () => {
-        expect( handgun.useWeapon([ {pointsOfHealth: 0} ]) ).toEqual([ {pointsOfHealth: 0} ]);
+        expect(handgun.useWeapon([ {pointsOfHealth: 0} ])).toEqual([ {pointsOfHealth: 0} ]);
     });
 });

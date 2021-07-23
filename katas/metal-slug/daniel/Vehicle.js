@@ -4,8 +4,8 @@ export class Vehicle {
         this.pointsOfHealth = pointsOfHealth;
     }
 
-    receiveAttack( attackPower = 1 ) {
-        if ( this.pointsOfHealth > attackPower ) {
+    receiveAttack(attackPower = 1) {
+        if (this.pointsOfHealth > attackPower) {
             this.pointsOfHealth = this.pointsOfHealth - attackPower;
             return this.pointsOfHealth;
         }
