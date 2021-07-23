@@ -8,8 +8,8 @@ export class WeaponList{
             HeavyMachineGun : new Weapon('Heavy Machine Gun', 2, 8, false),
             RocketLauncher : new Weapon('Rocket Launcher', 4, 9, false),
             FlameShot : new Weapon('Flame Tower', 5, 4, true),
-            Granade : new Weapon('Granade', 8, 6, true ),
-            knife : new Weapon( 'Knife', 1, 2, false)
+            Granade : new Weapon('Granade', 8, 6, true),
+            knife : new Weapon('Knife', 1, 2, false)
         };
     }
 }

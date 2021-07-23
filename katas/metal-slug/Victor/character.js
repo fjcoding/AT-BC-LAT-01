@@ -3,6 +3,6 @@ export class Character {
         this._healthPoints = Number(healthPoints);
         this._attackPoints = Number(attackPoints);
         this._haveGun = Boolean(haveGun);
-        this._onVehicle = Boolean(onVehicle);    
+        this._onVehicle = Boolean(onVehicle);
     }
 }
