@@ -2,7 +2,7 @@ import { Soldier } from './soldier';
 import { Vehicle } from './vehicle';
 import { Weapon } from './weapon';
 
-describe('this test is for soldier class', () => {
+describe('the soldier instance', () => {
     test('the newWeapon gives and increment of the atack damage of the soldier after he gets it', () => {
         const shotGun = new Weapon(5, 'multiple');
         const heavyMachineGun = new Weapon(2, 'single');
