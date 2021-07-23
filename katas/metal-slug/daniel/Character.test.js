@@ -22,20 +22,20 @@ describe('Soldier is expected to receive attack', () => {
     const soldier = new Soldier();
 
     test('without equiping a vehicle', () => {
-        expect( soldier.receiveAttack( weapons.handgun ) ).toBe( 2 );
-        expect( soldier.receiveAttack( weapons.shotgun ) ).toBe( 1 );
+        expect( soldier.receiveAttack( weapons.handgun.attackPower ) ).toBe( 2 );
+        expect( soldier.receiveAttack( weapons.shotgun.attackPower ) ).toBe( 1 );
     });
 
     test('equiping a vehicle', () => {
         soldier.numOfLifes = 1;
         soldier.equipVehicle( vehicles.tank );
-        expect( soldier.receiveAttack( weapons.handgun ) ).toBe( 1 );
-        expect( soldier.receiveAttack( weapons.shotgun ) ).toBe( 1 );
+        expect( soldier.receiveAttack( weapons.handgun.attackPower ) ).toBe( 1 );
+        expect( soldier.receiveAttack( weapons.shotgun.attackPower ) ).toBe( 1 );
     });
 
     test('when the number of lifes are 0', () => {
         soldier.numOfLifes = 0;
-        expect( () => { soldier.receiveAttack( weapons.handgun ); } ).toThrow( Error );
+        expect( () => { soldier.receiveAttack( weapons.handgun.attackPower ); } ).toThrow( Error );
     });
 });
 

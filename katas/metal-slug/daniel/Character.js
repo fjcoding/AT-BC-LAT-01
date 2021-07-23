@@ -29,13 +29,13 @@ export class Soldier extends Character {
         return this.vehicle;
     }
 
-    receiveAttack( weapon ) {
+    receiveAttack( attackPower ) {
         if ( this.numOfLifes >= 1  ) {
             if ( this.vehicle == undefined ) {
                 this.numOfLifes--;
                 return this.numOfLifes;                
             } else {
-                this.vehicle.pointsOfHealth = this.vehicle.receiveAttack( weapon.attackPower );
+                this.vehicle.pointsOfHealth = this.vehicle.receiveAttack( attackPower );
                 if ( this.vehicle.pointsOfHealth == 0 ) this.vehicle = undefined;
                 return this.numOfLifes;
             }
