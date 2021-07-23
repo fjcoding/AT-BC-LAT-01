@@ -1,34 +1,44 @@
 export class Weapon {
-    constructor () {
-        this.name = '';
-        this.attackPower = 0;
-        this.multipleEnemys = false;
+    constructor ( name = 'handgun', attackPower = 1 ) {
+        this.name = name;
+        this.attackPower = attackPower;
     }
-
-    attack ( enemies ) {
-        if ( Array.isArray(enemies) ){
-            // Several enemies were input, just reduce the pointsOfHealth of the first one
-            enemies[0].pointsOfHealth--;
-        }  else {
-            enemies.pointsOfHealth--;
-        }  
-        return enemies;
+    shoot () {}
+    
+    reduceHealthOfEnemy ( enemyHealth ) {
+        if ( enemyHealth >= this.attackPower ) return enemyHealth - this.attackPower;
+        return 0;
     }
 }
 
+export class SingleEnemyWeapon extends Weapon {
 
-/* 
-* Shotgun: adds 5 points to attack power, can hit multiple enemies
-* Heavy Machine Gun: adds 2 points to attack power, can hit one single enemy
-* Rocket Launcher: adds 4 points to attack power, can hit one single enemy
-* Flame Shot: adds 5 points to attack power, can hits multiple enemies 
-*/
+    shoot ( enemies ) {
+        if ( Array.isArray(enemies) ){
+            // Several enemies were input, just reduce the pointsOfHealth of the first one
+            if ( enemies[0].pointsOfHealth >= 0 ) {
+                enemies[0].pointsOfHealth = this.reduceHealthOfEnemy( enemies[0].pointsOfHealth );
+            }
+            return enemies;
+        }
 
-export class Handgun extends Weapon {
-    constructor () {
-        super();
-        this.name = 'hangun';
-        this.attackPower = 1;
-        this.multipleEnemys = false;
+        throw new Error('Enemies must be in an array, even if it is just 1 enemy');
+    }
+}
+
+export class MultipleEnemiesWeapon extends Weapon {
+
+    shoot ( enemies ) {
+        if ( Array.isArray(enemies) ){
+            enemies.forEach(enemy => {
+                if ( enemy.pointsOfHealth >= 0 ) {
+                    enemy.pointsOfHealth = this.reduceHealthOfEnemy( enemy.pointsOfHealth );
+                }              
+            });
+
+            return enemies;
+        }
+
+        throw new Error('Enemies must be in an array, even if it is just 1 enemy');
     }
 }
