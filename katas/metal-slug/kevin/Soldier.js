@@ -16,7 +16,7 @@ export class Soldier {
         return this.attackPower;
     };
     useAKnife = (enemyVehicle, enemyclose) => {
-        if (enemyVehicle == true && enemyclose == true) {
+        if (enemyVehicle == false && enemyclose == true) {
             this.attackPower = 1;
         }
         return this.attackPower;
@@ -45,6 +45,7 @@ export class Soldier {
         return itsVehicle;
     }
     freeHostage(hostage) {
-        hostage.tied = true;
+        hostage.tied = false;
+        return  hostage.tied;
     }
 }
