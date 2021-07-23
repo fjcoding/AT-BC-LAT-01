@@ -1,4 +1,4 @@
-export class Weapons {
+export class Weapon {
     constructor(WeaponType, Damage, NumberOfTargets){
         this.WeaponType = WeaponType;
         this.Damage = Damage;
