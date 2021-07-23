@@ -1,0 +1,21 @@
+Soldier -> Shoot (Weapon)
+        -> Use (Knife) // if distance == 0 {-1 Enemy.Health}
+        -> Throw (Grenades) // if distance <= 5 {AttackPower == 10}
+        -> Weapon (Default == Hendgun)
+        -> Health
+        -> Life (Default == 3)
+
+Weapon  -> Type 
+        -> Shoot
+        -> AttackPower (var)
+        -> NumberOfTargets (var)
+        -> ReduceEnemyLife (var)
+
+Vehicle -> Type
+        -> Health (var)
+
+Enemy   -> Type 
+        -> Health (var)
+
+
+
