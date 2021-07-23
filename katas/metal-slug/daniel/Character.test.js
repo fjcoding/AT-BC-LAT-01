@@ -61,3 +61,48 @@ describe('Soldier is expected to destroy its vehicle', () => {
         expect( soldier.vehicle ).toEqual( undefined );
     });    
 });
+
+describe('Soldier is expected to attack enemies', () => {
+    const soldier = new Soldier;
+    const enemies = [
+        { pointsOfHealth: 10 },
+        { pointsOfHealth: 10 },
+        { pointsOfHealth: 10 }
+    ];
+
+    test('shooting his singleEnemyWeapon', () => {
+        soldier.changeWeapon( weapons.handgun );
+
+        expect(soldier.shootWeapon( enemies ) ).toEqual([
+            { pointsOfHealth: 9 },
+            { pointsOfHealth: 10 },
+            { pointsOfHealth: 10 }
+        ]);
+    });
+    
+    test('shooting his multipleEnemiesWeapon', () => {
+        soldier.changeWeapon( weapons.shotgun );
+
+        expect(soldier.shootWeapon( enemies ) ).toEqual([
+            { pointsOfHealth: 4 },
+            { pointsOfHealth: 5 },
+            { pointsOfHealth: 5 }
+        ]);
+    });
+    
+    test('using his knife', () => {
+        expect(soldier.useKnife( enemies ) ).toEqual([
+            { pointsOfHealth: 3 },
+            { pointsOfHealth: 5 },
+            { pointsOfHealth: 5 }
+        ]);
+    });
+    
+    test('throwing his granade', () => {
+        expect(soldier.throwGranade( enemies ) ).toEqual([
+            { pointsOfHealth: 0 },
+            { pointsOfHealth: 0 },
+            { pointsOfHealth: 0 }
+        ]);
+    });
+});

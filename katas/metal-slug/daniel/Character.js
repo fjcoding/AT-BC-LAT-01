@@ -1,4 +1,4 @@
-import { SingleEnemyWeapon } from './Weapon.js';
+import { MultipleEnemiesWeapon, SingleEnemyWeapon } from './Weapon.js';
 
 export class Character {
     constructor( pointsOfHealth = 1, genre = 'male' ) {
@@ -10,11 +10,13 @@ export class Character {
 }
 
 export class Soldier extends Character {
-    constructor( weapon = new SingleEnemyWeapon(), vehicle = undefined, numOfLifes = 3 ) {
+    constructor( weapon = new SingleEnemyWeapon('handgun', 1), vehicle = undefined, numOfLifes = 3 ) {
         super();
         this.weapon = weapon;
         this.vehicle = vehicle;
         this.numOfLifes = numOfLifes;
+        this.knife = new SingleEnemyWeapon('knife', 1);
+        this.granade = new MultipleEnemiesWeapon('granade', 10);
     }
 
     changeWeapon ( weapon ) {
@@ -40,5 +42,17 @@ export class Soldier extends Character {
         }
 
         throw new Error('Soldier doesnt have lifes to keep playing');
+    }
+
+    useKnife( enemies ) {
+        return this.knife.useWeapon( enemies );
+    }
+
+    throwGranade( enemies ) {
+        return this.granade.useWeapon( enemies );
+    }
+
+    shootWeapon(enemies ) {
+        return this.weapon.useWeapon( enemies );
     }
 }

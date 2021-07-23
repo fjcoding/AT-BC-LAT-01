@@ -45,7 +45,7 @@ export class MultipleEnemiesWeapon extends Weapon {
 
 
 export const weapons = {
-    handgun: new MultipleEnemiesWeapon('handgun', 1),
+    handgun: new SingleEnemyWeapon('handgun', 1),
     shotgun: new MultipleEnemiesWeapon('shotgun', 5),
     flameShot: new MultipleEnemiesWeapon('flameShot', 5),
     heavyMachineGun: new SingleEnemyWeapon('heavyMachineGun', 5),
