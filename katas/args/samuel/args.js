@@ -3,6 +3,7 @@ export class Args {
         let argsInputSplit = argsInput.split(' ');
         return argsInputSplit;
     }
+
     getFlagsPosition(argsSplitted) {
         let argsSplit = argsSplitted;
         let positionList = [];

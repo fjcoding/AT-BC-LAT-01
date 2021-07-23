@@ -23,6 +23,7 @@ export class Parser {
         }
         return argSchema;
     }
+
     schemaValidation(schemaFlagArray, argFlagArray) {
         let schemaTemplate = schemaFlagArray;
         let argSchemaArray = argFlagArray;
@@ -37,6 +38,7 @@ export class Parser {
         }
         return validationResult;
     }
+
     showArgsSchema(validation, argSchema){
         let valid = validation;
         let argArray = argSchema;
