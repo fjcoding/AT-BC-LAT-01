@@ -1,6 +1,7 @@
 import { Soldier } from './soldier.js';
 import { Weapon } from './weapon.js';
 
+<<<<<<< HEAD
 const alive = true;
 const canHitOneTarget = false;
 const dead = false;
@@ -19,11 +20,28 @@ test('Soldier gets a heavy machine gun', () => {
     const handgun = new Weapon('Handgun',handgunAttackPower,canHitOneTarget);
     const machinegun = new Weapon('Heavy Machine Gun',machinegunAttackPower, canHitOneTarget);
     const obj = new Soldier(handgun,'Fio',mainCharacterHitPoints);
+=======
+test('Create a new soldier, equiped with Handgun', () => {
+    const handgunAttackPower = 1;
+    const mainCharacterHitpoints = 1;
+    const handgun = new Weapon('Handgun',handgunAttackPower,false);
+    const obj = new Soldier(handgun,'Marco',mainCharacterHitpoints);
+    expect(obj.isAlive()).toBe(true);
+});
+test('Soldier gets a machine gun', () => {
+    const handgunAttackPower = 1;
+    const machinegunAttackPower = 3;
+    const mainCharacterHitpoints = 1;
+    const handgun = new Weapon('Handgun',handgunAttackPower,false);
+    const machinegun = new Weapon('Machine Gun',machinegunAttackPower, true);
+    const obj = new Soldier(handgun,'Fio',mainCharacterHitpoints);
+>>>>>>> 8a66b3c (Added soldier class, new soldier and equip tests)
     obj.equipNewWeapon(machinegun);
     expect(obj.attackWithEquippedWeapon()).toBe(machinegunAttackPower);
 });
 /*
 test('Plane takes damage from an enemy handgun', () => {
+<<<<<<< HEAD
     const handgun = new Weapon('Handgun',handgunAttackPower,canHitOneTarget);
     const machinegun = new Weapon('Heavy Machine Gun',machinegunAttackPower, canHitOneTarget);
     const damagedPlainHitPoints = planeHitPoints - machinegunAttackPower;
@@ -39,3 +57,14 @@ test('Soldier takes massive damage', () => {
     obj.takeDamage(handgunAttackPower);
     expect(obj.isAlive()).toBe(dead);
 });
+=======
+    return something;
+});
+test('Soldier takes massive damage', () => {
+    return something;
+});
+test('Insert test description here xD', () => {
+    return something;
+});
+*/
+>>>>>>> 8a66b3c (Added soldier class, new soldier and equip tests)
