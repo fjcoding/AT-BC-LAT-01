@@ -12,3 +12,10 @@ export class Vehicle {
         return 0;
     }
 }
+
+export const vehicles = {
+    tank: new Vehicle('tank', 3),
+    plane: new Vehicle('plane', 4),
+    camel: new Vehicle('camel', 1),
+    submarine: new Vehicle('submarine', 3)
+};

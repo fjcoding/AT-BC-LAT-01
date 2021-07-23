@@ -42,3 +42,12 @@ export class MultipleEnemiesWeapon extends Weapon {
         throw new Error('Enemies must be in an array, even if it is just 1 enemy');
     }
 }
+
+
+export const weapons = {
+    handgun: new MultipleEnemiesWeapon('handgun', 1),
+    shotgun: new MultipleEnemiesWeapon('shotgun', 5),
+    flameShot: new MultipleEnemiesWeapon('flameShot', 5),
+    heavyMachineGun: new SingleEnemyWeapon('heavyMachineGun', 5),
+    rocketLauncher: new SingleEnemyWeapon('rocketLauncher', 5)    
+};
