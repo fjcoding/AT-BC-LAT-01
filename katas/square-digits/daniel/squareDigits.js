@@ -7,6 +7,6 @@ export function squareDigits(num) {
     for (let index = 0; index < num_str.length; index++) {
         result = result + (Math.pow(parseInt(num_str[index]), 2)).toString();
     }
-    
+
     return parseInt(result);
 }

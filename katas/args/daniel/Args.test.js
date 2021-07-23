@@ -18,7 +18,7 @@ test('Args class is expected to return a list of flags an values', () => {
         {flag: '-p', value: '8080'},
         {flag: '-d', value: '/usr/'}
     ]);
-    
+
     args.putArgs('-p -d /usr/');
     expect(args.getArgsList()).toStrictEqual([
         {flag: '-p', value: ''},

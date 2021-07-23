@@ -58,6 +58,7 @@ export class Parser {
         }
         return itsEmpty;
     }
+
     replaceDefaultValue = (flag, schema) => {
         schema.forEach(schema => {
             if (flag.character === schema.name && flag.value == null) {
@@ -66,6 +67,7 @@ export class Parser {
         });
         return flag;
     }
+
     errorControlMessages = (flag, schema, arg) => {
         let returnVariable = false;
         try {
@@ -76,8 +78,7 @@ export class Parser {
                 throw ('The value of the ' + arg + ' flag, does not have the correct value type');
             }
             returnVariable = true;
-        }
-        catch (error) {
+        } catch (error) {
             returnVariable = false;
         }
         return returnVariable;

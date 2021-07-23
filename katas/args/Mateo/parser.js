@@ -22,6 +22,7 @@ export class Parser {
         }
         return argsSchema;
     }
+
     flagAndValue(argsSchema){
         let argsProperties =[];
         for (let index = 0; index < argsSchema.length; index++) {
@@ -29,6 +30,7 @@ export class Parser {
         }
         return argsProperties;
     }
+
     schemaValidation(schemaFlagArray, argFlagArray) {
         let argSchemaArray = argFlagArray;
         let validationResult = false;
@@ -42,6 +44,7 @@ export class Parser {
         }
         return validationResult;
     }
+
     showArgsFlagAndValue(validation, flagAndValue){
         let argArrayStrings = flagAndValue;
         if (validation) {

@@ -32,7 +32,7 @@ const directoryValidation = () =>{
 };
 
 const argsbuild = () => {
-    if(pass) argsObj = new ArgsShema('-l',log,'-p',port,'-d',fileDirectory);
+    if(pass) argsObj = new ArgsShema('-l', log, '-p', port, '-d', fileDirectory);
     return argsObj;
 };
 

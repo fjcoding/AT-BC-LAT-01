@@ -21,9 +21,11 @@ export class Schema {
             },
         ];
     }
+
     giveSchema() {
         return this.initialSchema;
     }
+
     getFlagAndValueType(flagArray) {
         let arrayProperties = [];
         for (let index = 0; index < flagArray.length; index++) {

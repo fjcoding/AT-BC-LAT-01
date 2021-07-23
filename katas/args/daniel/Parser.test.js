@@ -16,7 +16,7 @@ test('Verifies if the Parser class return the values with the correct type', () 
         {flag: '-d', value: '/usr/'},
         {flag: '-b', value: false}
     ]);
-    
+
     args.putArgs('-p 5000 -d /usr/gomez/ -b true');
     expect(parser.parse(args, schema)).toStrictEqual([
         {flag: '-p', value: 5000},
@@ -29,7 +29,9 @@ test('Verifies if the Parser class return the values with the correct type', () 
         {flag: '-p', value: 8080},
         {flag: '-d', value: '/usr/'}
     ]);
-    
+
     args.putArgs('-p -d /usr/ -m');
-    expect( () => { parser.parse(args, schema); }).toThrow(Error('The argument does not exist in the schema'));
+    expect(() => {
+        parser.parse(args, schema);
+    }).toThrow(Error('The argument does not exist in the schema'));
 });

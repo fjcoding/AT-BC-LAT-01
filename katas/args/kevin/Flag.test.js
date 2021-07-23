@@ -15,7 +15,7 @@ test('Validate that the flag Directory was created correctly with his characther
     expect(flagD.value).toBe('/usr/logs');
 });
 test('Validate that if a flag its created with no value,  flag generate a null value for those cases', () => {
-    const flagD = new Flag('-p', );
+    const flagD = new Flag('-p',);
     expect(flagD.character).toBe('-p');
     expect(flagD.value).toBe(null);
 });

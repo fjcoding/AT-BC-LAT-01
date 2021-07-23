@@ -3,7 +3,7 @@ import { ArgsShema } from './argsShema';
 
 describe('Constructor of the args class', () => {
     it('should crate an instace of the class', () => {
-        const argsObj = new ArgsShema('-l', true,'-p', 8080, '-d' , '/usr/logs');
+        const argsObj = new ArgsShema('-l', true, '-p', 8080, '-d', '/usr/logs');
         expect(argsObj._logFlag).toBe('-l');
         expect(argsObj._logValue).toBe(true);
         expect(argsObj._portFlag).toBe('-p');
@@ -18,7 +18,7 @@ describe('default method of the constructor argss Class', () => {
         const argsObj = new ArgsShema();
         expect(argsObj.defaultMessage()).toEqual('log Data 0 ');
     });
-    
+
 });
 
 
