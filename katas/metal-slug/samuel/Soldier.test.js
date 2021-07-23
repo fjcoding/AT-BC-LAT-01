@@ -2,15 +2,15 @@ import { Soldier } from './Soldier';
 import { Civilian } from './Civilian';
 import { Enemy } from './Enemy';
 
-describe ('Tests for class Soldier', () => {
-    test ('The method changeWeapon have to give the new attackPower for the soldier', () => {
+describe ('When a Soldier instance', () => {
+    test ('changes weapon, his attackPower will increase', () => {
         const soldierInstance = new Soldier();
         expect(soldierInstance.changeWeapon(5)).toBe(6);
         expect(soldierInstance.changeWeapon(2)).toBe(3);
         expect(soldierInstance.changeWeapon(4)).toBe(5);
         expect(soldierInstance.changeWeapon(10)).toBe(11);
     });
-    test ('The method useKnife() determine whether is an enemy or a civilian, and return if is an attack or you\'re freeing a civilian', () => {
+    test ('use a knife, the action will change depending on the object', () => {
         const soldierInstance = new Soldier();
         const civilianInstance = new Civilian;
         const enemyInstance = new Enemy();
