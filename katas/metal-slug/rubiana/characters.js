@@ -1,46 +1,48 @@
-export class Character {
-    constructor(_character, _hole, _habilities, _health, _vehicle) {
-        this.character = _character;
-        this.hole = _hole;
-        this.habilities = _habilities;
-        this.health = _health;
-        this.vehicle = _vehicle;
-    }
-    //shoot a weapon, use a knife and throw granades
+export class CharactersSchema {
     characters = [{
         character: 'Soldier1',
         hole: 'soldier',
-        habilities: 'habilities', //[shootWeapon(), useKnife(), throwGranades()],
+        habilities: 'habilities',
         health: 30,
         vehicle: 'camel',
     },
     {
-        character: 'Enime1',
+        character: 'Enemy1',
         hole: 'enime',
-        habilities: 'habilities', //[shootWeapon(), useKnife(), throwGranades()],
+        habilities: 'habilities',
         health: 30,
         vehicle: null,
     },
     ];
 
     displayCharacters() {
-        return this.characters;
+        return this;
+    }
+
+    insertNewCharacterSchema(newCharacter) {
+        this.characters.push(newCharacter);
+    }
+}
+
+class Character {
+    constructor(_character, _hole, _healt, _vehicle) {
+        this.character = _character;
+        this.hole = _hole;
+        this.health = _healt;
+        this.vehicle = _vehicle;
     }
 }
 
 export class Soldier extends Character {
+    constructor(_character, _vehicle) {
+        super(_character, 'soldier', 30, _vehicle);
+        this.habilities = ['shootWeapon', 'useKnife', 'throwGranades'];
+    }
 
-    createNewSoldier(_character, _hole, _habilities, _health, _vehicle) {
-        new Character(_character, _hole, _habilities, 30, _vehicle);
+    showCurrentSchema() {
+        let schemaInstance = new CharactersSchema;
+        schemaInstance.insertNewCharacterSchema(this);
+
+        return schemaInstance.displayCharacters();
     }
 }
-
-/*
-class Enemie extends Character {
-
-}
-
-class Civilian extends Character {
-
-}
-*/
