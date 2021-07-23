@@ -19,7 +19,7 @@ export class Soldier { //enemy soldiers and vehicles are instances of Soldier
     isAlive(){
         return this.currentHealth >= 1;
     }
-    takeDamage(damage){
+    takeDamage(damage){ //I've should named it takesDamage :(
         this.currentHealth -= damage;
     }
     
