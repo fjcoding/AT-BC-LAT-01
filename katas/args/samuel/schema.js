@@ -27,9 +27,11 @@ export class Schema {
             }
         ];
     }
+
     giveSchema() {
         return this.argsSchema;
     }
+
     getFlagAndValueType(flagArray) {
         let flagContainer = flagArray;
         let arrayProperties = [];
