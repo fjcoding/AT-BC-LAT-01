@@ -42,7 +42,7 @@ describe('Test for class Parser', () => {
         ]);
         expect(parserInstance.showArgsFlagAndValue(false, [
             's 8596',
-            'l true' 
+            'l true'
         ])).toEqual('Error, the flag in command-line doesn\'t exist');
     });
 });

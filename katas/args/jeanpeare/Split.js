@@ -13,16 +13,16 @@ export const FlagP = new FlagsCreation (
     '0');
 
 export const FlagD = new FlagsCreation (
-    '-d', 
+    '-d',
     'directory',
     String(),
     '');
 
-export const FlagNamesArray = [FlagL.FlagName,FlagP.FlagName,FlagD.FlagName];
-export const FlagTypesArray = [FlagL.FlagType,FlagP.FlagType,FlagD.FlagType];
+export const FlagNamesArray = [FlagL.FlagName, FlagP.FlagName, FlagD.FlagName];
+export const FlagTypesArray = [FlagL.FlagType, FlagP.FlagType, FlagD.FlagType];
 export const CommandArray = Command.split(' ');
 
 export function Split(Command){
     const CommandArray = Command.split(' ');
-    return CommandArray;   
+    return CommandArray;
 }

@@ -7,9 +7,10 @@ class ArgsShema {
         this._pathFlag = pathFlag;
         this._pathValue = pathValue;
     }
+
     defaultMessage(){
         return `log Data ${this._portValue} ${this._pathValue}`;
-    }    
+    }
 }
 
 export {ArgsShema};

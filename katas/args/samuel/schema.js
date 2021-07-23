@@ -1,6 +1,6 @@
 export class Schema {
     constructor() {
-        this.initialSchema = [
+        this.argsSchema = [
             {
                 flag: 'l',
                 flagName: 'logging',
@@ -19,17 +19,24 @@ export class Schema {
                 defaultValue: '',
                 valueType: 'string'
             },
+            {
+                flag: 'h',
+                flagName: 'help',
+                defaultValue: false,
+                valueType:  'boolean'
+            }
         ];
     }
 
     giveSchema() {
-        return this.initialSchema;
+        return this.argsSchema;
     }
 
     getFlagAndValueType(flagArray) {
+        let flagContainer = flagArray;
         let arrayProperties = [];
-        for (let index = 0; index < flagArray.length; index++) {
-            arrayProperties[index] = flagArray[index].flag + ' ' + flagArray[index].valueType;
+        for (let index = 0; index < flagContainer.length; index++) {
+            arrayProperties[index] = flagContainer[index].flag + ' ' + flagContainer[index].valueType;
         }
         return arrayProperties;
     }

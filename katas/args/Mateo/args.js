@@ -3,6 +3,7 @@ export class Args {
         let stringInputSplit = stringInput.split(' ');
         return stringInputSplit;
     }
+
     getFlagsPosition(stringSplitted) {
         let flagPositionList = [];
         let flagCounter = 0;

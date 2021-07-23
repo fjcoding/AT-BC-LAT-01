@@ -29,6 +29,28 @@
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        "brace-style": [
+            "error",
+            "1tbs"
+        ],
+        "lines-between-class-members": [
+            "error",
+            "always"
+        ],
+        "space-in-parens": [
+            "error",
+            "never"
+        ],
+        "comma-spacing": [
+            "error",
+            {
+                "before": false,
+                "after": true
+            }
+        ],
+        "no-multiple-empty-lines" : "error",
+        "no-trailing-spaces": "error",
+        "camelcase": "error"
     }
 }

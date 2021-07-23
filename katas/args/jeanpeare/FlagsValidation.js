@@ -1,7 +1,7 @@
 import {FlagNamesArray, FlagP} from './Split.js';
 
-var ValidatedFlags = ['','',''];
-var ValidatedValues = ['','',''];
+var ValidatedFlags = ['', '', ''];
+var ValidatedValues = ['', '', ''];
 
 export function FlagValidation(CommandArray) {
     Reset();
@@ -11,17 +11,15 @@ export function FlagValidation(CommandArray) {
     while (index < arraylength) {
         if(CommandArray[index] == FlagNamesArray[0]) {
             ValidatedFlags[0] = '-l';
-        }
-        else if (CommandArray[index] == FlagNamesArray[1]) {
+        } else if (CommandArray[index] == FlagNamesArray[1]) {
             ValidatedFlags[1] = '-p';
-        }
-        else if (CommandArray[index] == FlagNamesArray[2]) {
+        } else if (CommandArray[index] == FlagNamesArray[2]) {
             ValidatedFlags[2] = '-d';
         }
         index ++;
     }
     FlagInvalidation();
-    return ValidatedFlags; 
+    return ValidatedFlags;
 }
 
 export function FlagInvalidation() {
@@ -35,7 +33,7 @@ export function FlagInvalidation() {
     if (ValidatedFlags[2] != '-d') {
         ValidatedFlags[2] = 'Flag \'Directory\' not initialized';
     }
-    return ValidatedFlags; 
+    return ValidatedFlags;
 }
 
 export function ValueValidation(CommandArray) {
@@ -44,29 +42,25 @@ export function ValueValidation(CommandArray) {
     var arraylength = 0;
     arraylength = CommandArray.length;
     while (index < arraylength) {
-        if(CommandArray[index] == FlagNamesArray[0]) {            
+        if(CommandArray[index] == FlagNamesArray[0]) {
             ValidatedValues[0] = Boolean(CommandArray[index+1]);
-        }
-        else if (CommandArray[index] == FlagNamesArray[1]) {
+        } else if (CommandArray[index] == FlagNamesArray[1]) {
             if (CommandArray[index+1] == '') {
                 ValidatedValues[1] = FlagP.DefaultValue;
-            }
-            else if (parseInt(CommandArray[index+1]).toString() == 'NaN') {
+            } else if (parseInt(CommandArray[index+1]).toString() == 'NaN') {
                 ValidatedValues[1] = 'Value type not valid';
-            }
-            else {
+            } else {
                 ValidatedValues[1]=parseInt(CommandArray[index+1]);
             }
-        }
-        else if (CommandArray[index] == FlagNamesArray[2]) {
+        } else if (CommandArray[index] == FlagNamesArray[2]) {
             ValidatedValues[2] = CommandArray[index+1];
         }
         index ++;
     }
-    return ValidatedValues; 
+    return ValidatedValues;
 }
 
 function Reset(){
-    ValidatedFlags=['','',''];
-    ValidatedValues=['','',''];
+    ValidatedFlags=['', '', ''];
+    ValidatedValues=['', '', ''];
 }

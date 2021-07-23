@@ -3,6 +3,7 @@ export class Argument {
         this.flag = newFlagName;
         this.argValue = newArgValue;
     }
+
     returnArgument() {
         return this.flag + this.argValue;
     }

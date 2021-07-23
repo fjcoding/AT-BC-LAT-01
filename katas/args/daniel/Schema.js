@@ -1,9 +1,9 @@
 export class Schema {
-    constructor ( inputSchema ) {
+    constructor (inputSchema) {
         this.schemaList = inputSchema;
     }
 
-    putSchema( inputSchema ) {
+    putSchema(inputSchema) {
         this.schemaList = inputSchema;
     }
 
@@ -11,29 +11,29 @@ export class Schema {
         return this.schemaList;
     }
 
-    validateSchema( inputArgs ) {
+    validateSchema(inputArgs) {
         // Return true if the arguments belongs to the schema
         let isValid = true;
-        inputArgs.forEach( arg => {
-            if ( this.validateFlag(arg.flag) == false ) isValid = false;
+        inputArgs.forEach(arg => {
+            if (this.validateFlag(arg.flag) == false) isValid = false;
         });
         return isValid;
     }
 
-    validateFlag( flag ) {
+    validateFlag(flag) {
         // Return true if the current input flag is in the schema args
         let isInSchema = false;
-        this.schemaList.forEach( schemaArg => {
-            if ( flag == schemaArg.flag ) isInSchema = true;
+        this.schemaList.forEach(schemaArg => {
+            if (flag == schemaArg.flag) isInSchema = true;
         });
         return isInSchema;
     }
 
-    getPropertyOfArg( flag, propertyRequired ) {
+    getPropertyOfArg(flag, propertyRequired) {
         let property = undefined;
-        if ( this.validateFlag(flag) ) {
-            this.schemaList.forEach( schemaArg => {
-                if ( flag == schemaArg.flag ) property = schemaArg[propertyRequired];
+        if (this.validateFlag(flag)) {
+            this.schemaList.forEach(schemaArg => {
+                if (flag == schemaArg.flag) property = schemaArg[propertyRequired];
             });
         }
         return property;

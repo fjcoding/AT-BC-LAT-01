@@ -7,6 +7,7 @@ export class Parser {
         this.ParserArgsList = new Args();
         this.Schema = new Schema();
     }
+
     getParsedArgs() {
         return this.ParserArgsList.getArgsList();
     }

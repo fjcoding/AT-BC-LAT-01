@@ -29,16 +29,16 @@ test('Schema class is expected to validate if a list of args match with the sche
         {name: 'path', flag: '-d', type: 'string', defaultValue: '/usr/'},
         {name: 'booleanExample', flag: '-b', type: 'bool', defaultValue: false}
     ]);
-    
+
     const args = new Args('-p -d -b');
     expect(schema.validateSchema(args.getArgsList())).toBe(true);
 
     args.putArgs('-i -e');
     expect(schema.validateSchema(args.getArgsList())).toBe(false);
-    
+
     args.putArgs('-p');
     expect(schema.validateSchema(args.getArgsList())).toBe(true);
-    
+
     args.putArgs('-p -e');
     expect(schema.validateSchema(args.getArgsList())).toBe(false);
 });

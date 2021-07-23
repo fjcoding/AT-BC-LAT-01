@@ -15,6 +15,6 @@ describe('check if the functions are being is called', () => {
     test('check if argsbuild makes an instense of argsShema class', () => {
         expect(argsbuild()).toBeInstanceOf(ArgsShema);
     });
-   
+
 });
 
