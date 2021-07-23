@@ -41,60 +41,60 @@ test('checkInput() returns true if all the inputs in the object is complete, or 
 
 test('displaySchema() returns the current schema', () => {
     let displaiedSchema = [{
-            flag: 'l',
-            name: 'logging',
-            type: Boolean,
-            defaultValue: false
-        },
-        {
-            flag: 'p',
-            name: 'port',
-            type: Number,
-            defaultValue: 0,
-        },
-        {
-            flag: 'd',
-            name: 'directory',
-            type: String,
-            defaultValue: ''
-        },
-        {
-            flag: 'r',
-            name: 'rubiana',
-            type: String,
-            defaultValue: 'student',
-        }
+        flag: 'l',
+        name: 'logging',
+        type: Boolean,
+        defaultValue: false
+    },
+    {
+        flag: 'p',
+        name: 'port',
+        type: Number,
+        defaultValue: 0,
+    },
+    {
+        flag: 'd',
+        name: 'directory',
+        type: String,
+        defaultValue: ''
+    },
+    {
+        flag: 'r',
+        name: 'rubiana',
+        type: String,
+        defaultValue: 'student',
+    }
     ];
     let displaiedChangedSchema = [{
-            flag: 'l',
-            name: 'logging',
-            type: Boolean,
-            defaultValue: false
-        },
-        {
-            flag: 'p',
-            name: 'port',
-            type: Number,
-            defaultValue: 0,
-        },
-        {
-            flag: 'd',
-            name: 'directory',
-            type: String,
-            defaultValue: '',
-        },
-        {
-            flag: 'r',
-            name: 'rubiana',
-            type: String,
-            defaultValue: 'student',
-        },
-        {
-            flag: 'r',
-            name: 'rubiana',
-            type: String,
-            defaultValue: 'student',
-        }
+        flag: 'l',
+        name: 'logging',
+        type: Boolean,
+        defaultValue: false
+    },
+    {
+        flag: 'p',
+        name: 'port',
+        type: Number,
+        defaultValue: 0,
+    },
+    {
+        flag: 'd',
+        name: 'directory',
+        type: String,
+        defaultValue: '',
+    },
+    {
+        flag: 'r',
+        name: 'rubiana',
+        type: String,
+        defaultValue: 'student',
+    },
+    {
+        flag: 'r',
+        name: 'rubiana',
+        type: String,
+        defaultValue: 'student',
+    }
     ];
     expect(schemaClassInstance.displaySchema()).toEqual(displaiedSchema);
     schemaClassInstance.setNewFlag('r', 'rubiana', String, 'student');

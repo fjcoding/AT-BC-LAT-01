@@ -4,23 +4,23 @@
 export class schemaClass {
     constructor() {
         this.flagsSchema = [{
-                flag: 'l',
-                name: 'logging',
-                type: Boolean,
-                defaultValue: false
-            },
-            {
-                flag: 'p',
-                name: 'port',
-                type: Number,
-                defaultValue: 0,
-            },
-            {
-                flag: 'd',
-                name: 'directory',
-                type: String,
-                defaultValue: ''
-            }
+            flag: 'l',
+            name: 'logging',
+            type: Boolean,
+            defaultValue: false
+        },
+        {
+            flag: 'p',
+            name: 'port',
+            type: Number,
+            defaultValue: 0,
+        },
+        {
+            flag: 'd',
+            name: 'directory',
+            type: String,
+            defaultValue: ''
+        }
         ];
     }
 
@@ -115,6 +115,6 @@ export class parserClass extends schemaClass {
             }
         }
 
-        return finalStr
+        return finalStr;
     }
 }
