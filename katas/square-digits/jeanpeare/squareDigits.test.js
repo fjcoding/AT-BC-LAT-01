@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 import { squareDigits } from './squareDigits.js'
 
 test("squareDigits should square each digit and concatenate each result to a final int", () => {
+=======
+import { squareDigits } from './squareDigits.js';
+
+test('squareDigits should square each digit and concatenate each result to a final int', () => {
+>>>>>>> eda6f56c57a2704f808e3fe108231e0e985f6428
     expect(squareDigits(0)).toBe(0);
     expect(squareDigits(3212)).toBe(9414);
     expect(squareDigits(2112)).toBe(4114);
@@ -24,4 +30,8 @@ test("squareDigits should square each digit and concatenate each result to a fin
     expect(squareDigits(374)).toBe(94916);
     expect(squareDigits(5205)).toBe(254025);
     expect(squareDigits(7677)).toBe(49364949);
+<<<<<<< HEAD
 })
+=======
+});
+>>>>>>> eda6f56c57a2704f808e3fe108231e0e985f6428
