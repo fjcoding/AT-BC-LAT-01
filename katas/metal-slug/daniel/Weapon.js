@@ -3,7 +3,7 @@ export class Weapon {
         this.name = name;
         this.attackPower = attackPower;
     }
-    shoot () {}
+    useWeapon () {}
     
     reduceHealthOfEnemy ( enemyHealth ) {
         if ( enemyHealth >= this.attackPower ) return enemyHealth - this.attackPower;
@@ -13,7 +13,7 @@ export class Weapon {
 
 export class SingleEnemyWeapon extends Weapon {
 
-    shoot ( enemies ) {
+    useWeapon ( enemies ) {
         if ( Array.isArray(enemies) ){
             // Several enemies were input, just reduce the pointsOfHealth of the first one
             if ( enemies[0].pointsOfHealth >= 0 ) {
@@ -28,7 +28,7 @@ export class SingleEnemyWeapon extends Weapon {
 
 export class MultipleEnemiesWeapon extends Weapon {
 
-    shoot ( enemies ) {
+    useWeapon ( enemies ) {
         if ( Array.isArray(enemies) ){
             enemies.forEach(enemy => {
                 if ( enemy.pointsOfHealth >= 0 ) {
