@@ -1,8 +1,15 @@
-import { Weapons } from './Weapons';
+import { Weapon } from './Weapons';
+import { Grenade } from './Weapons';
 
 describe('When a weapon instance', () => {
     test('Got his attack Power, it should be shown', () => {
-        const weaponInstance = new Weapons();
-        expect(weaponInstance.getAttackPower()).toBe(0);
+        const weaponInstance = new Weapon();
+        expect(weaponInstance.getAttackPower()).toBe(1);
+    });
+});
+describe('When a weapon subclass instance', () => {
+    test('Try to get his attack Power, it should be shown', () => {
+        const grenadeInstance = new Grenade();
+        expect(grenadeInstance.getAttackPower()).toBe(10);
     });
 });
