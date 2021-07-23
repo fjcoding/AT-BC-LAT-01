@@ -12,28 +12,28 @@ describe ('When a Soldier instance', () => {
         const shotgunInstance = new Shotgun();
         expect(soldierInstance1.changeWeapon(shotgunInstance, soldierInstance1)).toEqual({
             resistance: 1,
-            attackPower: 5,
+            attackPower: 6,
             lifes: 3
         });
         const soldierInstance2 = new Soldier();
         const flameShotInstance = new FlameShot();
         expect(soldierInstance2.changeWeapon(flameShotInstance, soldierInstance2)).toEqual({
             resistance: 1,
-            attackPower: 5,
+            attackPower: 6,
             lifes: 3
         });
         const soldierInstance3 = new Soldier();
         const grenadeInstance = new Grenade();
         expect(soldierInstance3.changeWeapon(grenadeInstance, soldierInstance3)).toEqual({
             resistance: 1,
-            attackPower: 10,
+            attackPower: 11,
             lifes: 3
         });
         const soldierInstance4 = new Soldier();
         const rocketLauncherInstance = new RocketLauncher();
         expect(soldierInstance4.changeWeapon(rocketLauncherInstance, soldierInstance4)).toEqual({
             resistance: 1,
-            attackPower: 4,
+            attackPower: 5,
             lifes: 3
         });
     });

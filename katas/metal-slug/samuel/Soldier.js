@@ -4,7 +4,7 @@ import { Enemy } from './Enemy.js';
 export class Soldier {
     constructor() {
         this.resistance = 1;
-        this.attackPower = 0;
+        this.attackPower = 1;
         this.lifes = 3;
     }
 
