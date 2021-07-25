@@ -1,5 +1,5 @@
 import { Soldier } from './Soldier.js';
-import { HeavyMachineGun } from './weapons/HeavyMachineGun.js';
+import { HeavyMachineGun } from './Weapon.js';
 test('Verify that the soldier was created correctly with his attributes', () => {
     let soldier = new Soldier(1, 1, 3, 1);
     const expectedSoldierLifePoints = 1;
@@ -13,7 +13,7 @@ test('Verify that the soldier was created correctly with his attributes', () => 
 });
 test('Verify that the soldier can shoot a HeavyMachineGun', () => {
     let soldier = new Soldier(1, 1, 3, 1);
-    let heavyMG = new HeavyMachineGun(4);
+    let heavyMG = new HeavyMachineGun(2);
     const actualResult = soldier.shootAWeapon(heavyMG);
     const expectedSoldierTotalAttackPower = 2;
     expect(actualResult).toBe(expectedSoldierTotalAttackPower);
