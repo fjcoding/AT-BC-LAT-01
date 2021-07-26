@@ -1,5 +1,5 @@
 export class Vehicle {
-    constructor(aditionalHealth) {
-        this.aditionalHealth = aditionalHealth;
+    constructor(health) {
+        this.health = health;
     }
 }
