@@ -113,7 +113,7 @@ npm install
 ## Run tests
 Run tests for Katas (/katas)
 ```
-npm run test:run
+npm run test:katas
 ```
 
 Run tests for main project (/src)
