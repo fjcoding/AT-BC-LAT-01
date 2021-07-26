@@ -1,5 +1,4 @@
 import { Soldier } from './Soldier.js';
-import { HeavyMachineGun } from './Weapon.js';
 test('Verify that the soldier was created correctly with his attributes', () => {
     let soldier = new Soldier(1, 1, 3, 1);
     const expectedSoldierLifePoints = 1;
@@ -10,13 +9,6 @@ test('Verify that the soldier was created correctly with his attributes', () => 
     expect(soldier.attackPower).toBe(expectedSoldierAttackPower);
     expect(soldier.lives).toBe(expectedSoldierLives);
     expect(soldier.distance).toBe(expectedSoldierDistance);
-});
-test('Verify that the soldier can shoot a HeavyMachineGun', () => {
-    let soldier = new Soldier(1, 1, 3, 1);
-    let heavyMG = new HeavyMachineGun();
-    const actualResult = soldier.shootAWeapon(heavyMG);
-    const expectedSoldierTotalAttackPower = 2;
-    expect(actualResult).toBe(expectedSoldierTotalAttackPower);
 });
 test('Verify that the soldier recognize a close enemy', () => {
     let soldier = new Soldier(1, 1, 3, 1);

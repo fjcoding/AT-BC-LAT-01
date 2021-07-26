@@ -5,16 +5,6 @@ export class Soldier {
         this.lives = lives;
         this.distance = distance;
     }
-    shootAWeapon = (typeOfGun) => {
-        let newAttackPower = null;
-        if (typeOfGun.attackPower != 1) {
-            newAttackPower = typeOfGun.attackPower;
-            this.attackPower = newAttackPower;
-        } else {
-            this.attackPower = 1;
-        }
-        return this.attackPower;
-    };
     useAKnife = (enemyVehicle, enemyclose) => {
         if (enemyVehicle == false && enemyclose == true) {
             this.attackPower = 1;

@@ -23,3 +23,8 @@ export class FlameShot extends Weapon {
         super(5);
     }
 }
+export class Handgun extends Weapon {
+    constructor() {
+        super(1);
+    }
+}
