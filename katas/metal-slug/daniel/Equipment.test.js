@@ -7,24 +7,24 @@ describe('Verify that DefenceEquipment', () => {
 
     test('is equiped by a character', () => {
         character.equip(tank);
-        expect(character.defenceEquipment).toEqual(tank);
+        expect(character.equipment.defence).toEqual(tank);
     });
 
     test('receives attacks and reduces health of defencEquipment', () => {
         character.receiveAttack(1);
         expect(character.pointsOfHealth).toBe(1);
         expect(character.numOfLifes).toBe(1);
-        expect(character.defenceEquipment.name).toBe('tank');
-        expect(character.defenceEquipment.pointsOfHealth).toBe(2);
+        expect(character.equipment.defence.name).toBe('tank');
+        expect(character.equipment.defence.pointsOfHealth).toBe(2);
     });
 
     test('receives attacks and destroys the defenceEquipment', () => {
         character.receiveAttack(5);
         expect(character.pointsOfHealth).toBe(1);
         expect(character.numOfLifes).toBe(1);
-        expect(character.defenceEquipment).toEqual(new NoDefenceEquipment);
-        expect(character.defenceEquipment.name).toEqual('No equipment');
-        expect(character.defenceEquipment.pointsOfHealth).toBe(0);
+        expect(character.equipment.defence).toEqual(new NoDefenceEquipment);
+        expect(character.equipment.defence.name).toEqual('No equipment');
+        expect(character.equipment.defence.pointsOfHealth).toBe(0);
     });
 });
 

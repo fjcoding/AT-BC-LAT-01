@@ -1,22 +1,20 @@
 class Equipment {
     constructor (name) {
         this.name = name;
+        this.type = undefined;
     }
 
-    equipCharacter() {
-
+    equipCharacter(character, equipment = this) {
+        character.equipment[this.type] = equipment;
     }
 }
 
 export class DefenceEquipment extends Equipment {
     constructor (name, pointsOfHealth = 1) {
         super();
+        this.type = 'defence';
         this.name = name;
         this.pointsOfHealth = pointsOfHealth;
-    }
-
-    equipCharacter(character, equipment = this) {
-        character.defenceEquipment = equipment;
     }
 
     receiveAttack(character, attackPower = 1) {
@@ -33,6 +31,7 @@ export class DefenceEquipment extends Equipment {
 export class NoDefenceEquipment extends DefenceEquipment {
     constructor () {
         super();
+        this.type = 'defence';
         this.name = 'No equipment';
         this.pointsOfHealth = 0;
     }
@@ -50,5 +49,14 @@ export class NoDefenceEquipment extends DefenceEquipment {
             }
         }
         return this;
+    }
+}
+
+export class WeaponEquipment extends Equipment {
+    constructor (name = '', attackPower = 0, type = 'gun') {
+        super();
+        this.name = name;
+        this.attackPower = attackPower;
+        this.type = type;
     }
 }

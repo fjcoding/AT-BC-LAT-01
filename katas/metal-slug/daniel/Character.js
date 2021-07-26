@@ -6,22 +6,23 @@ export class Character {
         pointsOfHealth = 1,
         initialHealth = 1,
         numOfLifes = 1,
-        genre = 'male') {
+        genre = 'male',
+        equipment = {defence: new NoDefenceEquipment}
+    ) {
 
         this.pointsOfHealth = pointsOfHealth;
         this.initialHealth = initialHealth;
         this.numOfLifes = numOfLifes;
         this.genre = genre;
-        this.armamentEquipment = undefined;
-        this.defenceEquipment = new NoDefenceEquipment;
+        this.equipment = equipment;
     }
 
-    equip (equipment = NoDefenceEquipment) {
+    equip (equipment) {
         equipment.equipCharacter(this);
     }
 
     receiveAttack(attackPower=1) {
-        this.defenceEquipment.receiveAttack(this, attackPower);
+        this.equipment.defence.receiveAttack(this, attackPower);
     }
 }
 
