@@ -16,24 +16,7 @@ export class Soldier {
         soldier.attackPower = 10;
         return soldier.attackPower;
     };
-    isEnemyclose(enemyDistance) {
-        let enemyClose = false;
-        if (enemyDistance == 0) {
-            enemyClose = true;
-        } else {
-            enemyClose = false;
-        }
-        return enemyClose;
-    }
-    isEnemyAVehicle(VehicleLifePoints) {
-        let itsVehicle = false;
-        if (VehicleLifePoints > 1) {
-            itsVehicle = true;
-        } else {
-            itsVehicle = false;
-        }
-        return itsVehicle;
-    }
+
     freeCivilian(civilian) {
         if (civilian.isTied == true) {
             civilian.isTied = false;
