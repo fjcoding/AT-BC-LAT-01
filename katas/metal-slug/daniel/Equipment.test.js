@@ -11,7 +11,7 @@ describe('Verify that DefenceEquipment', () => {
     });
 
     test('receives attacks and reduces health of defencEquipment', () => {
-        character.receiveAttack(1);
+        character.useAbility('receiveAttack', 1);
         expect(character.pointsOfHealth).toBe(1);
         expect(character.numOfLifes).toBe(1);
         expect(character.equipment.defence.name).toBe('tank');
@@ -19,7 +19,7 @@ describe('Verify that DefenceEquipment', () => {
     });
 
     test('receives attacks and destroys the defenceEquipment', () => {
-        character.receiveAttack(5);
+        character.useAbility('receiveAttack', 5);
         expect(character.pointsOfHealth).toBe(1);
         expect(character.numOfLifes).toBe(1);
         expect(character.equipment.defence).toEqual(new NoDefenceEquipment);
@@ -31,19 +31,19 @@ describe('Verify that DefenceEquipment', () => {
 describe('Verify that NoDefenceEquipment', () => {
     const character = new Character(5, 1, 1);
     test('receives attacks and reduce the pointsOfHealt and numOfLife of the character', () => {
-        character.receiveAttack(1);
+        character.useAbility('receiveAttack', 1);
         expect(character.pointsOfHealth).toBe(4);
         expect(character.numOfLifes).toBe(1);
     });
 
     test('receives attacks and restore the initial pointsOfHealt if the attack is greater than the health', () => {
-        character.receiveAttack(5);
+        character.useAbility('receiveAttack', 5);
         expect(character.pointsOfHealth).toBe(1);
         expect(character.numOfLifes).toBe(0);
     });
 
     test('receives attacks and the numOfLifes of character is never less than 0', () => {
-        character.receiveAttack(5);
+        character.useAbility('receiveAttack', 5);
         expect(character.pointsOfHealth).toBe(0);
         expect(character.numOfLifes).toBe(0);
     });

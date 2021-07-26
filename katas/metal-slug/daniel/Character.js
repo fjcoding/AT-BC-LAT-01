@@ -1,5 +1,6 @@
 import { MultipleEnemiesWeapon, SingleEnemyWeapon } from './Weapon.js';
 import { NoDefenceEquipment } from './Equipment.js';
+import { ReceiveAttack } from './Ability.js';
 
 export class Character {
     constructor(
@@ -7,7 +8,8 @@ export class Character {
         initialHealth = 1,
         numOfLifes = 1,
         genre = 'male',
-        equipment = {defence: new NoDefenceEquipment}
+        equipment = {defence: new NoDefenceEquipment},
+        abilities = {receiveAttack: new ReceiveAttack}
     ) {
 
         this.pointsOfHealth = pointsOfHealth;
@@ -15,14 +17,15 @@ export class Character {
         this.numOfLifes = numOfLifes;
         this.genre = genre;
         this.equipment = equipment;
+        this.abilities = abilities;
     }
 
     equip (equipment) {
         equipment.equipCharacter(this);
     }
 
-    receiveAttack(attackPower=1) {
-        this.equipment.defence.receiveAttack(this, attackPower);
+    useAbility(ability, parameter) {
+        this.abilities[ability].do(this, parameter);
     }
 }
 
