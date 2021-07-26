@@ -50,7 +50,8 @@ export class Soldier {
         if (this.lifes <= 0) {
             return 'Game over';
         } else {
-            return this.lifes;
+            this.health = 1;
+            return 'the soldier has ' + this.lifes + ' lifes and he has ' + this.health + ' points of health';
         }
     }
 }

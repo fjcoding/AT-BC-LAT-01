@@ -53,8 +53,16 @@ describe('the soldier instance', () => {
     test('when the soldier got damage his health goes low and if he dont have healt, he loses a life', () => {
         const soldierInstance = new Soldier;
         const alien = new Alien;
-        expect(soldierInstance.getDamage(alien.atackDamage)).toEqual(2);
-        expect(soldierInstance.getDamage(alien.atackDamage)).toEqual(1);
+        expect(soldierInstance.getDamage(alien.atackDamage)).toEqual('the soldier has ' + 2 + ' lifes and he has ' + 1 + ' points of health');
+        expect(soldierInstance.getDamage(alien.atackDamage)).toEqual('the soldier has ' + 1 + ' lifes and he has ' + 1 + ' points of health');
         expect(soldierInstance.getDamage(alien.atackDamage)).toEqual('Game over');
+    });
+
+    test('If the soldier have a vehicle he wont die with the damage', () => {
+        const soldierInstance = new Soldier;
+        const tank = new Vehicle(3);
+        soldierInstance.newVehicle(tank, soldierInstance);
+        const alien = new Alien;
+        expect(soldierInstance.getDamage(alien.atackDamage)).toEqual('the soldier has ' + 3 + ' lifes and he has ' + 1 + ' points of health');
     });
 });
