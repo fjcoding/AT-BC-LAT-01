@@ -40,4 +40,17 @@ export class Soldier {
         }
         return soldier;
     }
+
+    getDamage(enemyAtackDamage) {
+        this.health = this.health - enemyAtackDamage;
+        if (this.health <= 0) {
+            this.lifes--;
+        }
+
+        if (this.lifes <= 0) {
+            return 'Game over';
+        } else {
+            return this.lifes;
+        }
+    }
 }

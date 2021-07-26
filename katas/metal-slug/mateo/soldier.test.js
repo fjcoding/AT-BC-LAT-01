@@ -1,6 +1,7 @@
 import { Soldier } from './soldier';
 import { Vehicle } from './vehicle';
 import { Weapon } from './weapon';
+import { Alien } from './enemy';
 
 describe('the soldier instance', () => {
     test('the newWeapon gives an increment of the atack damage of the soldier after he gets it', () => {
@@ -47,5 +48,13 @@ describe('the soldier instance', () => {
         expect(soldierInstance4.newVehicle(submarine, soldierInstance4)).toEqual({
             health: 4, atackDamage: 1, lifes: 3
         });
+    });
+
+    test('when the soldier got damage his health goes low and if he dont have healt, he loses a life', () => {
+        const soldierInstance = new Soldier;
+        const alien = new Alien;
+        expect(soldierInstance.getDamage(alien.atackDamage)).toEqual(2);
+        expect(soldierInstance.getDamage(alien.atackDamage)).toEqual(1);
+        expect(soldierInstance.getDamage(alien.atackDamage)).toEqual('Game over');
     });
 });
