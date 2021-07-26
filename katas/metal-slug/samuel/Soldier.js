@@ -1,6 +1,3 @@
-import { Civilian } from './Civilian.js';
-import { Enemy } from './Enemy.js';
-
 export class Soldier {
     constructor() {
         this.resistance = 1;
@@ -26,11 +23,9 @@ export class Soldier {
         return soldierInstance;
     }
 
-    useKnife(civilianOrEnemy) {
-        if (civilianOrEnemy instanceof Civilian) {
-            return 'Rescued';
-        } else if (civilianOrEnemy instanceof Enemy) {
-            return 'Attack';
+    useKnife(civilianOrEnemyInstance) {
+        if (civilianOrEnemyInstance instanceof Object) {
+            return civilianOrEnemyInstance['knifeAction'];
         } else {
             return 'Can\'t use' ;
         }

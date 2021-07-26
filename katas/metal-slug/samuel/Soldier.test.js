@@ -39,10 +39,10 @@ describe ('When a Soldier instance', () => {
     });
     test ('use a knife, the action will change depending on the object', () => {
         const soldierInstance = new Soldier();
-        const civilianInstance = new Civilian;
+        const civilianInstance = new Civilian();
         const enemyInstance = new Enemy();
-        expect(soldierInstance.useKnife(civilianInstance)).toBe('Rescued');
-        expect(soldierInstance.useKnife(enemyInstance)).toBe('Attack');
+        expect(soldierInstance.useKnife(civilianInstance)).toBe('Save');
+        expect(soldierInstance.useKnife(enemyInstance)).toBe('Kill');
         expect(soldierInstance.useKnife(5)).toBe('Can\'t use');
     });
 });
