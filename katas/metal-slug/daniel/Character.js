@@ -1,12 +1,28 @@
 import { MultipleEnemiesWeapon, SingleEnemyWeapon } from './Weapon.js';
+import { NoDefenceEquipment } from './Equipment.js';
 
 export class Character {
-    constructor(pointsOfHealth = 1, genre = 'male') {
+    constructor(
+        pointsOfHealth = 1,
+        initialHealth = 1,
+        numOfLifes = 1,
+        genre = 'male') {
+
         this.pointsOfHealth = pointsOfHealth;
+        this.initialHealth = initialHealth;
+        this.numOfLifes = numOfLifes;
         this.genre = genre;
+        this.armamentEquipment = undefined;
+        this.defenceEquipment = new NoDefenceEquipment;
     }
 
-    receiveAttack() {}
+    equip (equipment = NoDefenceEquipment) {
+        equipment.equipCharacter(this);
+    }
+
+    receiveAttack(attackPower=1) {
+        this.defenceEquipment.receiveAttack(this, attackPower);
+    }
 }
 
 export class Soldier extends Character {
