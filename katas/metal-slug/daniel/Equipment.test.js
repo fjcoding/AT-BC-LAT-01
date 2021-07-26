@@ -6,7 +6,7 @@ describe('Verify that DefenceEquipment', () => {
     const tank = new DefenceEquipment('tank', 3);
 
     test('is equiped by a character', () => {
-        character.equip(tank);
+        character.useAbility('equip', tank);
         expect(character.equipment.defence).toEqual(tank);
     });
 

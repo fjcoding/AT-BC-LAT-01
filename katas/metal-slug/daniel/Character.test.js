@@ -5,7 +5,7 @@ describe('Soldier Character is expected to equip', () => {
     const soldier = new Character(1, 1, 'male');
 
     test('defence equipment', () => {
-        soldier.equip(new DefenceEquipment('tank', 3));
+        soldier.useAbility('equip', new DefenceEquipment('tank', 3));
         expect(soldier.equipment.defence).toEqual(new DefenceEquipment('tank', 3));
     });
 });
