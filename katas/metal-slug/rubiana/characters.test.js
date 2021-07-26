@@ -1,54 +1,22 @@
 import { Soldier } from './characters.js';
-import { CharactersSchema } from './characters.js';
+import { Vehicle } from './utilities.js';
+import { Weapon } from './utilities.js';
 
-const schema = new CharactersSchema;
-test('displayCharacters() returns the Character Schema', () => {
-    let charactersDisplayed = {
-        characters: [{
-            character: 'Soldier1',
-            hole: 'soldier',
-            habilities: 'habilities',
-            health: 30,
-            vehicle: 'camel',
-        },
-        {
-            character: 'Enemy1',
-            hole: 'enime',
-            habilities: 'habilities',
-            health: 30,
-            vehicle: null,
-        },
-        ]
-    };
+const soldado = new Soldier();
+const plane = new Vehicle('Plane', 4);
+const shotgun = new Weapon('Shotgun', 5);
 
-    expect(schema.displayCharacters()).toEqual(charactersDisplayed);
+
+test('isAlive() return true if characters health is bigger than 0', () => {
+    expect(soldado.isAlive()).toBe(true);
 });
 
-test('showCurrentSchema() should return the current Schema of characters with the new soldier just created', () => {
-    let changedSchema = {
-        characters: [{
-            character: 'Soldier1',
-            hole: 'soldier',
-            habilities: 'habilities',
-            health: 30,
-            vehicle: 'camel',
-        },
-        {
-            character: 'Enemy1',
-            hole: 'enime',
-            habilities: 'habilities',
-            health: 30,
-            vehicle: null,
-        },
-        {
-            character: 'Soldado',
-            hole: 'soldier',
-            habilities: ['shootWeapon', 'useKnife', 'throwGranades'],
-            health: 30,
-            vehicle: null,
-        },
-        ]
-    };
-    let soldier = new Soldier('Soldado', null);
-    expect(soldier.showCurrentSchema()).toEqual(changedSchema);
+test('useVehicle() adds the vehicle to the character and increase its health with the vehicles health points', () => {
+    soldado.useVehicle(plane.vehicle, plane.vehicleHealth);
+    expect(soldado.vehicle).toBe('Plane');
+});
+
+test('useWeapon() adds the weapon to the character and increase its attack power with the weapons attack power', () => {
+    soldado.useWeapon(shotgun.weapon, shotgun.attackPower);
+    expect(soldado.weapon).toBe('Shotgun');
 });
