@@ -3,6 +3,15 @@ export class Enemy {
         this.health = health;
         this.atackDamage = atackDamage;
     }
+
+    getDamage(soldierAtackDamage) {
+        this.health = this.health - soldierAtackDamage;
+        if (this.health <= 0) {
+            return 'Enemy is dead';
+        } else {
+            return 'the health of the enemy is: ' + this.health;
+        }
+    }
 }
 
 export class Alien extends Enemy {
