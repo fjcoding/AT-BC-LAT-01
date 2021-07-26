@@ -4,7 +4,7 @@ class Ability {
     }
 }
 
-export class ReceiveAttack {
+export class ReceiveAttack extends Ability {
 
     do (character, attackPower) {
         character.equipment.defence.receiveAttack(character, attackPower);

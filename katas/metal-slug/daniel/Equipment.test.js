@@ -29,7 +29,7 @@ describe('Verify that DefenceEquipment', () => {
 });
 
 describe('Verify that NoDefenceEquipment', () => {
-    const character = new Character(5, 1, 1);
+    const character = new Character(5, 1);
     test('receives attacks and reduce the pointsOfHealt and numOfLife of the character', () => {
         character.useAbility('receiveAttack', 1);
         expect(character.pointsOfHealth).toBe(4);
@@ -38,7 +38,7 @@ describe('Verify that NoDefenceEquipment', () => {
 
     test('receives attacks and restore the initial pointsOfHealt if the attack is greater than the health', () => {
         character.useAbility('receiveAttack', 5);
-        expect(character.pointsOfHealth).toBe(1);
+        expect(character.pointsOfHealth).toBe(5);
         expect(character.numOfLifes).toBe(0);
     });
 

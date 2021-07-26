@@ -5,7 +5,6 @@ import { ReceiveAttack } from './Ability.js';
 export class Character {
     constructor(
         pointsOfHealth = 1,
-        initialHealth = 1,
         numOfLifes = 1,
         genre = 'male',
         equipment = {defence: new NoDefenceEquipment},
@@ -13,7 +12,7 @@ export class Character {
     ) {
 
         this.pointsOfHealth = pointsOfHealth;
-        this.initialHealth = initialHealth;
+        this.initialHealth = pointsOfHealth;
         this.numOfLifes = numOfLifes;
         this.genre = genre;
         this.equipment = equipment;
