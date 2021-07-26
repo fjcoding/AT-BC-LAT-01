@@ -17,5 +17,7 @@ Vehicle -> Type
 Enemy   -> Type 
         -> Health (var)
 
+Civilian-> Status  
+        -> Weapon
 
 

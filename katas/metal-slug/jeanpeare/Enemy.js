@@ -7,3 +7,7 @@ export class Enemy extends Character{
         this.Abilitie = Abilitie;
     }
 }
+
+export function getEnemyHealth(){
+    return Enemy.Health;
+}
