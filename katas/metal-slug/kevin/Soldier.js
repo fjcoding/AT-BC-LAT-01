@@ -5,12 +5,14 @@ export class Soldier {
         this.lives = lives;
         this.distance = distance;
     }
+
     useAKnife = (enemyVehicle, enemyclose) => {
         if (enemyVehicle == false && enemyclose == true) {
             this.attackPower = 1;
         }
         return this.attackPower;
     };
+
     throwGrenades = () => {
         const soldier = new Soldier();
         soldier.attackPower = 10;

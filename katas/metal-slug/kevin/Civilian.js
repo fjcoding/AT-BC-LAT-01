@@ -1,5 +1,5 @@
 export class Civilian {
     constructor(isTied) {
-        this.isTied = isTied;   
+        this.isTied = isTied;
     }
 }

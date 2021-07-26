@@ -10,6 +10,7 @@ export class SoldierPerceptions {
         }
         return enemyClose;
     }
+
     isEnemyAVehicle(enemy) {
         let isVehicle = false;
         if (enemy.lifePoints > 3) {

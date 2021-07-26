@@ -2,6 +2,7 @@ export class Vehicle {
     constructor(lifePoints) {
         this.lifePoints = lifePoints;
     }
+
     recieveDamage(damage) {
         const newHealth = this.health - damage;
         this.health = newHealth;
