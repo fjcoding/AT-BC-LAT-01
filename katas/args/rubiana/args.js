@@ -87,7 +87,7 @@ export class schemaClass {
     }
 
     displaySchema() {
-        console.log(this.flagsSchema);
+        return this.flagsSchema;
     }
 }
 
@@ -95,6 +95,7 @@ export class parserClass extends schemaClass {
 
     output(str) {
         let inputArr = this.splitInputStr(str);
+        let finalStr = '';
 
         for (let index = 0; index < inputArr.length; index++) {
             let input = inputArr[index];
@@ -103,15 +104,17 @@ export class parserClass extends schemaClass {
             if (this.isFlag(input) && this.validFlag(flag) === true) {
 
                 if (!this.isFlag(inputArr[index + 1])) {
-                    console.log('Flag: ' + input + ' Value: ' + inputArr[index + 1]);
+                    finalStr += 'Flag: ' + input + ' Value: ' + inputArr[index + 1] + ' ';
 
                 } else if (this.isFlag(inputArr[index + 1]) || index + 1 == inputArr.length) {
-                    console.log('Flag: ' + input + ' Value: ' + this.flagsSchema[this.flagIndex(flag)]['defaultValue']);
+                    finalStr += 'Flag: ' + input + ' Value: ' + this.flagsSchema[this.flagIndex(flag)]['defaultValue'] + ' ';
                 }
 
             } else if (this.isFlag(input)) {
-                console.log(input + ' is not a valid flag');
+                finalStr += input + ' is not a valid flag ';
             }
         }
+
+        return finalStr;
     }
 }
