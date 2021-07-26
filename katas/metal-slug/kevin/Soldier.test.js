@@ -1,4 +1,5 @@
 import { Soldier } from './Soldier.js';
+import { Civilian } from './Civilian.js';
 test('Verify that the soldier was created correctly with his attributes', () => {
     let soldier = new Soldier(1, 1, 3, 1);
     const expectedSoldierLifePoints = 1;
@@ -13,13 +14,13 @@ test('Verify that the soldier was created correctly with his attributes', () => 
 test('Verify that the soldier recognize a close enemy', () => {
     let soldier = new Soldier(1, 1, 3, 1);
     let enemyDistance = 0;
-    const actualResult = soldier.itsEnemyclose(enemyDistance);
+    const actualResult = soldier.isEnemyclose(enemyDistance);
     expect(actualResult).toBe(true);
 });
 test('Verify that the soldier recognize an enemy vehicle', () => {
     let soldier = new Soldier(1, 1, 3, 1);
     let tankLifePoints = 3;
-    const actualResult = soldier.itsEnemyAVehicle(tankLifePoints);
+    const actualResult = soldier.isEnemyAVehicle(tankLifePoints);
     expect(actualResult).toBe(true);
 });
 test('Verify that the soldier can use a Knife with a non-enemy  close vehicle', () => {
@@ -33,4 +34,9 @@ test('Verify that the soldier can throw a grenade', () => {
     const actualResult = soldier.throwGrenades();
     const expectedSoldierTotalAttackPower = 10;
     expect(actualResult).toBe(expectedSoldierTotalAttackPower);
+});
+test('Verify that the soldier can free a civilian', () => {
+    let soldier = new Soldier(1, 1, 3, 1);
+    let civilian = new Civilian(true);
+    expect(soldier.freeCivilian(civilian)).toBe(false);
 });
