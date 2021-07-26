@@ -7,23 +7,23 @@ export class Vehicle {
         this.health = newHealth;
     }
 }
-export class Camel extends Vehicle {
-    constructor(lifePoints) {
-        super(lifePoints);
+export class Tank extends Vehicle {
+    constructor() {
+        super(3);
     }
 }
 export class Plane extends Vehicle {
-    constructor(lifePoints) {
-        super(lifePoints);
+    constructor() {
+        super(4);
+    }
+}
+export class Camel extends Vehicle {
+    constructor() {
+        super(1);
     }
 }
 export class Submarine extends Vehicle {
-    constructor(lifePoints) {
-        super(lifePoints);
-    }
-}
-export class Tank extends Vehicle {
-    constructor(lifePoints) {
-        super(lifePoints);
+    constructor() {
+        super(3);
     }
 }

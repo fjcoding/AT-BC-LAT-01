@@ -4,22 +4,22 @@ export class Weapon {
     }
 }
 export class Shotgun extends Weapon {
-    constructor(attackPower) {
-        super(attackPower);
+    constructor() {
+        super(5);
     }
 }
 export class HeavyMachineGun extends Weapon {
-    constructor(attackPower) {
-        super(attackPower);
+    constructor() {
+        super(2);
     }
 }
 export class RocketLauncher extends Weapon {
-    constructor(attackPower) {
-        super(attackPower);
+    constructor() {
+        super(4);
     }
 }
 export class FlameShot extends Weapon {
-    constructor(attackPower) {
-        super(attackPower);
+    constructor() {
+        super(5);
     }
 }

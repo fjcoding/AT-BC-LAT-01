@@ -13,7 +13,7 @@ test('Verify that the soldier was created correctly with his attributes', () => 
 });
 test('Verify that the soldier can shoot a HeavyMachineGun', () => {
     let soldier = new Soldier(1, 1, 3, 1);
-    let heavyMG = new HeavyMachineGun(2);
+    let heavyMG = new HeavyMachineGun();
     const actualResult = soldier.shootAWeapon(heavyMG);
     const expectedSoldierTotalAttackPower = 2;
     expect(actualResult).toBe(expectedSoldierTotalAttackPower);
