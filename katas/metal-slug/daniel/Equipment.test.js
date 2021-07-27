@@ -76,5 +76,4 @@ describe('Verify that WeaponEquipment', () => {
             enemies[2].pointsOfHealth
         ]).toEqual([0, 0, 0]);
     });
-
 });
