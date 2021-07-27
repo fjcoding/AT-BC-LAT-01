@@ -8,7 +8,7 @@ describe('Constructor of the soldier class with default values', () => {
         expect(typeof soldier._lifePoints).toBe('number');
         expect(typeof soldier._attackPoints).toBe('number');
         expect(typeof soldier._haveWeapon).toBe('boolean');
-        expect(typeof soldier._gunType).toBe('object');
+        expect(typeof soldier._gunType).toBe('string');
         expect(typeof soldier._onVehicle).toBe('boolean');
         expect(typeof soldier._vehicleType).toBe('string');
         expect(typeof soldier._hasGranade).toBe('boolean');

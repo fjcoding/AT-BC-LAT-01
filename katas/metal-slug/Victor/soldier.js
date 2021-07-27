@@ -1,5 +1,5 @@
 import { Character } from './character.js';
-import { WeaponList, weaponsList } from './weaponList.js';
+import { WeaponList } from './weaponList.js';
 
 export class Soldier extends Character {
     constructor(healthPoints = 1, lifePoints = 3,
