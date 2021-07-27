@@ -1,5 +1,5 @@
 import { Character, genericCivilian } from './Character.js';
-import { createEnemies, enemiesArray} from './Enemy.js';
+import { createEnemies } from './Enemy.js';
 
 export class Player extends Character{
     constructor(CharacterType, Health, Life, Weapon, Attack, Targets, VehicleHealth, LastVehicle){
@@ -54,16 +54,17 @@ export class Player extends Character{
         return enemiesStats;
     }
 
-    throwGrenades (enemiesStats){
+    throwGrenades (enemiesStats, enemiesArray){
         var Damage = 2;
         var Targets = 10;
-        if (enemiesStats.length <= this.Targets){
+        if (enemiesStats.length <= Targets){
             enemiesStats.forEach(function (value, index) {
                 enemiesStats[index][0] -= Damage;
             });
         } else if (enemiesStats.length > this.Targets){
             var index = 0;
             while (index < Targets){
+                console.log('the enemy statas ' +enemiesStats[index][0]);
                 enemiesStats[index][0] -= Damage;
                 index++;
             }
@@ -81,22 +82,28 @@ export class Player extends Character{
 
     ReiciveDamage (enemy){
         var enemyDetails = enemy.getEnemyDetails();
+        var VehicleStatus='';
+        var PlayerStatus ='';
         if (this.VehicleHealth > 0){
             if (enemyDetails[1] >= this.VehicleHealth){
+                VehicleStatus = this.LastVehicle.VehiclesType + ' has been destroyed!';
                 this.LastVehicle.Destroy();
                 this.LastVehicle = 0;
                 this.VehicleHealth = 0;
             } else {
                 this.VehicleHealth -= enemyDetails[1];
-                console.log(this.LastVehicle.VehiclesType + ' has ' + this.VehicleHealth + ' life points remaining');
+                VehicleStatus = this.LastVehicle.VehiclesType + ' has ' + this.VehicleHealth + ' life points remaining';
             }
         } else {
             if (enemyDetails[1] >= this.Health) {
                 this.death();
+                PlayerStatus = this.CharacterType +' is dead, ' + this.Life +' lifes remaining';
             } else {
                 this.Health -= enemyDetails[1];
+                PlayerStatus = this.CharacterType +' is still alive, ' + this.Health + ' health remaining';
             }
         }
+        return [this.Health, this.VehicleHealth, VehicleStatus, PlayerStatus];
     }
 
     breakFree(){
@@ -105,14 +112,15 @@ export class Player extends Character{
 
     death(){
         this.Life -= 1;
+        var Msg ='';
         console.log(this.Life);
         if (this.Life == 0) {
-            console.log('GAME OVER');
+            Msg = 'GAME OVER';
         } else {
             this.Health = 1;
-            console.log(this.Life +' lifes remaining');
+            Msg = this.Life +' lifes remaining';
         }
-        return console.log('Keep trying');
+        return Msg;
     }
 }
 
