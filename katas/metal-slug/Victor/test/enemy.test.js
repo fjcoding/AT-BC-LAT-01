@@ -8,7 +8,7 @@ describe('Constructor of the enemy class with default values', () => {
         expect(typeof enemy._enemyType).toBe('string');
         expect(typeof enemy._attackPoints).toBe('number');
         expect(typeof enemy._haveWeapon).toBe('boolean');
-        expect(typeof enemy._gunType).toBe('object');
+        expect(typeof enemy._gunType).toBe('string');
         expect(typeof enemy._onVehicle).toBe('boolean');
         expect(typeof enemy._vehicleType).toBe('string');
         expect(typeof enemy._abilityType).toBe('string');
