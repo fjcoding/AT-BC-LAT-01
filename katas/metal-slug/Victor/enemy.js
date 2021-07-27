@@ -1,12 +1,11 @@
 import { Character } from './character.js';
-
+import { weaponsList } from './weaponList.js';
 export class Enemy extends Character {
-    constructor(healthPoints = 1, enemyType = 'footSoldier', gunType = 'none', meleeWeapon = 'false', abilityType = 'throwGranade', vehicleType = 'none', attackPoints = 0, haveGun = false, onVehicle = false){
-        super(healthPoints, attackPoints, haveGun, onVehicle);
+    constructor(healthPoints = 1, enemyType = 'footSoldier',
+        gunType = weaponsList.weapons()._weaponType.handGun, abilityType = 'throwGranade',
+        vehicleType = 'none', attackPoints = weaponsList.weapons()._weaponType.handGun._attackPower, haveWeapon = true, onVehicle = false){
+        super(healthPoints, attackPoints, haveWeapon, onVehicle, gunType, vehicleType);
         this._enemyType = String(enemyType);
-        this._gunType = String(gunType);
-        this._vehicleType = String(vehicleType);
-        this._meleeWeapon = Boolean(meleeWeapon);
         this._abilityType = String(abilityType);
     }
 }

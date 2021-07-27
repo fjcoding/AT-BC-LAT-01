@@ -12,4 +12,13 @@ export class WeaponList{
             knife : new Weapon('Knife', 1, 2, false)
         };
     }
+
+    weapons(){
+        const weaponList = new WeaponList();
+        return weaponList;
+    }
 }
+
+export const weaponsList = new WeaponList();
+
+//console.log(weaponsList.weapons()._weaponType.handGun);
