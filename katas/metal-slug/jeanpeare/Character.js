@@ -21,37 +21,6 @@ export class Civilian extends Character {
         return this.Weapon;
     }
 }
-<<<<<<< HEAD
-=======
-
-export const Soldier = new Enemy(
-    'Soldier',
-    1,
-    0,
-    'Dont have'
-);
-
-export const Mercenarie = new Enemy(
-    'Mercenarie',
-    1,
-    2,
-    'Dont have'
-);
-
-export const Alien = new Enemy(
-    'Alien',
-    4,
-    0,
-    'Invisible'
-);
-
-export const Boss = new Enemy(
-    'Boss',
-    10,
-    10,
-    'Heal'
-);
->>>>>>> 8de7c55 (Files corrected after discrepancy with eslint, package-lock modified after library installation)
 
 export const genericCivilian = new Civilian (
     'Civilian',

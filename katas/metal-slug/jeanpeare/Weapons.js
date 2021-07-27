@@ -1,3 +1,5 @@
+import { Player } from "./Player.js";
+
 export class Weapon {
     constructor(WeaponType, Damage, NumberOfTargets){
         this.WeaponType = WeaponType;
