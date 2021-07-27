@@ -14,7 +14,7 @@ export class WeaponHitsOne extends Weapon {
     }
 
     attack(enemy) {
-        enemy.reciveDamage(this.attackPower);
+        enemy.receiveDamage(this.attackPower);
     }
 }
 
@@ -26,7 +26,7 @@ export class WeaponHitsMultiple extends Weapon {
     attack(enemies) {
         const damage = this.attackPower;
         enemies.forEach((enemy) => {
-            enemy.reciveDamage(damage);
+            enemy.receiveDamage(damage);
         });
     }
 }

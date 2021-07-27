@@ -1,13 +1,14 @@
 import { hasMultipleLifes, hasVehicle, hasWeapon } from './characteristics';
+import { grenade, knife } from './habilities';
 
-class Character {
+export class Character {
     constructor(health, attackPower) {
         this.health = health;
         this.attackPower = attackPower;
         this.lives = true;
     }
 
-    kill() {
+    die() {
         this.lives = false;
     }
 
@@ -25,7 +26,7 @@ class Character {
             this.health = newHealth;
         } else {
             this.health = 0;
-            this.kill();
+            this.die();
         }
     }
 
@@ -41,15 +42,9 @@ export class Soldier extends Character {
     }
 }
 
-export class Mercenary extends Character {
-    constructor() {
-        super(3, 2);
-    }
-}
-
 /* Asiggn to the soldier prototype its characteristics */
-Object.assign(Soldier.prototype, hasMultipleLifes);
 Object.assign(Soldier.prototype, hasWeapon);
 Object.assign(Soldier.prototype, hasVehicle);
-
-Object.assign(Mercenary.prototype, hasWeapon);
+Object.assign(Soldier.prototype, hasMultipleLifes);
+Object.assign(Soldier.prototype, grenade);
+Object.assign(Soldier.prototype, knife);

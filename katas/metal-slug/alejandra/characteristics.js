@@ -12,8 +12,11 @@ const hasMultipleLifes = {
         }
 
         if (this.lifes === 0) {
-            this.kill();
+            this.die();
         }
+    },
+    getLifes() {
+        return this.lifes;
     },
 };
 
