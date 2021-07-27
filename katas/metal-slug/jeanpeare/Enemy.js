@@ -38,8 +38,6 @@ console.log(Mercenarie);
 
 export function createEnemies(enemiesArray){
     enemiesArray.forEach(function (value, index) {
-        console.log('EL ARRAY RECEIVED IS '+ value.Health);
-        console.log('LA ACTUAL CLASE ES : '+ value.CharacterType);
         enemiesStats[index] = (value.getEnemyDetails());
     });
     return enemiesStats;
