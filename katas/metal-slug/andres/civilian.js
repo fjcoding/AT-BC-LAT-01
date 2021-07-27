@@ -3,7 +3,7 @@ export class Civilian {
         this.civilianName = name;
         this.carriedItem = itemToGive;
     }
-    
+
     giveItem(){
         return this.carriedItem;
     }
