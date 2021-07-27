@@ -3,8 +3,8 @@ class Character {
         this.lives = parseInt(_lives);
         this.health = parseInt(_health);
         this.attackPower = parseInt(_attackPower);
-        this.weapon = this.useWeapon();
-        this.vehicle = this.useVehicle();
+        this.weapon = this.useWeapon;
+        this.vehicle = this.useVehicle;
     }
 
     isAlive() {
@@ -18,9 +18,8 @@ class Character {
 
     getDamage(damage) {
         let currentHealth = this.health - damage;
-        if (this.isAlive()) {
-            this.health = currentHealth;
-        } else {
+        this.health = currentHealth;
+        if (!this.isAlive()) {
             this.health = 0;
         }
     }
@@ -39,15 +38,6 @@ class Character {
 export class Soldier extends Character {
     constructor() {
         super(3, 1, 1);
-        this.abilities = [this.useWeapon(), this.useKnife(), this.throwGranades()];
-    }
-
-    useKnife(knife, knifePowerAttack) {
-        this.useWeapon(knife, knifePowerAttack);
-    }
-
-    throwGranades(granade, granadePowerAttack) {
-        this.useWeapon(granade, granadePowerAttack);
     }
 }
 
@@ -55,20 +45,16 @@ export class Enemy extends Character {
     constructor(_lives, _health, _attackPower, _hasSpecialAbilities) {
         super(_lives, _health, _attackPower);
         this.hasSpecialAbilities = _hasSpecialAbilities;
-        this.abilities = [this.useWeapon()];
+        this.specialAbility = this.getSpecialAbility;
     }
 
-    haveSpecialAbilities(_hasSpecialAbilities) {
-        if (_hasSpecialAbilities == true) {
-            this.abilities = [this.useWeapon(), this.throwGranades(), this.beeingTemporaryInvulnerable()];
+    getSpecialAbility() {
+        if (this.hasSpecialAbilities == true) {
+            this.specialAbility = ['Invulnerable', 'Throw Granades'];
+            this.health = 1;
+            this.useWeapon('Granade', 10);
+        } else {
+            this.specialAbility = 'none';
         }
-    }
-
-    throwGranades(granade, granadePowerAttack) {
-        this.useWeapon(granade, granadePowerAttack);
-    }
-
-    beeingTemporaryInvulnerable() {
-        this.getDamage(0);
     }
 }

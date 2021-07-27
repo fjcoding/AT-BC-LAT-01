@@ -25,6 +25,6 @@ test('useVehicle() adds the vehicle to the character and increase its health wit
 });
 
 test('getDamage() decreases the characters health with the amout of damaged it took', () => {
-    soldado.getDamage(3)
+    soldado.getDamage(3);
     expect(soldado.health).toBe(2);
 });
