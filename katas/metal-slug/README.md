@@ -9,8 +9,6 @@ The soldier basically has three abilities: shoot a weapon, use a knife and throw
 -   Plane: 4 points of health
 -   Camel: 1 point of health
 -   Submarine: 3 points of health
-=======
-
 
 Each shot that soldier/vehicle gets from the enemy, removes 1 point of health from soldier/vehicle. When health points from vehicle is 0, vehicle is lost. When health points from soldier is 0, the soldier dies, losing a life. Soldier has 3 lifes by default, when lifes are 0, the game is over.
 
@@ -21,8 +19,6 @@ Soldier can also be equiped with multiple types of weapons that increase his/her
 -   Heavy Machine Gun: adds 2 points to attack power, can hit one single enemy
 -   Rocket Launcher: adds 4 points to attack power, can hit one single enemy
 -   Flame Shot: adds 5 points to attack power, can hits multiple enemies
-=======
-
 
 If enemy is close enough, soldier can use a knife and reduce his/her health points by 1. In addition, granades can hit a group of enemies with an attack power of 10
 
@@ -33,4 +29,3 @@ Finally, civilians can be found in the way, and soldiers are capable to save the
 soldier can opt to take and equip as his current weapon.
 
 As OOP coder, you are tasked to write an OOP program that can emulate Metal Slug behavior described above using classes and objects that represent each element of the game. Leverage OOP concepts like encapsulation, inheritance, interfaces, etc. Also, during your desing phase, try to apply SOLID principles.
-=======
