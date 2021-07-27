@@ -1,4 +1,4 @@
-import { DefenceEquipment, NoDefenceEquipment } from './Equipment';
+import { DefenceEquipment, NoDefenceEquipment, HitMultipleEnemiesWeaponEquipment, HitSingleEnemyWeaponEquipment } from './Equipment.js';
 import { Character } from './Character.js';
 
 describe('Verify that DefenceEquipment', () => {
@@ -47,4 +47,34 @@ describe('Verify that NoDefenceEquipment', () => {
         expect(character.pointsOfHealth).toBe(0);
         expect(character.numOfLifes).toBe(0);
     });
+});
+
+describe('Verify that WeaponEquipment', () => {
+    const character = new Character;
+    const enemies = [
+        new Character(5),
+        new Character(5),
+        new Character(5)
+    ];
+
+    test('hits one single enemy with HitSingleEnemyWeaponEquipment', () => {
+        character.useAbility('equip', new HitSingleEnemyWeaponEquipment);
+        character.useAbility('attack', enemies);
+        expect([
+            enemies[0].pointsOfHealth,
+            enemies[1].pointsOfHealth,
+            enemies[2].pointsOfHealth
+        ]).toEqual([4, 5, 5]);
+    });
+
+    test('hits multiple enemies with HitMultipleEnemiesWeaponEquipment', () => {
+        character.useAbility('equip', new HitMultipleEnemiesWeaponEquipment);
+        character.useAbility('attack', enemies);
+        expect([
+            enemies[0].pointsOfHealth,
+            enemies[1].pointsOfHealth,
+            enemies[2].pointsOfHealth
+        ]).toEqual([0, 0, 0]);
+    });
+
 });

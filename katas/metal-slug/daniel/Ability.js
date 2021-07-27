@@ -17,3 +17,10 @@ export class ReceiveAttackAbility extends Ability {
         character.equipment.defence.receiveAttack(character, attackPower);
     }
 }
+
+export class AttackAbility extends Ability {
+
+    do (character, enemies) {
+        character.equipment.gun.attack(enemies);
+    }
+}

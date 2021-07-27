@@ -1,5 +1,5 @@
 import { NoDefenceEquipment } from './Equipment.js';
-import { ReceiveAttackAbility, EquipAbility } from './Ability.js';
+import { ReceiveAttackAbility, EquipAbility, AttackAbility } from './Ability.js';
 
 export class Character {
     constructor(
@@ -7,7 +7,7 @@ export class Character {
         numOfLifes = 1,
         genre = 'male',
         equipment = {defence: new NoDefenceEquipment},
-        abilities = {receiveAttack: new ReceiveAttackAbility, equip: new EquipAbility}
+        abilities = {receiveAttack: new ReceiveAttackAbility, equip: new EquipAbility, attack: new AttackAbility}
     ) {
 
         this.pointsOfHealth = pointsOfHealth;

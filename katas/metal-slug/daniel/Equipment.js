@@ -52,11 +52,44 @@ export class NoDefenceEquipment extends DefenceEquipment {
     }
 }
 
-export class WeaponEquipment extends Equipment {
-    constructor (name = '', attackPower = 0, type = 'gun') {
-        super();
-        this.name = name;
+class WeaponEquipment extends Equipment {
+    constructor (name, attackPower = 0, type = 'weapon') {
+        super(name);
         this.attackPower = attackPower;
         this.type = type;
+    }
+
+    reduceHealthOfEnemy (enemyHealth) {
+        if (enemyHealth >= this.attackPower) return enemyHealth - this.attackPower;
+        return 0;
+    }
+
+    attack () {
+    }
+}
+
+export class HitSingleEnemyWeaponEquipment extends WeaponEquipment {
+    constructor(name = 'handgun', attackPower = 1, type = 'gun') {
+        super(name, attackPower, type);
+    }
+
+    attack (enemies) {
+        if (enemies[0].pointsOfHealth >= 0) {
+            enemies[0].pointsOfHealth = this.reduceHealthOfEnemy(enemies[0].pointsOfHealth);
+        }
+    }
+}
+
+export class HitMultipleEnemiesWeaponEquipment extends WeaponEquipment {
+    constructor(name = 'shotgun', attackPower = 5, type = 'gun') {
+        super(name, attackPower, type);
+    }
+
+    attack (enemies) {
+        enemies.forEach(enemy => {
+            if (enemy.pointsOfHealth >= 0) {
+                enemy.pointsOfHealth = this.reduceHealthOfEnemy(enemy.pointsOfHealth);
+            }
+        });
     }
 }
