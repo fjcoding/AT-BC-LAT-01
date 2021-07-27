@@ -1,4 +1,4 @@
-import {Alien, Boss, Soldier, Enemy, createEnemies} from './Enemy.js';
+import {Alien, Boss, Soldier, Enemy, Mercenarie, createEnemies} from './Enemy.js';
 
 test('Enemiess should be created with the correct data type and atributes complete', () => {
     expect(new Enemy('Boss', 10, 10, 'Heal')).toEqual({'CharacterType': 'Boss', 'Health': 10, 'Attack' : 10, 'Abilitie' : 'Heal'});
@@ -8,7 +8,8 @@ test('Enemiess should be created with the correct data type and atributes comple
 });
 
 test('Enemies array need to be created related on number of enemies, obtaining Health, Attack and Abilitie', () => {
-    expect(createEnemies([Boss, Alien, Soldier, Soldier])).toEqual([[ 10, 10, 'Heal'], [ 2, 2, 'Invisible'], [ 1, 1, 'Dont Have'], [ 1, 1, 'Dont Have']]);
+    var enemiesArray = [Boss, Alien, Mercenarie, Soldier];
+    expect(createEnemies(enemiesArray)).toEqual([[ 10, 10, 'Heal'], [ 2, 2, 'Invisible'], [ 2, 1, 'Dont Have'], [ 1, 1, 'Dont Have']]);
 });
 
 

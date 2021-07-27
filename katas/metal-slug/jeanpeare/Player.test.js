@@ -1,6 +1,7 @@
 import { Player1, Player } from './Player.js';
 import { heavyMachineGun, rocketLauncher, shotgun, flameShot } from './Weapons.js';
 import { Tank, Plane, Camel, Submarine } from './Vehicles.js';
+import { Mercenarie, Soldier, Boss, Alien } from './Enemy.js';
 
 test('Players should be created with the correct data type and atributes complete', () => {
     expect(new Player('Player1', 1, 3)).toEqual({'CharacterType': 'Player1', 'Health': 1, 'Life' : 3});
@@ -18,7 +19,8 @@ test('Weapons need to be picked and Attack Power be replaced when Player equip i
 });
 
 test('Results of enemies health and armor after a combat from player', () => {
-    expect(Player1.Shoot([[ 10, 10, 'Heal'], [ 2, 2, 'Invisible'], [ 1, 0, 'Dont Have'], [ 1, 0, 'Dont Have']])).toEqual([[3, 10, 'Heal'], [-5, 2, 'Invisible'], [-6, 0, 'Dont Have'], [-6, 0, 'Dont Have']]);
+    //expect(Player1.Shoot([[ 10, 10, 'Heal'], [ 2, 2, 'Invisible'], [ 1, 0, 'Dont Have'], [ 1, 0, 'Dont Have']])).toEqual([[3, 10, 'Heal'], [-5, 2, 'Invisible'], [-6, 0, 'Dont Have'], [-6, 0, 'Dont Have']]);
+    expect(Player1.Shoot([Boss, Alien, Mercenarie, Soldier])).toEqual([[3, 10, 'Heal'], [-5, 2, 'Invisible'], [-5, 1, 'Dont Have'], [-6, 1, 'Dont Have']]);
 });
 
 test('Player need to get the Health from Vehicle when get in to it', () => {
