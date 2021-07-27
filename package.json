@@ -11,6 +11,7 @@
     "jest": "^27.0.6"
   },
   "jest": {
+    "projects": ["src"],
     "verbose": true,
     "collectCoverage": true,
     "coverageReporters": [
@@ -19,7 +20,8 @@
     ]
   },
   "scripts": {
-    "test": "jest  --coverage",
+    "test": "jest  --coverage --testPathPattern=src/",
+    "test:katas": "jest  --coverage --testPathPattern=katas/",
     "lint": "eslint . --ext .js",
     "lint-fix": "eslint . --fix"
   },
