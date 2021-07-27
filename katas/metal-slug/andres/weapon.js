@@ -4,7 +4,7 @@ export class Weapon {
         this.weaponAttackPower = attackPower;
         this.weaponHitsMultiple = multipleEnemies;
     }
-    
+
     dealsDamage(){
         return this.weaponAttackPower;
     }

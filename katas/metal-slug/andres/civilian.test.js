@@ -5,6 +5,6 @@ const canHitMultipleTargets = true;
 test('create civilian carrying a Flame Shot', () => {
     const flameshotAttackPower = 5;
     const weapontoGive = new Weapon('Flame Shot', flameshotAttackPower, canHitMultipleTargets);
-    const obj = new Civilian('Holi',weapontoGive);
+    const obj = new Civilian('Holi', weapontoGive);
     expect(obj.carriedItem.weaponName).toBe('Flame Shot');
 });
