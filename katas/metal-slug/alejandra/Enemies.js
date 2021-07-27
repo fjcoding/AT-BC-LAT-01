@@ -1,5 +1,5 @@
 import { hasMultipleLifes, hasWeapon } from './characteristics';
-import { grenade, invulnerability, knife } from './habilities';
+import { grenade, invulnerability, knife } from './abilities';
 
 import { Character } from './Character';
 
