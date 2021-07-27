@@ -1,11 +1,13 @@
-export class Guile {
+import { Fighter } from './Fighter';
+
+export class Guile extends Fighter {
 
     constructor() {
+        super();
         this.sonicBoomPowerAttack = 7;
-        this.health = 30;
     }
 
-    doSonicBoom() {
+    attack() {
         return this.hadoukenPowerAttack;
     }
 

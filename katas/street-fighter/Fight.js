@@ -1,19 +1,16 @@
-import { Guile } from './Guile';
-import { Ryu } from './Ryu';
-
 export class Fight {
-    constructor() {
-        this.leftFighter = new Ryu();
-        this.rightFighter = new Guile();
+    constructor(leftFighter, rightFighter) {
+        this.leftFighter = leftFighter;
+        this.rightFighter = rightFighter;
     }
 
     makeLeftFighterAttack() {
-        const attack = this.leftFighter.doHadouken();
+        const attack = this.leftFighter.attack();
         this.rightFighter.receiveAttack(attack);
     }
 
     makeRightFighterAttack() {
-        const attack = this.rightFighter.doSonicBoom();
+        const attack = this.rightFighter.attack();
         this.leftFighter.receiveAttack(attack);
     }
 }

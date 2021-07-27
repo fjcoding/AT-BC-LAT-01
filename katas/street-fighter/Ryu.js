@@ -5,7 +5,7 @@ export class Ryu {
         this.health = 30;
     }
 
-    doHadouken () {
+    attack () {
         return this.hadoukenPowerAttack;
     }
 
