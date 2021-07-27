@@ -2,6 +2,7 @@ export class SoldierPerceptions {
     isEnemyclose(soldier, enemy) {
         let enemyClose = false;
         let minimumDistance = enemy.distance - soldier.distance;
+        console.log(minimumDistance);
         if (minimumDistance == 1) {
             enemyClose = true;
         } else {
