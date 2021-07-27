@@ -1,4 +1,5 @@
 import {Character} from './Character.js';
+var enemiesStats = [];
 
 export class Enemy extends Character{
     constructor(CharacterType, Health, Attack, Abilitie){
@@ -33,12 +34,14 @@ export const Mercenarie = new Enemy(
     2,
     1,
     'Dont Have');
-export var enemiesStats = [];
-export var enemiesArray = [Boss, Alien, Mercenarie, Soldier];
+console.log(Mercenarie);
+
 export function createEnemies(enemiesArray){
     enemiesArray.forEach(function (value, index) {
+        console.log('EL ARRAY RECEIVED IS '+ value.Health);
+        console.log('LA ACTUAL CLASE ES : '+ value.CharacterType);
         enemiesStats[index] = (value.getEnemyDetails());
     });
     return enemiesStats;
 }
-createEnemies(enemiesArray);
+//createEnemies(enemiesArray);
