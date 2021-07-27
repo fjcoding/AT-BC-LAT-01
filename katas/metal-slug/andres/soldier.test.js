@@ -7,7 +7,7 @@ const dead = false;
 const handgunAttackPower = 1;
 const mainCharacterHitPoints = 1;
 const machinegunAttackPower = 3;
-const maxPossibleDamage = 65531; 
+const maxPossibleDamage = 65531;
 
 test('Create a new soldier, equiped with Handgun', () => {
     const handgun = new Weapon('Handgun', handgunAttackPower, canHitOneTarget);
