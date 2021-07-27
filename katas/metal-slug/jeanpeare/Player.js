@@ -1,5 +1,5 @@
 import { Character, genericCivilian } from './Character.js';
-import { enemiesArray} from './Enemy.js';
+import { createEnemies, enemiesArray} from './Enemy.js';
 
 export class Player extends Character{
     constructor(CharacterType, Health, Life, Weapon, Attack, Targets, VehicleHealth, LastVehicle){
@@ -29,7 +29,8 @@ export class Player extends Character{
         return this.VehicleHealth;
     }
 
-    Shoot (enemiesStats){
+    Shoot (enemiesArray){
+        var enemiesStats = createEnemies(enemiesArray);
         var Damage = this.Attack;
         var Targets = this.Targets;
         if (enemiesStats.length <= this.Targets){
@@ -52,6 +53,31 @@ export class Player extends Character{
         });
         return enemiesStats;
     }
+
+    throwGrenades (enemiesStats){
+        var Damage = 2;
+        var Targets = 10;
+        if (enemiesStats.length <= this.Targets){
+            enemiesStats.forEach(function (value, index) {
+                enemiesStats[index][0] -= Damage;
+            });
+        } else if (enemiesStats.length > this.Targets){
+            var index = 0;
+            while (index < Targets){
+                enemiesStats[index][0] -= Damage;
+                index++;
+            }
+        }
+        enemiesStats.forEach(function (value, index) {
+            if (enemiesStats[index][0] <= 0) {
+                console.log(enemiesArray[index].CharacterType + ' is dead');
+            } else {
+                console.log(enemiesArray[index].CharacterType + ' is still alive');
+            }
+        });
+        return enemiesStats;
+    }
+
 
     ReiciveDamage (enemy){
         var enemyDetails = enemy.getEnemyDetails();
