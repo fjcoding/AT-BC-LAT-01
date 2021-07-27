@@ -7,6 +7,10 @@ export class Vehicle {
     getVehicleHealth(){
         return this.Health;
     }
+
+    Destroy(){
+        console.log(this.VehiclesType + ' was destroyed');
+    }
 }
 
 export const Tank = new Vehicle(
@@ -21,3 +25,5 @@ export const Camel = new Vehicle(
 export const Submarine = new Vehicle(
     'Submarine',
     3);
+
+//Plane.Destroy();

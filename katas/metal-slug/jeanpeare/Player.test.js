@@ -1,6 +1,6 @@
 import { Player1, Player } from './Player.js';
 import { heavyMachineGun, rocketLauncher, shotgun, flameShot } from './Weapons.js';
-import {Tank, Plane, Camel, Submarine} from './Vehicles.js';
+import { Tank, Plane, Camel, Submarine } from './Vehicles.js';
 
 test('Players should be created with the correct data type and atributes complete', () => {
     expect(new Player('Player1', 1, 3)).toEqual({'CharacterType': 'Player1', 'Health': 1, 'Life' : 3});

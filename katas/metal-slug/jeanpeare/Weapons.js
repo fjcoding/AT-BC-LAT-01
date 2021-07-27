@@ -34,3 +34,7 @@ export const rocketLauncher = new Weapon(
     'rocketLauncher',
     7,
     5);
+export const knife = new Weapon (
+    'knife',
+    1,
+    1);

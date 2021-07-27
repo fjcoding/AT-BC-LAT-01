@@ -1,13 +1,15 @@
-import { Character } from './Character.js';
-import {enemiesStats, enemiesArray} from './Enemy.js';
+import { Character, genericCivilian } from './Character.js';
+import { enemiesArray} from './Enemy.js';
 
 export class Player extends Character{
-    constructor(CharacterType, Health, Life, Weapon, Attack, Targets){
+    constructor(CharacterType, Health, Life, Weapon, Attack, Targets, VehicleHealth, LastVehicle){
         super(CharacterType, Health);
         this.Life = Life;
         this.Weapon = Weapon;
         this.Attack = Attack;
         this.Targets = Targets;
+        this.VehicleHealth = VehicleHealth;
+        this.LastVehicle = LastVehicle;
     }
 
     getPlayerAttack(){
@@ -22,8 +24,9 @@ export class Player extends Character{
     }
 
     getInVehicle(vehiclePicked){
-        this.Health = vehiclePicked.getVehicleHealth();
-        return this.Health;
+        this.VehicleHealth = vehiclePicked.getVehicleHealth();
+        this.LastVehicle = vehiclePicked;
+        return this.VehicleHealth;
     }
 
     Shoot (enemiesStats){
@@ -49,6 +52,42 @@ export class Player extends Character{
         });
         return enemiesStats;
     }
+
+    ReiciveDamage (enemy){
+        var enemyDetails = enemy.getEnemyDetails();
+        if (this.VehicleHealth > 0){
+            if (enemyDetails[1] >= this.VehicleHealth){
+                this.LastVehicle.Destroy();
+                this.LastVehicle = 0;
+                this.VehicleHealth = 0;
+            } else {
+                this.VehicleHealth -= enemyDetails[1];
+                console.log(this.LastVehicle.VehiclesType + ' has ' + this.VehicleHealth + ' life points remaining');
+            }
+        } else {
+            if (enemyDetails[1] >= this.Health) {
+                this.death();
+            } else {
+                this.Health -= enemyDetails[1];
+            }
+        }
+    }
+
+    breakFree(){
+        this.PickWeapon(genericCivilian.generateWeapon());
+    }
+
+    death(){
+        this.Life -= 1;
+        console.log(this.Life);
+        if (this.Life == 0) {
+            console.log('GAME OVER');
+        } else {
+            this.Health = 1;
+            console.log(this.Life +' lifes remaining');
+        }
+        return console.log('Keep trying');
+    }
 }
 
 export const Player1 = new Player(
@@ -57,6 +96,6 @@ export const Player1 = new Player(
     3,
     'handgun',
     1,
-    10);
-
-Player1.Shoot(enemiesStats);
+    10,
+    0,
+    0);
