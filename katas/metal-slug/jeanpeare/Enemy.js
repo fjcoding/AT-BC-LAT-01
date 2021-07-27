@@ -1,14 +1,14 @@
 import {Character} from './Character.js';
 
 export class Enemy extends Character{
-    constructor(CharacterType, Health, Armor, Abilitie){
+    constructor(CharacterType, Health, Attack, Abilitie){
         super(CharacterType, Health);
-        this.Armor = Armor;
+        this.Attack = Attack;
         this.Abilitie = Abilitie;
     }
 
     getEnemyDetails(){
-        return [this.Health, this.Armor, this.Abilitie];
+        return [this.Health, this.Attack, this.Abilitie];
     }
 
 }
@@ -26,17 +26,16 @@ export const Alien = new Enemy(
 export const Soldier = new Enemy(
     'Soldier',
     1,
-    0,
+    1,
     'Dont Have');
 export const Mercenarie = new Enemy(
     'Mercenarie',
-    1,
     2,
+    1,
     'Dont Have');
 export var enemiesStats = [];
 export var enemiesArray = [Boss, Alien, Mercenarie, Soldier];
 export function createEnemies(enemiesArray){
-
     enemiesArray.forEach(function (value, index) {
         enemiesStats[index] = (value.getEnemyDetails());
     });
