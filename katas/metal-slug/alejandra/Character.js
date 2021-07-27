@@ -1,5 +1,5 @@
 import { hasMultipleLifes, hasVehicle, hasWeapon } from './characteristics';
-import { grenade, knife } from './habilities';
+import { grenade, knife } from './abilities';
 
 export class Character {
     constructor(health, attackPower) {
