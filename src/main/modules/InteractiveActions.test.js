@@ -1,4 +1,4 @@
-import { interactiveActions } from './interactiveActions';
+import { InteractiveActions } from './interactiveActions';
 
 var Marco = new Object();
 Marco.name = 'Marco';
@@ -16,12 +16,12 @@ var PickWeapon = new Object();
 var receiveAttack = new Object();
 
 test('Interactive actions need to be initialized correctly', () => {
-    expect(new interactiveActions(RAS1, PickWeapon, Marco)).toEqual({'actionActor': RAS1, 'actionType': PickWeapon, 'fromActor': Marco});
-    expect(new interactiveActions(RAT1, receiveAttack, Marco)).toEqual({'actionActor': RAT1, 'actionType': receiveAttack, 'fromActor': Marco});
-    expect(new interactiveActions('RAT1', 'receiveAttack', 'Marco')).toEqual({'actionActor': 'RAT1', 'actionType': 'receiveAttack', 'fromActor': 'Marco'});
+    expect(new InteractiveActions(RAS1, PickWeapon, Marco)).toEqual({'actionActor': RAS1, 'actionType': PickWeapon, 'fromActor': Marco});
+    expect(new InteractiveActions(RAT1, receiveAttack, Marco)).toEqual({'actionActor': RAT1, 'actionType': receiveAttack, 'fromActor': Marco});
+    expect(new InteractiveActions('RAT1', 'receiveAttack', 'Marco')).toEqual({'actionActor': 'RAT1', 'actionType': 'receiveAttack', 'fromActor': 'Marco'});
 });
 
-const testclass = new interactiveActions;
+const testclass = new InteractiveActions;
 
 test('Methods need to be done correctly', () =>{
     expect(testclass.getactionActor()).toEqual(undefined);

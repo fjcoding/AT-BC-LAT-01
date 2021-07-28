@@ -1,6 +1,6 @@
-import { individualActions } from './individualActions.js';
+import { IndividualActions } from './individualActions.js';
 
-export class interactiveActions extends individualActions {
+export class InteractiveActions extends IndividualActions {
     constructor(actionActor, actionType, fromActor){
         super(actionActor, actionType);
         this.fromActor = fromActor;

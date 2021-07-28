@@ -1,4 +1,4 @@
-import { individualActions } from './individualActions';
+import { IndividualActions } from './individualActions';
 
 var Marco = new Object();
 Marco.name = 'Marco';
@@ -7,11 +7,11 @@ Marco.weapon = 'Handgun';
 var PickWeapon = new Object();
 
 test('Individual actions need to be initialized correctly', () => {
-    expect(new individualActions(Marco, PickWeapon)).toEqual({'actionActor': Marco, 'actionType': PickWeapon});
-    expect(new individualActions('Marco', 'PickWeapon')).toEqual({'actionActor': 'Marco', 'actionType': 'PickWeapon'});
+    expect(new IndividualActions(Marco, PickWeapon)).toEqual({'actionActor': Marco, 'actionType': PickWeapon});
+    expect(new IndividualActions('Marco', 'PickWeapon')).toEqual({'actionActor': 'Marco', 'actionType': 'PickWeapon'});
 });
 
-const testclass = new individualActions;
+const testclass = new IndividualActions;
 
 test('Methods need to be done correctly', () =>{
     expect(testclass.getactionActor()).toEqual(undefined);
