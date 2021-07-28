@@ -1,16 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-//Route firebaseAdmin
-const admin = require('firebase-admin');
-
-admin.initializeApp({
-    credential: admin.credential.applicationDefault(),
-    databaseURL: 'https://metal-slug-maker-default-rtdb.firebaseio.com'
-});
-
-//const db = admin.firestore();
-
 router.get('/', (req, res) => {
     res.status(200).json({
         message: 'Handling GET requests to API/scenarios'
