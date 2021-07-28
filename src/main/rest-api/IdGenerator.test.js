@@ -7,7 +7,7 @@ describe('Verify that IdGenerator class', () => {
         expect(typeof(id)).toBe('string');
         expect(id.length).toBe(6);
     });
-    
+
     test('generates a random string with 4 characters', () => {
         const idGenerator = new IdGenerator(4);
         const id = idGenerator.generateId();
