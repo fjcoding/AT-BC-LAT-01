@@ -1,39 +1,46 @@
 {
-  "name": "at-bc-01",
-  "version": "1.0.0",
-  "description": "",
-  "main": "",
-  "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.14.5",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.30.0",
-    "eslint-plugin-jest": "^24.3.6",
-    "jest": "^27.0.6"
-  },
-  "jest": {
-    "projects": ["src"],
-    "verbose": true,
-    "collectCoverage": true,
-    "coverageReporters": [
-      "json",
-      "html"
-    ]
-  },
-  "scripts": {
-    "test": "jest  --coverage --testPathPattern=src/",
-    "test:katas": "jest  --coverage --testPathPattern=katas/",
-    "lint": "eslint . --ext .js",
-    "lint-fix": "eslint . --fix"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/fjcoding/AT-BC-LAT-01.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/fjcoding/AT-BC-LAT-01/issues"
-  },
-  "homepage": "https://github.com/fjcoding/AT-BC-LAT-01#readme",
-  "type": "module"
+    "name": "at-bc-01",
+    "version": "1.0.0",
+    "description": "",
+    "main": "",
+    "devDependencies": {
+        "@babel/plugin-transform-modules-commonjs": "^7.14.5",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.30.0",
+        "eslint-plugin-jest": "^24.3.6",
+        "jest": "^27.0.6",
+        "nodemon": "^2.0.12"
+    },
+    "jest": {
+        "projects": [
+            "src"
+        ],
+        "verbose": true,
+        "collectCoverage": true,
+        "coverageReporters": [
+            "json",
+            "html"
+        ]
+    },
+    "scripts": {
+        "test": "jest  --coverage --testPathPattern=src/",
+        "test:katas": "jest  --coverage --testPathPattern=katas/",
+        "lint": "eslint . --ext .js",
+        "lint-fix": "eslint . --fix",
+        "dev": "nodemon src/main/server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/fjcoding/AT-BC-LAT-01.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/fjcoding/AT-BC-LAT-01/issues"
+    },
+    "homepage": "https://github.com/fjcoding/AT-BC-LAT-01#readme",
+    "type": "commonjs",
+    "dependencies": {
+        "express": "^4.17.1"
+    }
 }
