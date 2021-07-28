@@ -1,4 +1,4 @@
-import { InteractiveActions } from './interactiveActions';
+import { InteractiveActions } from './InteractiveActions';
 
 var Marco = new Object();
 Marco.name = 'Marco';

@@ -1,4 +1,4 @@
-import { IndividualActions } from './individualActions';
+import { IndividualActions } from './IndividualActions';
 
 var Marco = new Object();
 Marco.name = 'Marco';

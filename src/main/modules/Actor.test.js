@@ -1,4 +1,4 @@
-import  { Actor } from './actor.js';
+import  { Actor } from './Actor.js';
 
 describe('class constructor should recibe data to build a Actors', () => {
     test('the object is not empty', () => {

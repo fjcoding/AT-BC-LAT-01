@@ -1,4 +1,4 @@
-import { Actor } from './actor.js';
+import { Actor } from './Actor.js';
 
 export class Scenario {
     constructor(id) {
