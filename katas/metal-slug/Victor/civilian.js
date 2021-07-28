@@ -1,9 +1,13 @@
-import { Character } from './character.js';
+import { Soldier } from './soldier.js';
 
-export class Civilian extends Character{
-    constructor(tied = true, healthPoints = 1){
-        super(healthPoints);
-        this._tied = Boolean(tied);
+export class Civilian {
+    constructor(){
+        this._healthPoints = 1;
+        this._tied = true;
     }
 
+    untied(soldier){
+        if(soldier) this._tied = false;
+        return this._tied;
+    }
 }
