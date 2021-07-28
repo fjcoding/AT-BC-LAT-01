@@ -1,11 +1,13 @@
-export class Ryu {
+import { Fighter } from './Fighter';
+
+export class Ryu extends Fighter {
 
     constructor() {
+        super();
         this.hadoukenPowerAttack = 10;
-        this.health = 30;
     }
 
-    attack () {
+    attack() {
         return this.hadoukenPowerAttack;
     }
 
