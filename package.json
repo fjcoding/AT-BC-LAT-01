@@ -41,6 +41,7 @@
     "homepage": "https://github.com/fjcoding/AT-BC-LAT-01#readme",
     "type": "commonjs",
     "dependencies": {
-        "express": "^4.17.1"
+        "express": "^4.17.1",
+        "firebase-admin": "^9.11.0"
     }
 }
