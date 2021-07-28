@@ -9,7 +9,6 @@ export class IdGenerator {
         for (let indexOfCharacter = 1; indexOfCharacter <= this.idLength; indexOfCharacter++) {
             id += this.charaters.charAt(Math.round(Math.random() * this.charaters.length));
         }
-        console.log(id);
         return id;
     }
 }
