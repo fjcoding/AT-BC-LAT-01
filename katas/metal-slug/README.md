@@ -24,8 +24,8 @@ If enemy is close enough, soldier can use a knife and reduce his/her health poin
 
 Enemies are also equiped with their own weapons and vehicles, those vary depending if they are soldiers, mercenaries, aliens, bosses or vehicles. All can attack, but just some of them have special abilites like throw granades, become temporary invulnerable (even if shot, they don't get damage from any type of type of weapon shoot).
 
-
-Finally, civilians can be found in the way, and soldiers are capable to save them by using his/her knife and release them. Gratefully, prisoner releases a weapon that
+=======
+Finally, civilians can be found in the way, and soldiers are capable to save them by using his/her knife and release them. Gratefully, prisoner releases a weapon that 
 soldier can opt to take and equip as his current weapon.
 
 As OOP coder, you are tasked to write an OOP program that can emulate Metal Slug behavior described above using classes and objects that represent each element of the game. Leverage OOP concepts like encapsulation, inheritance, interfaces, etc. Also, during your desing phase, try to apply SOLID principles.
