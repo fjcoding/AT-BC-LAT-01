@@ -1,4 +1,4 @@
-import { Scenario } from './Scenario.js';
+import { Scenario } from '../../main/modules/Scenario.js';
 
 
 const testScenario = new Scenario ();

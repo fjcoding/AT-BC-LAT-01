@@ -1,4 +1,4 @@
-import { Output } from './Output.js';
+import { Output } from '../../main/modules/Output.js';
 
 const testResults = new Output();
 

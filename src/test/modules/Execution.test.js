@@ -1,4 +1,4 @@
-import { Execution } from './Execution.js';
+import { Execution } from '../../main/modules/Execution.js';
 
 var parserActionssArray = [
     {'actionActor': 'Marco', 'actionType': 'Pick Weapon', 'element': 'Handgun'},

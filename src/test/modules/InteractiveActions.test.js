@@ -1,4 +1,4 @@
-import { InteractiveActions } from './InteractiveActions.js';
+import { InteractiveActions } from '../../main/modules/InteractiveActions.js';
 
 var Marco = new Object();
 Marco.name = 'Marco';
