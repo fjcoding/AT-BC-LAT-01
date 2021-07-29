@@ -1,9 +1,25 @@
-import { individualActions } from './individualActions.js';
 
-export class interactiveActions extends individualActions {
+export class interactiveActions {
     constructor(actionActor, actionType, fromActor){
-        super(actionActor, actionType);
+        this.actionActor = actionActor;
+        this.actionType = actionType;
         this.fromActor = fromActor;
+    }
+
+    getactionActor(){
+        return this.actionActor;
+    }
+
+    setactionActor(actionActor){
+        this.actionActor = actionActor;
+    }
+
+    getactionType(){
+        return this.actionType;
+    }
+
+    setactionType(actionType){
+        this.actionType = actionType;
     }
 
     getfromActor(){
@@ -13,5 +29,5 @@ export class interactiveActions extends individualActions {
     setfromActor(fromActor){
         this.fromActor = fromActor;
     }
-
 }
+

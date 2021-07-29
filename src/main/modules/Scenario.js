@@ -10,8 +10,8 @@ export class Scenario {
     }
 
     createActor(actorObjects) {
-        for (var index = 0; index < (Object.keys(actorObjects).length);) {
-            parserActorsArray[index] = new Actors(actorObjects[index].name, actorObjects[index].type, actorObjects[index].weapon);
+        for (var index = 0; index < (actorObjects.length);) {
+            parserActorsArray[index] = new Actors(actorObjects[index].name, actorObjects[index].type, actorObjects[index].weapon, 2);
             index++;
         }
         return parserActorsArray;
@@ -23,7 +23,7 @@ export class Scenario {
             if (actionObjects.length == 3){
                 parserActionsArray[index] = new interactiveActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].from);
             } else {
-                parserActionsArray[index] = new individualActions(actionObjects[index].actor, actionObjects[index].action);
+                parserActionsArray[index] = new individualActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].elemnt);
             }
             index++;
         }

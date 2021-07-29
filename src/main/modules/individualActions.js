@@ -1,7 +1,8 @@
 export class individualActions {
-    constructor(actionActor, actionType){
+    constructor(actionActor, actionType, element){
         this.actionActor = actionActor;
         this.actionType = actionType;
+        this.element = element;
     }
 
     setactionActor(actionActor){

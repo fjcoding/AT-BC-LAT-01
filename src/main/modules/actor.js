@@ -1,15 +1,15 @@
 export class Actors {
-    constructor(actorName, healthPoints, actorType, weaponType){
-        this._actorName = actorName;
-        this._healthPoints = healthPoints;
-        this._actorType = actorType;
-        this._weaponType = weaponType;
+    constructor(name, type, weapon, health){
+        this.name = name;
+        this.type = type;
+        this.weapon = weapon;
+        this.health = health;
     }
 
     //*getter and setters methods
 
     getActorName() {
-        return this._healthPoints;
+        return this._actorName;
     }
 
     setActorName(actorName){

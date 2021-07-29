@@ -8,7 +8,7 @@ var PickWeapon = new Object();
 
 test('Individual actions need to be initialized correctly', () => {
     expect(new individualActions(Marco, PickWeapon)).toEqual({'actionActor': Marco, 'actionType': PickWeapon});
-    expect(new individualActions('Marco', 'PickWeapon')).toEqual({'actionActor': 'Marco', 'actionType': 'PickWeapon'});
+    expect(new individualActions('Marco', 'PickWeapon', 'Shotgun')).toEqual({'actionActor': 'Marco', 'actionType': 'PickWeapon', 'element': 'Shotgun'});
 });
 
 const testclass = new individualActions;
