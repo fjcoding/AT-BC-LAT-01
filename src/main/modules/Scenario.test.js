@@ -1,5 +1,5 @@
 import { Scenario } from './Scenario.js';
-import { interactiveActions } from './InteractiveActions.js';
+import { interactiveActions } from './interactiveActions.js';
 var actorObjects = [{
     name: 'Marco',
     type: 'PF Squad Soldier',
