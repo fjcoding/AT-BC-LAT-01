@@ -1,18 +1,15 @@
 export class Output {
-    constructor(results, parserActorsArray) {
-        this.results = results;
-        this.parserActorsArray = parserActorsArray;
-    }
 
-    generateResults() {
+    generateResults(parserActorsArray) {
         var results = new Object();
-        for (var index = 0; index < this.parserActorsArray.length; index++) {
-            if (this.parserActorsArray[index].health > 0) {
-                results[this.parserActorsArray[index].name] = 'Alive';
+        for (var index = 0; index < parserActorsArray.length; index++) {
+            if (parserActorsArray[index].health > 0) {
+                results[parserActorsArray[index].name] = 'Alive';
             } else {
-                results[this.parserActorsArray[index].name] = 'Dead';
+                results[parserActorsArray[index].name] = 'Dead';
             }
         }
         return results;
     }
+
 }

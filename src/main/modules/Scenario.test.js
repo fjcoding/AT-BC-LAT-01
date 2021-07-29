@@ -1,11 +1,7 @@
 import { Scenario } from './Scenario.js';
 
 
-const testScenario = new Scenario (1);
-
-test('The Scenario need to be created correctly with its id', () => {
-    expect(new Scenario(1)).toEqual({'id': 1});
-});
+const testScenario = new Scenario ();
 
 test('The actors need to be parsed as new classes correctly into an array', () => {
     var actorObjects = [
@@ -35,7 +31,6 @@ test('Actions need to be parsedas new classes correctly into an array', () => {
         {actor: 'RAT1',
             action: 'Receive Attack',
             from: 'Marco'}];
-    expect(new Scenario(1)).toEqual({'id': 1});
     expect(testScenario.createActions(actionObjects)).toEqual([
         {'actionActor': 'Marco', 'actionType': 'Pick Weapon', 'element': 'Shotgun'},
         {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'element': 'Shotgun'},
