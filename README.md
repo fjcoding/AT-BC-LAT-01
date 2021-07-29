@@ -185,8 +185,7 @@ As reviewers, a PR should be only approved if following conditions are met (In o
 - git pull
 
 ## Database connection
-1. Run the npm install
-2. configure the service account (in first iterations we will use a default credetial)
+1. configure the service account (in first iterations we will use a default credential)
 
 ## querys examples
 1. set query (if you don't specify an ID, firebase will create one automatically):
