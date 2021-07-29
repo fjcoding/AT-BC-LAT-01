@@ -1,4 +1,4 @@
-export class interactiveActions {
+export class InteractiveActions {
     constructor(actionActor, actionType, fromActor) {
         this.actionActor = actionActor;
         this.actionType = actionType;

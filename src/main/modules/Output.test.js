@@ -1,4 +1,4 @@
-import { Response } from './Output';
+import { Response } from './Output.js';
 
 const testResults = new Response();
 

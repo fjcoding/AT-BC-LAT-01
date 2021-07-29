@@ -1,4 +1,4 @@
-export class Actors {
+export class Actor {
     constructor(name, type, weapon, health) {
         this.name = name;
         this.type = type;
