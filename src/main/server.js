@@ -41,8 +41,8 @@ app.post('/scenario', (req, res) => {
     res.send(result);
 });
 
-app.get('/scenario', async (req, res) => {
-    const scenario = await db.collection('MSM-Scenario').doc('ExampleId01').get();
+app.get('/scenario/:id', async (req, res) => {
+    const scenario = await db.collection('MSM-Scenario').doc(req.params.id).get();
     res.send(scenario.data());
 });
 
