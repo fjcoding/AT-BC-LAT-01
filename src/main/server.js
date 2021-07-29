@@ -3,12 +3,15 @@ import admin from 'firebase-admin';
 import serviceAccount from '../../../claves/metal-slug-maker-firebase-adminsdk-8dsbv-e517ebfe1a.json';
 // import { db } from './DB/db'
 
+import { Scenario } from './modules/Scenario';
+import { Execution } from './modules/Execution';
+import { Output } from './modules/Output';
 
 // Express configuration
 const app = express();
 app.use(json());
 app.use(urlencoded({
-  extended: true
+    extended: true
 }));
 
 // DB configuration
@@ -21,22 +24,29 @@ const db = admin.firestore();
 
 
 // HTTP Methods
-app.put('/scenario', (req, res) => {
-  const id = 'ExampleId01';
-  const scenario = db.collection('MSM-Scenario').doc(id).set(req.body);
-  res.send(id);
+app.put('/scenario', async (req, res) => {
+    const scenario = await db.collection('MSM-Scenario').add(req.body);
+    res.send(scenario.id);
 });
 
 app.post('/scenario', (req, res) => {
-  res.send(req.body);
+    const scenario = new Scenario(); // id
+    const actors = scenario.createActor(req.body.actors);
+    const actions = scenario.createActions(req.body.actions);
+    const executer = new Execution(actions, actors);
+    const scenarioStates = executer.execute(actions, actors);
+    const response = new Output();
+    const result = response.generateResults(scenarioStates); // returns the JSON
+
+    res.send(result);
 });
 
 app.get('/scenario', async (req, res) => {
-  const scenario = await db.collection('MSM-Scenario').doc('ExampleId01').get();
-  console.log(scenario);
-  res.send(scenario.data);
+    const scenario = await db.collection('MSM-Scenario').doc('ExampleId01').get();
+    console.log(scenario);
+    res.send(scenario._fieldsProto);
 });
 
 app.listen(3000, function() {
-    console.log('listening on 3000')
-})
+    console.log('listening on 3000');
+});
