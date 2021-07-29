@@ -1,6 +1,6 @@
 import { idGenerator } from './idGenerator';
 
-describe('Verify that IdGenerator class', () => {
+describe('Verify that idGenerator function', () => {
     test('generates a random string with 6 characters', () => {
         const id = idGenerator(6);
         expect(typeof(id)).toBe('string');

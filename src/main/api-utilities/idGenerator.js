@@ -1,5 +1,5 @@
 export function idGenerator(
-    idLength = 6,
+    idLength = 10,
     charaters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') {
 
     let id = '';
