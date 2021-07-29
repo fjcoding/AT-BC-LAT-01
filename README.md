@@ -186,83 +186,13 @@ As reviewers, a PR should be only approved if following conditions are met (In o
 
 ## Database connection
 1. configure the service account (in first iterations we will use a default credential)
-
-## querys examples
-1. set query (if you don't specify an ID, firebase will create one automatically):
-db.collection("Cities").doc("ID").set({
-name: "Los Angeles",
-state: "CA",
-country: "USA"
-})
-.then(() => {
-    console.log("Document successfully written!");
-})
-.catch((error) => {
-    console.error("Error writing document: ", error);
-});
-
-2. set query in an existent file:
-var cityRef = db.collection('cities').doc('ID');
-
-var setWithMerge = cityRef.set({
-    capital: true
-}, { merge: true });
-
-If you wanna overwrite the existent file just put false in the merge setting.
-
-3. update a query:
-const cityRef = db.collection('cities').doc('ID');
-
-// Set the 'capital' field of the city
-const res = await cityRef.update({capital: true});
-
-Also you can update an object component like this:
-const initialData = {
-  name: 'Frank',
-  age: 12,
-  favorites: {
-    food: 'Pizza',
-    color: 'Blue',
-    subject: 'recess'
-  }
-};
-
-// ...
-const res = await db.collection('users').doc('Frank').update({
-  age: 13,
-  'favorites.color': 'Red'
-});
-
-4. arrayUnion() and arrayRemove() into query:
+2. for initilize the app:
 const admin = require('firebase-admin');
-// ...
-const washingtonRef = db.collection('cities').doc('DC');
 
-// Atomically add a new region to the "regions" array field.
-const unionRes = await washingtonRef.update({
-  regions: admin.firestore.FieldValue.arrayUnion('greater_virginia')
-});
-// Atomically remove a region from the "regions" array field.
-const removeRes = await washingtonRef.update({
-  regions: admin.firestore.FieldValue.arrayRemove('east_coast')
+const serviceAccount = require('./path/to/serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
 });
 
-// To add or remove multiple items, pass multiple arguments to arrayUnion/arrayRemove
-const multipleUnionRes = await washingtonRef.update({
-  regions: admin.firestore.FieldValue.arrayUnion('south_carolina', 'texas')
-  // Alternatively, you can use spread operator in ES6 syntax
-  // const newRegions = ['south_carolina', 'texas']
-  // regions: admin.firestore.FieldValue.arrayUnion(...newRegions)
-});
-
-5. delete a query:
-const res = await db.collection('cities').doc('ID').delete();
-
-6. get a query:
-const cityRef = db.collection('cities').doc('ID');
-const doc = await cityRef.get();
-if (!doc.exists) {
-  console.log('No such document!');
-} else {
-  console.log('Document data:', doc.data());
-}
+const db = admin.firestore();
