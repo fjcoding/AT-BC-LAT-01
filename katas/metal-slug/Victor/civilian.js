@@ -1,4 +1,3 @@
-
 export class Civilian {
     constructor(){
         this._healthPoints = 1;
