@@ -27,7 +27,7 @@
         "test:katas": "jest  --coverage --testPathPattern=katas/",
         "lint": "eslint . --ext .js",
         "lint-fix": "eslint . --fix",
-        "dev": "nodemon src/main/server.js"
+        "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node src/main/server.js"
     },
     "repository": {
         "type": "git",
@@ -39,7 +39,7 @@
         "url": "https://github.com/fjcoding/AT-BC-LAT-01/issues"
     },
     "homepage": "https://github.com/fjcoding/AT-BC-LAT-01#readme",
-    "type": "commonjs",
+    "type": "module",
     "dependencies": {
         "express": "^4.17.1",
         "firebase-admin": "^9.11.0"
