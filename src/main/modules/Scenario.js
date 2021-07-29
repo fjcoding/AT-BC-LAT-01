@@ -1,6 +1,6 @@
 import { Actors } from './actor.js';
 import { individualActions } from './individualActions.js';
-import { interactiveActions } from './InteractiveActions.js';
+import { interactiveActions } from './interactiveActions.js';
 
 var parserActorsArray = [];
 var parserActionsArray = [];
