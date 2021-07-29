@@ -1,24 +1,32 @@
 export class individualActions {
-    constructor(actionActor, actionType, element){
+    constructor(actionActor, actionType, element) {
         this.actionActor = actionActor;
         this.actionType = actionType;
         this.element = element;
     }
 
-    setactionActor(actionActor){
+    setactionActor(actionActor) {
         this.actionActor = actionActor;
     }
 
-    getactionActor (){
+    getactionActor () {
         return this.actionActor;
     }
 
-    setactionType (actionType){
+    setactionType (actionType) {
         this.actionType = actionType;
     }
 
-    getactionType (){
+    getactionType () {
         return this.actionType;
+    }
+
+    getElement () {
+        return this.element;
+    }
+
+    setElement (element) {
+        this.element = element;
     }
 
 }

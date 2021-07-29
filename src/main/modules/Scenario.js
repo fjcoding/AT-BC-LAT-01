@@ -4,8 +4,9 @@ import { interactiveActions } from './interactiveActions.js';
 
 var parserActorsArray = [];
 var parserActionsArray = [];
+
 export class Scenario {
-    constructor (id){
+    constructor (id) {
         this.id = id;
     }
 
@@ -19,10 +20,9 @@ export class Scenario {
 
     createActions(actionObjects) {
         for (var index = 0; index < (Object.keys(actionObjects).length);) {
-
-            if (actionObjects[index].from !== undefined){
+            if (actionObjects[index].from !== undefined) {
                 parserActionsArray[index] = new interactiveActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].from);
-            } else if(actionObjects[index].element !== undefined){
+            } else if(actionObjects[index].element !== undefined) {
                 parserActionsArray[index] = new individualActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].element);
             }
             index++;

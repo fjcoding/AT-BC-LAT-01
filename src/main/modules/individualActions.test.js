@@ -20,4 +20,7 @@ test('Methods need to be done correctly', () =>{
     expect(testclass.getactionType()).toEqual(undefined);
     testclass.setactionType(PickWeapon);
     expect(testclass.getactionType()).toEqual(PickWeapon);
+    expect(testclass.getElement()).toEqual(undefined);
+    testclass.setElement('heavyMachineGun');
+    expect(testclass.getElement()).toEqual('heavyMachineGun');
 });

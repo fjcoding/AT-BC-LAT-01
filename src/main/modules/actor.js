@@ -1,18 +1,16 @@
 export class Actors {
-    constructor(name, type, weapon, health){
+    constructor(name, type, weapon, health) {
         this.name = name;
         this.type = type;
         this.weapon = weapon;
         this.health = health;
     }
 
-    //*getter and setters methods
-
     getActorName() {
         return this.name;
     }
 
-    setActorName(actorName){
+    setActorName(actorName) {
         this.name = actorName;
     }
 
@@ -20,7 +18,7 @@ export class Actors {
         return this.health;
     }
 
-    setHealth(healthPoints){
+    setHealth(healthPoints) {
         this.health = healthPoints;
     }
 
@@ -28,7 +26,7 @@ export class Actors {
         return this.type;
     }
 
-    setType(actorType){
+    setType(actorType) {
         this.type = actorType;
     }
 
@@ -36,16 +34,8 @@ export class Actors {
         return this.weapon;
     }
 
-    setWeapon(weaponType){
+    setWeapon(weaponType) {
         this.weapon = weaponType;
-    }
-
-    //*actors methods
-    //TODO add more methods (discuss with teams)
-
-    isAlive(){
-
-        return (this.health > 0) ? 'Alive' : 'Death';
     }
 
 }

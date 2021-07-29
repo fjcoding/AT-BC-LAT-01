@@ -1,33 +1,32 @@
-
 export class interactiveActions {
-    constructor(actionActor, actionType, fromActor){
+    constructor(actionActor, actionType, fromActor) {
         this.actionActor = actionActor;
         this.actionType = actionType;
         this.fromActor = fromActor;
     }
 
-    getactionActor(){
+    getactionActor() {
         return this.actionActor;
     }
 
-    setactionActor(actionActor){
+    setactionActor(actionActor) {
         this.actionActor = actionActor;
     }
 
-    getactionType(){
+    getactionType() {
         return this.actionType;
     }
 
-    setactionType(actionType){
+    setactionType(actionType) {
         this.actionType = actionType;
     }
 
-    getfromActor(){
+    getfromActor() {
         return this.fromActor;
     }
 
-    setfromActor(fromActor){
+    setfromActor(fromActor) {
         this.fromActor = fromActor;
     }
-}
 
+}
