@@ -4,7 +4,10 @@ export class Fight {
         this.rightFighter = rightFighter;
     }
 
-    makeLeftFighterAttack() {
+    makeLeftFighterAttack(fightStats) {
+        if (fightStats) {
+            fightStats.logScore();
+        }
         const attack = this.leftFighter.attack();
         this.rightFighter.receiveAttack(attack);
     }
