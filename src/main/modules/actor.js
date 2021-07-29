@@ -9,35 +9,35 @@ export class Actors {
     //*getter and setters methods
 
     getActorName() {
-        return this._actorName;
+        return this.name;
     }
 
     setActorName(actorName){
-        this._actorName = actorName;
+        this.name = actorName;
     }
 
-    getHealthPoints() {
-        return this._healthPoints;
+    getHealth() {
+        return this.health;
     }
 
-    setHealthPoints(healthPoints){
-        this._healthPoints = healthPoints;
+    setHealth(healthPoints){
+        this.health = healthPoints;
     }
 
-    getActorType() {
-        return this._actorType;
+    getType() {
+        return this.type;
     }
 
-    setActorType(actorType){
-        this._actorType = actorType;
+    setType(actorType){
+        this.type = actorType;
     }
 
-    getWeaponType() {
-        return this._weaponType;
+    getWeapon() {
+        return this.weapon;
     }
 
-    setWeaponType(weaponType){
-        this._weaponType = weaponType;
+    setWeapon(weaponType){
+        this.weapon = weaponType;
     }
 
     //*actors methods

@@ -1,5 +1,4 @@
 import { Scenario } from './Scenario.js';
-import { interactiveActions } from './interactiveActions.js';
 
 var actorObjects = [{
     name: 'Marco',
@@ -19,21 +18,22 @@ test('Individual actions need to be initialized correctly', () => {
     expect(new Scenario(1)).toEqual({'id': 1});
     expect(testScenario.createActor(actorObjects)).toEqual([{'health': 2, 'name': 'Marco', 'type': 'PF Squad Soldier', 'weapon': 'Handgun'}, {'health': 2, 'name': 'RAS1', 'type': 'Rebel Army soldier', 'weapon': 'rifle'}, {'health': 2, 'name': 'RAT1', 'type': 'Rebel Army Tank', 'weapon': 'tank cannon'}]);
 });
-var PickShotgun = new interactiveActions();
 var actionObjects = [{
     actor: 'Marco',
-    action: PickShotgun
+    action: 'Pick Weapon',
+    element: 'Shotgun'
 }, {
     actor: 'Marco',
-    action: 'Shoot Weapon'
+    action: 'Shoot Weapon',
+    element: 'Shotgun'
 }, {
     actor: 'RAT1',
-    action: 'receive attack',
+    action: 'Receive Attack',
     from: 'Marco'
 }];
 test('Actions need to be parsed correctly', () => {
     expect(new Scenario(1)).toEqual({'id': 1});
-    expect(testScenario.createActions(actionObjects)).toEqual([{'actionActor': 'Marco', 'actionType': PickShotgun}, {'actionActor': 'Marco', 'actionType': 'Shoot Weapon'}, {'actionActor': 'RAT1', 'actionType': 'receive attack', 'fromActor': 'Marco'}]
+    expect(testScenario.createActions(actionObjects)).toEqual([{'actionActor': 'Marco', 'actionType': 'Pick Weapon', 'element': 'Shotgun'}, {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'element': 'Shotgun'}, {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'fromActor': 'Marco'}]
 
     );
 });

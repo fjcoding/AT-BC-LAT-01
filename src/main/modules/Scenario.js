@@ -20,15 +20,17 @@ export class Scenario {
 
     createActions(actionObjects) {
         for (var index = 0; index < (Object.keys(actionObjects).length);) {
-            if (actionObjects.length == 3){
+
+            if (actionObjects[index].from !== undefined){
                 parserActionsArray[index] = new interactiveActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].from);
-            } else {
-                parserActionsArray[index] = new individualActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].elemnt);
+            } else if(actionObjects[index].element !== undefined){
+                parserActionsArray[index] = new individualActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].element);
             }
             index++;
         }
         return parserActionsArray;
     }
+
 
     executeScenario(){
 
