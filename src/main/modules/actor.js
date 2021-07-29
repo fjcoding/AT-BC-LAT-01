@@ -43,8 +43,9 @@ export class Actors {
     //*actors methods
     //TODO add more methods (discuss with teams)
 
-    isAlive(healthPoints){
-        return (healthPoints > 0) ? 'Alive' : 'Death';
+    isAlive(){
+
+        return (this.health > 0) ? 'Alive' : 'Death';
     }
 
 }

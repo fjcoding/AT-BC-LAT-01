@@ -1,0 +1,7 @@
+import { Response } from './Output';
+const testResults = new Response();
+var parserActorsArray = [{'health': 14, 'name': 'Marco', 'type': 'PF Squad Soldier', 'weapon': 'Handgun'}, {'health': 0, 'name': 'RAS1', 'type': 'Rebel Army soldier', 'weapon': 'rifle'}, {'health': 1, 'name': 'RAT1', 'type': 'Rebel Army Tank', 'weapon': 'tank cannon'}];
+test('Obtain the results as an object called results', () => {
+
+    expect(testResults.generateResults(parserActorsArray)).toEqual({'Marco': 'Alive', 'RAS1': 'Dead', 'RAT1': 'Alive'});
+});
