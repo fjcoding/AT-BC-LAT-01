@@ -43,7 +43,6 @@ app.post('/scenario', (req, res) => {
 
 app.get('/scenario', async (req, res) => {
     const scenario = await db.collection('MSM-Scenario').doc('ExampleId01').get();
-    console.log(scenario);
     res.send(scenario._fieldsProto);
 });
 
