@@ -1,4 +1,4 @@
-import { IndividualActions } from './IndividualActions.js';
+import { IndividualActions } from '../../main/modules/IndividualActions.js';
 
 var Marco = new Object();
 Marco.name = 'Marco';
