@@ -17,7 +17,6 @@ export class Scenario {
         return parserActorsArray;
     }
 
-
     createActions(actionObjects) {
         for (var index = 0; index < (Object.keys(actionObjects).length);) {
 
@@ -31,8 +30,4 @@ export class Scenario {
         return parserActionsArray;
     }
 
-
-    executeScenario(){
-
-    }
 }
