@@ -185,14 +185,16 @@ As reviewers, a PR should be only approved if following conditions are met (In o
 - git pull
 
 ## Database connection
-1. configure the service account (in first iterations we will use a default credential)
-2. for initilize the app:
-const admin = require('firebase-admin');
+1. Configure the service account (in first iterations we will use a default credential)
+2. Ask for the database key and install it.
+3. For initilize the app:
 
-const serviceAccount = require('./path/to/serviceAccountKey.json');
+import serviceAccount from 'json key path in your computer';
+import * as admin from 'firebase-admin';
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://metal-slug-maker-default-rtdb.firebaseio.com'
 });
 
 const db = admin.firestore();
