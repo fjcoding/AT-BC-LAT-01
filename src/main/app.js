@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const scenariosRoutes = require('./routes/scenarios');
+import scenariosRoutes from './routes/scenarios';
 
 app.use('/scenarios', scenariosRoutes);
 
-module.exports = app;
+export default app;
