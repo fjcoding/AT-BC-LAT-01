@@ -1,26 +1,33 @@
 //import { db } from './DB/db'
-//const db = require('./DB/db');
-const express = require('express');
+import express, { json, urlencoded } from 'express';
+import serviceAccount from '../../../claves/metal-slug-maker-firebase-adminsdk-8dsbv-e517ebfe1a.json';
+import admin from 'firebase-admin';
 
+
+// Express configuration
 const app = express();
-
-app.use(express.json());
-app.use(express.urlencoded({
+app.use(json());
+app.use(urlencoded({
   extended: true
 }));
 
-
-const serviceAccount = require('../../../claves/metal-slug-maker-firebase-adminsdk-8dsbv-e517ebfe1a.json');
-const admin = require('firebase-admin');
+// DB configuration
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: 'https://metal-slug-maker-default-rtdb.firebaseio.com'
 });
 const db = admin.firestore();
 
+
+// HTTP Methods
 app.put('/scenario', (req, res) => {
   const scenario = db.collection('MSM-Scenario').add(req.body);
+  console.log(scenario.id);
   res.send(scenario.id);
+});
+
+app.post('/scenario', (req, res) => {
+  res.send(req.body);
 });
 
 app.get('/scenario', (req, res) => {
