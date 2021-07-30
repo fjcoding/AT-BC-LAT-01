@@ -1,4 +1,4 @@
-import { SinglePropertyVerifier, AttributesVerifier } from '../../main/api-utilities/SinglePropertyVerifier';
+import { SinglePropertyVerifier, AttributesVerifier, ActorsOfActions } from '../../main/api-utilities/SinglePropertyVerifier';
 
 describe('Verify that SinglePropertyVerifier class', () => {
     test('has Scenario attribute', () => {
@@ -27,4 +27,36 @@ describe('Verify that AttributesVerifier class', () => {
         expect(attributeVerifier.check()).toBe('The scenario does not have dummyAttr attribute');
     });
 
+});
+
+describe('Verify that ActorsOfActions', () => {
+    test('check that in the actions all the actors are declared in the actor object', () => {
+        const scenario = {
+            actors: [
+                {name: 'Marco', type: 'PF Squad Soldier', weapon: 'Handgun'},
+                {name: 'RAS1', type: 'Rebel Army soldier', weapon: 'rifle'}],
+            actions: [
+                {actor: 'Marco', action: 'Pick Weapon', element: 'Shotgun'},
+                {actor: 'Marco', action: 'Shoot Weapon', element: 'Shotgun'},
+                {actor: 'RAS1', action: 'Receive Attack', from: 'Marco'}]
+        };
+
+        const verifier = new ActorsOfActions(scenario);
+        expect(verifier.check()).toBe(true);
+    });
+
+    test('check that in the actions all the actors are not declared in the actor object', () => {
+        const scenario = {
+            actors: [
+                {name: 'Marco', type: 'PF Squad Soldier', weapon: 'Handgun'},
+                {name: 'RAS1', type: 'Rebel Army soldier', weapon: 'rifle'}],
+            actions: [
+                {actor: 'Juan', action: 'Pick Weapon', element: 'Shotgun'},
+                {actor: 'Juan', action: 'Shoot Weapon', element: 'Shotgun'},
+                {actor: 'RAS1', action: 'Receive Attack', from: 'Marco'}]
+        };
+
+        const verifier = new ActorsOfActions(scenario);
+        expect(verifier.check()).toBe('Juan actor does not exist');
+    });
 });

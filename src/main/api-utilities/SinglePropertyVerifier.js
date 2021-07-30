@@ -39,3 +39,26 @@ export class AttributesVerifier extends SinglePropertyVerifier {
     }
 }
 
+export class ActorsOfActions extends SinglePropertyVerifier {
+    constructor (scenario) {
+        super(scenario);
+    }
+
+    check() {
+        let result = true;
+        for (let index = 0; index < this.scenario.actions.length; index++) {
+            let action = this.scenario.actions[index];
+            let isInActors = false;
+            this.scenario.actors.forEach(actor => {
+                if (action.actor == actor.name) isInActors = true;
+            });
+
+            if (isInActors == false) {
+                result = action.actor + ' actor does not exist';
+                break;
+            }
+        }
+
+        return result;
+    }
+}
