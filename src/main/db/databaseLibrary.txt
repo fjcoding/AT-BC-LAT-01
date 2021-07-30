@@ -1,5 +1,5 @@
 ## querys examples
-1. set query (if you don't specify an ID, firebase will create one automatically): 
+1. set query (if you don't specify an ID, firebase will create one automatically):
 db.collection("Cities").doc("ID").set({
 name: "Los Angeles",
 state: "CA",
@@ -17,7 +17,7 @@ var cityRef = db.collection('cities').doc('ID');
 
 var setWithMerge = cityRef.set({
     capital: true
-}, { merge: true }); 
+}, { merge: true });
 
 If you wanna overwrite the existent file just put false in the merge setting.
 
