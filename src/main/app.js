@@ -7,7 +7,7 @@ app.use(urlencoded({
     extended: true
 }));
 
-import router from './routes/scenarios';
+import router from './routes/scenario';
 app.use('/scenario', router);
 
 export default app;

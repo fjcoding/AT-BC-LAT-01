@@ -41,7 +41,7 @@ router.get('/:id', async(req, res) => {
 */
 router.get('/', (req, res) => {
     res.status(200).json({
-        message: 'Handling GET requests to API/scenarios',
+        message: 'Handling GET requests to API/scenario',
     });
 });
 
