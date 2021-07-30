@@ -191,7 +191,7 @@ As reviewers, a PR should be only approved if following conditions are met (In o
 4. Inside the keys folder move the json key.
 5. For initilize the app:
 
-import serviceAccount from `'../../../keys/metal-slug-maker-firebase-adminsdk-8dsbv-e517ebfe1a.json'`;
+import serviceAccount from `'../../../keys/jsonKeyName'`;
 import * as admin from 'firebase-admin';
 
 admin.initializeApp({
