@@ -189,14 +189,6 @@ As reviewers, a PR should be only approved if following conditions are met (In o
 2. Ask for the database key and install it.
 3. Create a folder inside the folder where you put the project cloned folder and named it keys.
 4. Inside the keys folder move the json key.
-5. For initilize the app:
+5. For initilize the app change the import that you see below with the name of the json key:
 
 import serviceAccount from `'../../../keys/jsonKeyName'`;
-import * as admin from 'firebase-admin';
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: 'https://metal-slug-maker-default-rtdb.firebaseio.com'
-});
-
-const db = admin.firestore();
