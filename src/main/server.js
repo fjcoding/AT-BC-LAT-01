@@ -7,7 +7,7 @@ import { Scenario } from './modules/Scenario';
 import { Execution } from './modules/Execution';
 import { Output } from './modules/Output';
 
-const COLECTION_NAME = 'MSM-Scenario';
+const COLLECTION_NAME = 'MSM-Scenario';
 
 // Express configuration
 const app = express();
@@ -28,7 +28,7 @@ const db = admin.firestore();
 
 // HTTP Methods
 app.put('/scenario', async (req, res) => {
-    const scenario = await db.collection(COLECTION_NAME).add(req.body);
+    const scenario = await db.collection(COLLECTION_NAME).add(req.body);
     res.send(scenario.id);
 });
 
@@ -46,7 +46,7 @@ app.post('/scenario', (req, res) => {
 
 app.get('/scenario/:id', async (req, res) => {
     const scenarioPersisted = await db
-        .collection(COLECTION_NAME)
+        .collection(COLLECTION_NAME)
         .doc(req.params.id)
         .get();
     const actors = scenarioPersisted.data().actors;
