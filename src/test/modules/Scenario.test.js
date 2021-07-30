@@ -40,3 +40,20 @@ test('Actions need to be parsedas new classes correctly into an array', () => {
         {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'fromActor': 'Marco'}]
     );
 });
+test('Actions need to be parsedas new classes correctly into an array without actiopn from in the Object', () => {
+    var actionObjects = [
+        {actor: 'Marco',
+            action: 'Pick Weapon',
+            element: 'Shotgun'},
+        {actor: 'Marco',
+            action: 'Shoot Weapon',
+            element: 'Shotgun'},
+        {actor: 'RAT1',
+            action: 'Walk',
+            element: 'Tank'}];
+    expect(testScenario.createActions(actionObjects)).toEqual([
+        {'actionActor': 'Marco', 'actionType': 'Pick Weapon', 'element': 'Shotgun'},
+        {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'element': 'Shotgun'},
+        {'actionActor': 'RAT1', 'actionType': 'Walk', 'element': 'Tank'}]
+    );
+});
