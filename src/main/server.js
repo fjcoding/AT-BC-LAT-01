@@ -73,7 +73,7 @@ app.get('/scenario/:id', async (req, res) => {
     const response = new Output();
     const result = response.generateResults(scenarioStates);
 
-    res.send(result);
+    res.send({code: 400, result: result});
 });
 
 app.listen(3000, function () {
