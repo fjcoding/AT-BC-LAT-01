@@ -7,17 +7,20 @@ test('The actors need to be parsed as new classes correctly into an array', () =
     var actorObjects = [
         {name: 'Marco',
             type: 'PF Squad Soldier',
-            weapon: 'Handgun'},
+            weapon: 'Handgun',
+            health: 2},
         {name: 'RAS1',
             type: 'Rebel Army soldier',
-            weapon: 'rifle'},
+            weapon: 'rifle',
+            health: 1},
         {name: 'RAT1',
             type: 'Rebel Army Tank',
-            weapon: 'tank cannon'}];
+            weapon: 'tank cannon',
+            health: 3}];
     expect(testScenario.createActor(actorObjects)).toEqual([
         {'health': 2, 'name': 'Marco', 'type': 'PF Squad Soldier', 'weapon': 'Handgun'},
-        {'health': 2, 'name': 'RAS1', 'type': 'Rebel Army soldier', 'weapon': 'rifle'},
-        {'health': 2, 'name': 'RAT1', 'type': 'Rebel Army Tank', 'weapon': 'tank cannon'}]);
+        {'health': 1, 'name': 'RAS1', 'type': 'Rebel Army soldier', 'weapon': 'rifle'},
+        {'health': 3, 'name': 'RAT1', 'type': 'Rebel Army Tank', 'weapon': 'tank cannon'}]);
 });
 
 test('Actions need to be parsedas new classes correctly into an array', () => {
