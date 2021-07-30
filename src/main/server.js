@@ -39,7 +39,7 @@ app.put('/scenario', async (req, res) => {
         res.send(scenario.id);
     }
 
-    res.send({code: 200, error: checkScenarioRespone});
+    res.send({code: 400, error: checkScenarioRespone});
 });
 
 app.post('/scenario', (req, res) => {
@@ -55,10 +55,10 @@ app.post('/scenario', (req, res) => {
         const response = new Output();
         const result = response.generateResults(scenarioStates); // returns the JSON
 
-        res.send({code: 400, result: result});
+        res.send({code: 202, result: result});
     }
 
-    res.send({code: 200, error: checkScenarioRespone});
+    res.send({code: 400, error: checkScenarioRespone});
 });
 
 app.get('/scenario/:id', async (req, res) => {
@@ -73,7 +73,7 @@ app.get('/scenario/:id', async (req, res) => {
     const response = new Output();
     const result = response.generateResults(scenarioStates);
 
-    res.send({code: 400, result: result});
+    res.send({code: 202, result: result});
 });
 
 app.listen(3000, function () {
