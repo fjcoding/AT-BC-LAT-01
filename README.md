@@ -174,13 +174,21 @@ As reviewers, a PR should be only approved if following conditions are met (In o
 3. Changes are covered by tests (There could be few exceptions)
 
 ## Git commands cheatsheet
+- git clone \<repo url\>
+- git config
+- git status
+- git branch \<branch name\>
+- git checkout \<branch name\>
+- git add \<file or folder\>
+- git commit -m \<meaningful commit message\>
+- git push
+- git pull
 
--   git clone \<repo url\>
--   git config
--   git status
--   git branch \<branch name\>
--   git checkout \<branch name\>
--   git add \<file or folder\>
--   git commit -m \<meaningful commit message\>
--   git push
--   git pull
+## Database connection
+1. Configure the service account (in first iterations we will use a default credential)
+2. Ask for the database key and install it.
+3. Create a folder inside the folder where you put the project cloned folder and named it keys.
+4. Inside the keys folder move the json key.
+5. For initilize the app change the import that you see below with the name of the json key:
+
+import serviceAccount from `'../../../keys/jsonKeyName'`;
