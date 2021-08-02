@@ -1,4 +1,5 @@
 import express, { json, urlencoded } from 'express';
+import router from './routes/scenario';
 
 // Express configuration
 const app = express();
@@ -7,7 +8,7 @@ app.use(urlencoded({
     extended: true
 }));
 
-import router from './routes/scenario';
+//route to Scenarios requests
 app.use('/scenario', router);
 
 export default app;
