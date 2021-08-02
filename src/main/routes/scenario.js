@@ -7,7 +7,7 @@ import { ScenarioVerifier } from '../api-utilities/ScenarioVerifier';
 import { TemplateVerifier } from '../api-utilities/TemplateVerifier';
 import { ActorsOfActions } from '../api-utilities/SinglePropertyVerifier';
 import admin from 'firebase-admin';
-import serviceAccount from '../../../../claves/metal-slug-maker-firebase-adminsdk-8dsbv-e517ebfe1a.json';
+import serviceAccount from '../../../../keys/metal-slug-maker-firebase-adminsdk-8dsbv-e517ebfe1a.json';
 // import { db } from './DB/db'
 const COLLECTION_NAME = 'MSM-Scenario';
 
