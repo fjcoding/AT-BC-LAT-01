@@ -1,18 +1,14 @@
 function CharacterFactory() {
     this.createCharacter = function (type) {
         switch (type) {
-            case 'Soldier':
-                return new Soldier();
-                break;
-            case 'Mercenary':
-                return new Mercenary();
-                break;
-            case 'Alien':
-                return new Alien();
-                break;
-            case 'Boss':
-                return new Boss();
-                break;
+        case 'Soldier':
+            return new Soldier();
+        case 'Mercenary':
+            return new Mercenary();
+        case 'Alien':
+            return new Alien();
+        case 'Boss':
+            return new Boss();
         }
     };
 
