@@ -30,12 +30,9 @@ router.put('/', async(req, res) => {
     } else {
         res.send({ code: 400, error: checkScenarioRespone });
     }
-
-
 });
 
 router.post('/', (req, res) => {
-
     const scenarioVerifier = new ScenarioVerifier([new TemplateVerifier(req.body), new ActorsOfActions(req.body)]);
     const checkScenarioRespone = scenarioVerifier.check();
     if (checkScenarioRespone == true) {
@@ -51,8 +48,6 @@ router.post('/', (req, res) => {
     } else {
         res.send({ code: 400, error: checkScenarioRespone });
     }
-
-
 });
 
 router.get('/:id', async(req, res) => {
