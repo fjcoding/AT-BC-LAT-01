@@ -28,7 +28,7 @@ PUT /actor
 }
 ```
 
-This should add a new actor to scenario with <scenario id> id, response would look like this:
+This should add a new actor to scenario with \<scenario id\> id, response would look like this:
 ```
 {
     "code": 200,
@@ -79,7 +79,7 @@ PUT /actor
 }
 ```
 
-If <scenario id> is not specified (or it does not exist), a new scenario should be created. Response would be similar to the one above.
+If \<scenario id\> is not specified (or it does not exist), a new scenario should be created. Response would be similar to the one above.
 Notice that when an actor is created using /actor endpoint, it will add a new object to "actors" property in the "scenario" json persisted in the database.
 
 Database JSON should look like this
@@ -265,7 +265,7 @@ Scenario looks like:
 
 And then, run the scenario:
 
-GET /scenario/<scenario id>
+GET /scenario/\<scenario id\>
 
 Response
 ```
@@ -297,7 +297,7 @@ shoot weapon using X and Y references for the attack scope.
 
 Notice that I could run similar actions for RAS* soldiers. Actions could be also run without the need to persist them in the database, just by running a POST request:
 
-POST /action?scenarioId=<scenario id>
+POST /action?scenarioId=\<scenario id\>
 ```
 {
     "actor": "RAS1",
@@ -371,7 +371,7 @@ Say another example for the scenario below
 }
 ```
 
-POST /action?scenarioId=<scenario id>
+POST /action?scenarioId=\<scenario id\>
 ```
 {
     "actor": "RAS2",
@@ -390,5 +390,5 @@ Response
         "RAS2": "alive"
     }
 }
-
+```
 Marco has been shoot by RAS2, because of RAS2's weapon scope, and his position close to Marco
