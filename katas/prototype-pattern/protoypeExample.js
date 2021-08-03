@@ -1,21 +1,19 @@
 const employee = {
-    setName: (name) => {
-        this.name = name;
-    },
-    setDepartment: (department) => {
-        this.department = department;
-    },
-    getName: () => {
-        return this.name;
-    },
-    getDepartment: () => {
-        return this.department;
-    }
+    name: '',
+    department: '',
+    income: 0,
 };
 
-const employee1 = Object.create(employee);
-employee1.setName('Federico');
-console.log(employee1.getName());
+const employeeTech = Object.create(employee);
+console.log(employeeTech.name);
+employeeTech.name = 'Fernando';
+console.log(employeeTech.name);
 
-employee1.setDepartment('Tech');
-console.log(employee1.getDepartment());
+employeeTech.department = 'Tech';
+console.log(employeeTech.department);
+
+const employeeTester = Object.create(employee);
+employeeTester.name = 'Federico';
+
+console.log(employeeTech.name);
+console.log(employeeTester.name);
