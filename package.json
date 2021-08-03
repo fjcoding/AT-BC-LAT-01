@@ -9,7 +9,8 @@
         "eslint": "^7.30.0",
         "eslint-plugin-jest": "^24.3.6",
         "jest": "^27.0.6",
-        "nodemon": "^2.0.12"
+        "nodemon": "^2.0.12",
+        "supertest": "^6.1.4"
     },
     "jest": {
         "projects": [
@@ -41,6 +42,7 @@
     "homepage": "https://github.com/fjcoding/AT-BC-LAT-01#readme",
     "type": "module",
     "dependencies": {
+        "dotenv": "^10.0.0",
         "express": "^4.17.1",
         "firebase-admin": "^9.11.0"
     }
