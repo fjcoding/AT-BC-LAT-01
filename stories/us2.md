@@ -285,10 +285,10 @@ horizontal area affected goes from X=0 to X=10 and from Y=0 to Y=5. RAS1 positio
 then, RAS1 dies. Something that does not happen for RAS2, whose Y position is 0, but X is 100, making him stay out of the scope of the area affected by the shoot.
 
 Notice that "target" defines the direction of the action, in this case, "east" adds weapon's xScope to actor's position. There are four possible values for "Target":
-"east" - adds xScope to xPos
-"west" - substracts xScope to xPos
-"north" - adds yScope to yPos
-"south" - substracts yScope to yPos
+- "east" - adds xScope to xPos
+- "west" - substracts xScope to xPos
+- "north" - adds yScope to yPos
+- "south" - substracts yScope to yPos
 
 With examples above, user story can be summarized as:
 - As Metal Slug Maker user, I want to be able to create actors and actions with X and Y positions in a 2D area, so I can have them available for running actions like 
