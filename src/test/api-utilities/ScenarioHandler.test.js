@@ -70,4 +70,42 @@ describe('Verify that ScenarioHandler', () => {
             {name: 'RAS2', type: 'Rebel Army soldier', health: 2}
         ]);
     });
+
+    test('replaces the weapon of an actor', () => {
+        const scenarioHandler = new ScenarioHandler({
+            actors: [
+                {name: 'Marco', type: 'PF Squad Soldier', health: 1, weapon: {}},
+                {name: 'RAS1', type: 'Rebel Army soldier', health: 1, weapon: {}},
+                {name: 'RAS2', type: 'Rebel Army soldier', health: 2, weapon: {}}
+            ]
+        });
+
+        const newWeapon = {name: 'rifle', power: 1};
+        scenarioHandler.replaceAttribute(newWeapon, 'actors', 'Marco');
+        expect(scenarioHandler.scenario.actors).toEqual([
+            {name: 'Marco', type: 'PF Squad Soldier', health: 1, weapon: {name: 'rifle', power: 1}},
+            {name: 'RAS1', type: 'Rebel Army soldier', health: 1, weapon: {}},
+            {name: 'RAS2', type: 'Rebel Army soldier', health: 2, weapon: {}}
+        ]);
+    });
+
+    test('does not replace the weapon if the actor does not exist', () => {
+        const scenarioHandler = new ScenarioHandler({
+            actors: [
+                {name: 'RAS1', type: 'Rebel Army soldier', health: 1, weapon: {}},
+                {name: 'RAS2', type: 'Rebel Army soldier', health: 2, weapon: {}}
+            ]
+        });
+
+        const newWeapon = {name: 'rifle', power: 1};
+        scenarioHandler.replaceAttribute(newWeapon, 'actors', 'Marco');
+        expect(() => {scenarioHandler.scenario.actors}).toThrow(Error);
+    });
+
+    test('does not replace the weapon if the actor attribute does not exist', () => {
+        const scenarioHandler = new ScenarioHandler();
+        const newWeapon = {name: 'rifle', power: 1};
+        scenarioHandler.replaceAttribute(newWeapon, 'actors', 'Marco');
+        expect(() => {scenarioHandler.scenario.actors}).toThrow(Error);
+    });
 });
