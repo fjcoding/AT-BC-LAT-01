@@ -1,5 +1,5 @@
 // eslint-disable-next-line jest/no-mocks-import
-import { db } from '../../main/__mocks__/firebase-mock';
+import { db } from '../../main/__mocks__/firebase-mock.js';
 //global.db = firebaseMock();
 
 //import { db } from '../../main/server';
