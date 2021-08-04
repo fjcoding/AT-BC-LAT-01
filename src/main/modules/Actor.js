@@ -1,4 +1,3 @@
-import { weapons } from './Weapon.js';
 export class Actor {
     constructor(name, type, weapon, health, position) {
         this.name = name;
