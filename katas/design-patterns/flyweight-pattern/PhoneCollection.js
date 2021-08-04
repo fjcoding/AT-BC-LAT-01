@@ -1,12 +1,12 @@
 import { FlyweightFactory } from './FlyweightFactory';
 
 export class PhoneCollection {
-    constructor () {
+    constructor() {
         this.collection = {};
         this.factory = new FlyweightFactory;
     }
 
-    add (brand, model, type, memory, tag) {
+    add(brand, model, type, memory, tag) {
         this.collection[tag] = {
             flyweight: this.factory.get(brand, model, type),
             memory: memory,
@@ -14,11 +14,11 @@ export class PhoneCollection {
         };
     }
 
-    get (tag) {
+    get(tag) {
         return this.collection[tag];
     }
 
-    getAll () {
+    getAll() {
         return this.collection;
     }
 }

@@ -1,5 +1,5 @@
 export class Fighter {
-    constructor () {
+    constructor() {
         // Health will be designed using Module Pattern
         this.health = (() => {
             var pointOfHealth = 100;
