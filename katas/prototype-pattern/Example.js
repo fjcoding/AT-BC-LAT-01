@@ -32,7 +32,7 @@ const sam = new Warrior('Sam');
 const lenardo = new Warrior('Lenardo');
 
 sam.bash(lenardo);
-console.log(sam.bash == lenardo.bash);
+console.log(sam.bash === lenardo.bash);
 
 //If we don't use prototype
 

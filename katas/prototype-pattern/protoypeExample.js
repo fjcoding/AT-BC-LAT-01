@@ -1,7 +1,7 @@
 const employee = {
     name: '',
     department: '',
-    income: 0,
+    income: 0
 };
 
 const employeeTech = Object.create(employee);
