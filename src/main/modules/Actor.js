@@ -1,9 +1,11 @@
+import { weapons } from './Weapon.js';
 export class Actor {
-    constructor(name, type, weapon, health) {
+    constructor(name, type, weapon, health, position) {
         this.name = name;
         this.type = type;
         this.weapon = weapon;
         this.health = health;
+        this.position = position;
     }
 
     getActorName() {
@@ -36,6 +38,14 @@ export class Actor {
 
     setWeapon(weaponType) {
         this.weapon = weaponType;
+    }
+
+    getPosition() {
+        return this.position;
+    }
+
+    setPosition(position) {
+        this.position = position;
     }
 
 }
