@@ -9,14 +9,10 @@ export class FlyweightFactory {
         if (!this.flyweight[brand + model + type]) {
             this.flyweight[brand + model + type] = new Flyweight(brand, model, type);
         }
-        return this.flyweight[brand + model + type];
+        return brand + model + type;
     }
 
     getAll () {
-        var flyweights = [];
-        Object.keys(this.flyweight).forEach(element => {
-            flyweights.push(this.flyweight[element]);
-        });
-        return flyweights;
+        return this.flyweight;
     }
 }

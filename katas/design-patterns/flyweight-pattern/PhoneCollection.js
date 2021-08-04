@@ -11,7 +11,7 @@ export class PhoneCollection {
             flyweight: this.factory.get(brand, model, type),
             memory: memory,
             tag: tag
-        }
+        };
     }
 
     get (tag) {
@@ -19,13 +19,6 @@ export class PhoneCollection {
     }
 
     getAll () {
-        var phones = [];
-        Object.keys(this.collection).forEach(phone => {
-            phones.push({
-                memory: this.collection[phone].memory,
-                tag: this.collection[phone].tag
-            });
-        });
-        return phones;
+        return this.collection;
     }
 }

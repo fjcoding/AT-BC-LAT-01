@@ -1,5 +1,4 @@
 import { FlyweightFactory } from './FlyweightFactory';
-import { Flyweight } from './Flyweight'
 
 describe('Verify that FlyweightFactory', () => {
     const flyweightFactory = new FlyweightFactory();
@@ -16,23 +15,19 @@ describe('Verify that FlyweightFactory', () => {
         });
     });
 
-    test('returns a created flyweight', () => {
-        expect(flyweightFactory.get('iPhone', '12', 'mini')).toEqual(
-            {brand: 'iPhone', model: '12', type: 'mini'}
-            );
+    test('returns the tag of a created flyweight', () => {
+        expect(flyweightFactory.get('iPhone', '12', 'mini')).toBe('iPhone12mini');
     });
 
     test('returns all created flyweight', () => {
         flyweightFactory.get('iPhone', '12', 'mini');
         flyweightFactory.get('iPhone', '12', '');
         flyweightFactory.get('iPhone', '12', 'Pro');
-        flyweightFactory.get('iPhone', '12', 'ProMax');
 
-        expect(flyweightFactory.getAll()).toEqual([
-            {brand: 'iPhone', model: '12', type: 'mini'},
-            {brand: 'iPhone', model: '12', type: ''},
-            {brand: 'iPhone', model: '12', type: 'Pro'},
-            {brand: 'iPhone', model: '12', type: 'ProMax'},
-        ]);
+        expect(flyweightFactory.getAll()).toEqual({
+            iPhone12mini: {brand: 'iPhone', model: '12', type: 'mini'},
+            iPhone12: {brand: 'iPhone', model: '12', type: ''},
+            iPhone12Pro: {brand: 'iPhone', model: '12', type: 'Pro'}
+        });
     });
 });
