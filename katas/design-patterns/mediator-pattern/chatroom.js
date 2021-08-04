@@ -36,7 +36,7 @@ var Chatroom = function () {
     };
 };
 
-function run() {
+function run () {
 
     var mia = new Participant('Mia');
     var john = new Participant('John');
@@ -55,4 +55,4 @@ function run() {
     paul.send('Ha, I heard that!');
     david.send('Paul, what do you think?', paul);
 }
-run();
+run ();
