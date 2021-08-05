@@ -1,24 +1,12 @@
-import express from 'express';
-const router = express.Router();
-
-//Execute scenario
-import { Runner } from '../modules/Runner';
-
 import { ScenarioVerifier } from '../api-utilities/ScenarioVerifier';
 import { TemplateVerifier } from '../api-utilities/TemplateVerifier';
 import { ActorsOfActions } from '../api-utilities/SinglePropertyVerifier';
-import admin from 'firebase-admin';
-import serviceAccount from '../../../../keys/metal-slug-maker-firebase-adminsdk-8dsbv-e517ebfe1a.json';
-// import { db } from './DB/db'
-const COLLECTION_NAME = 'MSM-Scenario';
+import { Runner } from '../modules/Runner';
+import { db } from '../db/databaseStart';
+import express from 'express';
 
-// DB configuration
-// const serviceAccount = process.env.GOOGLE_APPLICATION_CREDENTIALS;
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://metal-slug-maker-default-rtdb.firebaseio.com',
-});
-const db = admin.firestore();
+const router = express.Router();
+const COLLECTION_NAME = 'MSM-Scenario';
 
 // HTTP Methods
 router.put('/', async (req, res) => {
@@ -60,7 +48,6 @@ router.get('/:id', async (req, res) => {
     const actions = scenarioPersisted.data().actions;
     const runner = new Runner();
     const result = runner.follow(actors, actions);
-
     res.send({ code: 202, result: result });
 });
 
