@@ -1,5 +1,5 @@
 export class Actor {
-    constructor(name, type, weapon, health, position) {
+    constructor(name, type, weapon, health, position = {xPos: 0, yPos: 0}) {
         this.name = name;
         this.type = type;
         this.weapon = weapon;
@@ -39,12 +39,12 @@ export class Actor {
         this.weapon = weaponType;
     }
 
-    getPosition() {
-        return this.position;
+    getXPosition() {
+        return this.position.xPos;
     }
 
-    setPosition(position) {
-        this.position = position;
+    getYPosition() {
+        return this.position.yPos;
     }
 
 }
