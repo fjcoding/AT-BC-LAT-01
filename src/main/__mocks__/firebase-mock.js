@@ -46,7 +46,7 @@ const MSMScenario = {
     resolve('BFDUCchwAQXCXLq4AAxp');
 });*/
 
-export const db = jest.mock('../server.js');
+export const db = jest.mock('../routes/scenario.js');
 
 db.collection = () => {
     return {
