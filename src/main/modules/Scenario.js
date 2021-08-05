@@ -9,7 +9,7 @@ export class Scenario {
 
     createActor(actorObjects) {
         for (var index = 0; index < (actorObjects.length);) {
-            parserActorsArray[index] = new Actor(actorObjects[index].name, actorObjects[index].type, actorObjects[index].weapon, actorObjects[index].health);
+            parserActorsArray[index] = new Actor(actorObjects[index].name, actorObjects[index].type, actorObjects[index].weapon, actorObjects[index].health, actorObjects[index].position);
             index++;
         }
         return parserActorsArray;
