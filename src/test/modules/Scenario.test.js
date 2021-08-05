@@ -23,7 +23,7 @@ test('The actors need to be parsed as new classes correctly into an array', () =
         {'health': 3, 'name': 'RAT1', 'type': 'Rebel Army Tank', 'weapon': 'tank cannon'}]);
 });
 
-test('Actions need to be parsedas new classes correctly into an array', () => {
+test('Actions need to be parsedas new classes correctly into a new array separately depending if they are individual or interactive actions', () => {
     var actionObjects = [
         {actor: 'Marco',
             action: 'Pick Weapon',
@@ -40,7 +40,7 @@ test('Actions need to be parsedas new classes correctly into an array', () => {
         {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'fromActor': 'Marco'}]
     );
 });
-test('Actions need to be parsedas new classes correctly into an array without actiopn from in the Object', () => {
+test('Actions need to be parsed as new instances correctly into an array without action "from" attribute in the Object', () => {
     var actionObjects = [
         {actor: 'Marco',
             action: 'Pick Weapon',

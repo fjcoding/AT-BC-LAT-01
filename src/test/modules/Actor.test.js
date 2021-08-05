@@ -1,15 +1,8 @@
 import  { Actor } from '../../main/modules/Actor.js';
 
 describe('class constructor should recibe data to build a Actors', () => {
-    test('the object is not empty', () => {
-        const actor = new Actor('Marco', 1, 'PF Squad Soldier', 'Handgun');
-        expect(actor.name).not.toBeUndefined();
-        expect(actor.health).not.toBeUndefined();
-        expect(actor.type).not.toBeUndefined();
-        expect(actor.weapon).not.toBeUndefined();
-    });
 
-    test('the object has the correct values', () => {
+    test('The instance attributes need to be returned as they are defined', () => {
         const actor = new Actor('RAS1', 'Rebel Army soldier', 'tank cannon', 1);
         expect(actor.name).toBe('RAS1');
         expect(actor.health).toBe(1);
@@ -17,7 +10,7 @@ describe('class constructor should recibe data to build a Actors', () => {
         expect(actor.weapon).toBe('tank cannon');
     });
 
-    test('Methods need to be done correctly', () => {
+    test('Methods getValue and setValue need to set and get the value expected in the correct attribute', () => {
         const actor = new Actor('RAS1', 'Rebel Army soldier', 'tank cannon', 1);
         expect(actor.getActorName()).toEqual('RAS1');
         actor.setActorName('RAT1');
