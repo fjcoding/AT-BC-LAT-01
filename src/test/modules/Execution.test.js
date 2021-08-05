@@ -3,7 +3,7 @@ import { Execution } from '../../main/modules/Execution.js';
 var parserActionssArray = [
     {'actionActor': 'Marco', 'actionType': 'Pick Weapon', 'element': 'Handgun'},
     {'actionActor': 'Marco', 'actionType': 'Heal', 'element': 5},
-    {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'fromActor': 'Marco'},
+    {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'target': 'Marco'},
     {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'element': 'Shotgun'},
     {'actionActor': 'Marco', 'actionType': 'Receive Attack', 'element': 'RAS1'},
     {'actionActor': 'RAS1', 'actionType': 'Receive Attack', 'element': 'Marco'},
