@@ -2,7 +2,7 @@ import { Execution } from './Execution';
 import { Output } from './Output';
 import { Scenario } from './Scenario';
 
-export class Main {
+export class Runner {
     follow (parserActorsArray, parserActionsArray){
         const mainScenario = new Scenario();
         const actors = mainScenario.createActor(parserActorsArray);

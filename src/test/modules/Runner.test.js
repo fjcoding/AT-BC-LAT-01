@@ -1,6 +1,6 @@
-import { Main } from '../../main/modules/Main.js';
+import { Runner } from '../../main/modules/Runner';
 
-const mainTest = new Main();
+const mainTest = new Runner();
 
 test('Obtain the results as an object called results with Actor name and the status, everyone survives', () => {
     var actorObjects = [

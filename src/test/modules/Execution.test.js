@@ -16,7 +16,7 @@ var parserActorssArray = [
 
 const testExecution = new Execution ();
 
-test('The execution of scenario need to give the respective result', () => {
+test('The execution of scenario need to return the actual status of the actors instances after actions being executed', () => {
     expect(testExecution.execute(parserActionssArray, parserActorssArray)).toEqual([
         {'health': 14, 'name': 'Marco', 'type': 'PF Squad Soldier', 'weapon': 'Handgun'},
         {'health': 1, 'name': 'RAS1', 'type': 'Rebel Army soldier', 'weapon': 'rifle'},
