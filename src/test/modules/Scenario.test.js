@@ -5,22 +5,79 @@ const testScenario = new Scenario ();
 
 test('The actors need to be parsed as new classes correctly into an array', () => {
     var actorObjects = [
-        {name: 'Marco',
-            type: 'PF Squad Soldier',
-            weapon: 'Handgun',
-            health: 2},
-        {name: 'RAS1',
-            type: 'Rebel Army soldier',
-            weapon: 'rifle',
-            health: 1},
-        {name: 'RAT1',
-            type: 'Rebel Army Tank',
-            weapon: 'tank cannon',
-            health: 3}];
+        {
+            'name': 'Marco',
+            'type': 'PF Squad Soldier',
+            'health': 1,
+            'weapon': {
+                'name': 'shotgun',
+                'power': 10,
+                'xScope': 10,
+                'yScope': 5,
+            },
+            'position': {
+                'xPos': 0,
+                'yPos': 0
+            }
+        }, {
+            'name': 'RAS1',
+            'type': 'Rebel Army Soldier',
+            'health': 1,
+            'weapon': {
+                'name': 'rifle',
+                'power': 1,
+                'xScope': 1,
+                'yScope': 1
+            },
+            'position': {
+                'xPos': 100,
+                'yPos': 0
+            }
+        }, {
+            'name': 'RAS2',
+            'type': 'Rebel Army Soldier',
+            'health': 1,
+            'weapon': {
+                'name': 'rifle',
+                'power': 1,
+                'xScope': 1,
+                'yScope': 1
+            },
+            'position': {
+                'xPos': 5,
+                'yPos': 5
+            }}];
     expect(testScenario.createActor(actorObjects)).toEqual([
-        {'health': 2, 'name': 'Marco', 'type': 'PF Squad Soldier', 'weapon': 'Handgun'},
-        {'health': 1, 'name': 'RAS1', 'type': 'Rebel Army soldier', 'weapon': 'rifle'},
-        {'health': 3, 'name': 'RAT1', 'type': 'Rebel Army Tank', 'weapon': 'tank cannon'}]);
+        {'health': 1, 'name': 'Marco', 'type': 'PF Squad Soldier', 'weapon': {
+            'name': 'shotgun',
+            'power': 10,
+            'xScope': 10,
+            'yScope': 5,
+        },
+        'position': {
+            'xPos': 0,
+            'yPos': 0
+        }},
+        {'health': 1, 'name': 'RAS1', 'type': 'Rebel Army Soldier', 'weapon': {
+            'name': 'rifle',
+            'power': 1,
+            'xScope': 1,
+            'yScope': 1
+        },
+        'position': {
+            'xPos': 100,
+            'yPos': 0
+        }},
+        {'health': 1, 'name': 'RAS2', 'type': 'Rebel Army Soldier', 'weapon': {
+            'name': 'rifle',
+            'power': 1,
+            'xScope': 1,
+            'yScope': 1
+        },
+        'position': {
+            'xPos': 5,
+            'yPos': 5
+        }}]);
 });
 
 test('Actions need to be parsedas new classes correctly into a new array separately depending if they are individual or interactive actions', () => {
