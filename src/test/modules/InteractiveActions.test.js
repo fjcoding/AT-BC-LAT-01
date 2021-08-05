@@ -16,9 +16,9 @@ var PickWeapon = new Object();
 var receiveAttack = new Object();
 
 test('Interactive actions instances need to be created with the correct values in their attributes', () => {
-    expect(new InteractiveActions(RAS1, PickWeapon, Marco)).toEqual({'actionActor': RAS1, 'actionType': PickWeapon, 'fromActor': Marco});
-    expect(new InteractiveActions(RAT1, receiveAttack, Marco)).toEqual({'actionActor': RAT1, 'actionType': receiveAttack, 'fromActor': Marco});
-    expect(new InteractiveActions('RAT1', 'receiveAttack', 'Marco')).toEqual({'actionActor': 'RAT1', 'actionType': 'receiveAttack', 'fromActor': 'Marco'});
+    expect(new InteractiveActions(RAS1, PickWeapon, Marco)).toEqual({'actionActor': RAS1, 'actionType': PickWeapon, 'target': Marco});
+    expect(new InteractiveActions(RAT1, receiveAttack, Marco)).toEqual({'actionActor': RAT1, 'actionType': receiveAttack, 'target': Marco});
+    expect(new InteractiveActions('RAT1', 'receiveAttack', 'Marco')).toEqual({'actionActor': 'RAT1', 'actionType': 'receiveAttack', 'target': 'Marco'});
 });
 
 const testclass = new InteractiveActions;
@@ -30,7 +30,7 @@ test('Methods getValue and setValue need to set and get the value expected in th
     expect(testclass.getactionType()).toEqual(undefined);
     testclass.setactionType(receiveAttack);
     expect(testclass.getactionType()).toEqual(receiveAttack);
-    expect(testclass.getfromActor()).toEqual(undefined);
-    testclass.setfromActor(Marco);
-    expect(testclass.getfromActor()).toEqual(Marco);
+    expect(testclass.getTarget()).toEqual(undefined);
+    testclass.setTarget(Marco);
+    expect(testclass.getTarget()).toEqual(Marco);
 });

@@ -1,8 +1,8 @@
 export class InteractiveActions {
-    constructor(actionActor, actionType, fromActor) {
+    constructor(actionActor, actionType, target) {
         this.actionActor = actionActor;
         this.actionType = actionType;
-        this.fromActor = fromActor;
+        this.target = target;
     }
 
     getactionActor() {
@@ -21,12 +21,12 @@ export class InteractiveActions {
         this.actionType = actionType;
     }
 
-    getfromActor() {
-        return this.fromActor;
+    getTarget() {
+        return this.target;
     }
 
-    setfromActor(fromActor) {
-        this.fromActor = fromActor;
+    setTarget(target) {
+        this.target = target;
     }
 
 }

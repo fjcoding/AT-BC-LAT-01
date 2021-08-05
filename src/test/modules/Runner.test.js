@@ -26,7 +26,7 @@ test('Obtain the results as an object called results with Actor name and the sta
             element: 'Shotgun'},
         {actor: 'RAT1',
             action: 'Receive Attack',
-            from: 'Marco'}];
+            target: 'Marco'}];
 
     expect(mainTest.follow(actorObjects, actionObjects)).toEqual(
         {
@@ -60,13 +60,13 @@ test('Obtain the results as an object called results with Actor name and the sta
             element: 'Shotgun'},
         {actor: 'RAT1',
             action: 'Receive Attack',
-            from: 'Marco'},
+            target: 'Marco'},
         {actor: 'RAS1',
             action: 'Receive Attack',
-            from: 'Marco'},
+            target: 'Marco'},
         {actor: 'RAS1',
             action: 'Receive Attack',
-            from: 'Marco'}];
+            target: 'Marco'}];
 
     expect(mainTest.follow(actorObjects, actionObjects)).toEqual(
         {
