@@ -30,7 +30,7 @@ test('Methods getValue and setValue need to set and get the value expected in th
     expect(testclass.getactionType()).toEqual(undefined);
     testclass.setactionType(receiveAttack);
     expect(testclass.getactionType()).toEqual(receiveAttack);
-    expect(testclass.getfromActor()).toEqual(undefined);
-    testclass.setfromActor(Marco);
-    expect(testclass.getfromActor()).toEqual(Marco);
+    expect(testclass.getTarget()).toEqual(undefined);
+    testclass.setTarget(Marco);
+    expect(testclass.getTarget()).toEqual(Marco);
 });

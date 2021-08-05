@@ -17,8 +17,8 @@ export class Scenario {
 
     createActions(actionObjects) {
         for (var index = 0; index < (Object.keys(actionObjects).length);) {
-            if (actionObjects[index].from !== undefined) {
-                parserActionsArray[index] = new InteractiveActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].from);
+            if (actionObjects[index].target !== undefined) {
+                parserActionsArray[index] = new InteractiveActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].target);
             }
             if (actionObjects[index].element !== undefined) {
                 parserActionsArray[index] = new IndividualActions(actionObjects[index].actor, actionObjects[index].action, actionObjects[index].element);

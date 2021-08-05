@@ -33,11 +33,11 @@ test('Actions need to be parsedas new classes correctly into a new array separat
             element: 'Shotgun'},
         {actor: 'RAT1',
             action: 'Receive Attack',
-            from: 'Marco'}];
+            target: 'Marco'}];
     expect(testScenario.createActions(actionObjects)).toEqual([
         {'actionActor': 'Marco', 'actionType': 'Pick Weapon', 'element': 'Shotgun'},
         {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'element': 'Shotgun'},
-        {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'fromActor': 'Marco'}]
+        {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'target': 'Marco'}]
     );
 });
 test('Actions need to be parsed as new instances correctly into an array without action "from" attribute in the Object', () => {
