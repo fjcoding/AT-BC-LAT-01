@@ -43,8 +43,8 @@ router.post('/', (req, res) => {
     ]);
     const checkScenarioRespone = scenarioVerifier.check();
     if (checkScenarioRespone == true) {
-        const runner = new Runner(req.body.actors, req.body.actions);
-        const result = runner.run();
+        const runner = new Runner();
+        const result = runner.follow(req.body.actors, req.body.actions);
         res.send({ code: 202, result: result });
     } else {
         res.send({ code: 400, error: checkScenarioRespone });
@@ -58,8 +58,9 @@ router.get('/:id', async (req, res) => {
         .get();
     const actors = scenarioPersisted.data().actors;
     const actions = scenarioPersisted.data().actions;
-    const runner = new Runner(actors, actions);
-    const result = runner.run();
+    const runner = new Runner();
+    const result = runner.follow(actors, actions);
+
     res.send({ code: 202, result: result });
 });
 
