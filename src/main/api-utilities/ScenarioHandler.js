@@ -10,6 +10,4 @@ export class ScenarioHandler {
             this.scenario[attribute] = [newObj];
         }
     }
-
-    replaceAttribute() {}
 }
