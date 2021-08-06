@@ -9,7 +9,7 @@ function man(){
 function canFly (man) {
     var previousMovement = man.movement(); //base function
     man.movement = function() { //we overwrite the method
-        return previousMovement + ', fly'; //and in using the previous one, we are extending over it
+        return previousMovement + ', fly'; //and in using the previous method, we are extending over it
     };
 }
 
@@ -21,8 +21,8 @@ function canBreatheinSpace (man) {
     };
 }
 
-// Decorator 3
-function canTakeBullets(man) { //in this case we are adding a completely new behavior, not extending an existing one
+// In this decorator we are adding a completely new behavior, not extending an existing one
+function canTakeBullets(man) {
     man.resistances = function() {
         return 'resists bullets';
     };
@@ -47,5 +47,5 @@ console.log(clark); //but a superman...
 console.log('Clark');
 console.log(clark.movement());
 console.log(clark.resistances());
-console.log('Bruce');
+console.log('Bruce'); //man created to show that the changes affect only the clark object
 console.log(bruce.movement());
