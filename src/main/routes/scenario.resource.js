@@ -2,11 +2,10 @@ import { ScenarioVerifier } from '../api-utilities/ScenarioVerifier';
 import { TemplateVerifier } from '../api-utilities/TemplateVerifier';
 import { ActorsOfActions } from '../api-utilities/SinglePropertyVerifier';
 import { Runner } from '../modules/Runner';
-import { db } from '../db/databaseStart';
+import { QueryHandler } from '../db/queryHandler';
 import express from 'express';
 
 const router = express.Router();
-const COLLECTION_NAME = 'MSM-Scenario';
 
 // HTTP Methods
 router.put('/', async (req, res) => {
@@ -17,8 +16,8 @@ router.put('/', async (req, res) => {
     ]);
     const checkScenarioRespone = scenarioVerifier.check();
     if (checkScenarioRespone == true) {
-        const scenario = await db.collection('MSM-Scenario').add(req.body);
-        res.send({ code: 200, id: scenario.id });
+        const scenario = await QueryHandler.add(req.body);
+        res.send({ code: 200, id: scenario });
     } else {
         res.send({ code: 400, error: checkScenarioRespone });
     }
@@ -40,10 +39,7 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', async (req, res) => {
-    const scenarioPersisted = await db
-        .collection(COLLECTION_NAME)
-        .doc(req.params.id)
-        .get();
+    const scenarioPersisted = await QueryHandler.get(req.params.id);
     const actors = scenarioPersisted.data().actors;
     const actions = scenarioPersisted.data().actions;
     const runner = new Runner();
