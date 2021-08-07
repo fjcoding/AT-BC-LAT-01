@@ -70,4 +70,45 @@ describe('Verify that ScenarioHandler', () => {
             {name: 'RAS2', type: 'Rebel Army soldier', health: 2}
         ]);
     });
+
+    test('replaces a weapon in a defined actor', () => {
+        const scenario = {
+            actors: [
+                {name: 'Marco', type: 'PF Squad Soldier', health: 1, weapon: 'generic gun'},
+                {name: 'RAS1', type: 'Rebel Army soldier', health: 1, weapon: 'generic gun'}
+            ],
+        };
+        const scenarioHandler = new ScenarioHandler(scenario);
+        const newWeapon = {name: 'handgun', power: 1, xScope: 1, yScope: 1};
+
+        scenarioHandler.replaceWeapon(newWeapon, 'Marco');
+        expect(scenarioHandler.scenario).toEqual({
+            actors: [
+                {name: 'Marco', type: 'PF Squad Soldier', health: 1, weapon: {name: 'handgun', power: 1, xScope: 1, yScope: 1}},
+                {name: 'RAS1', type: 'Rebel Army soldier', health: 1, weapon: 'generic gun'}
+            ],
+        });
+    });
+
+    test('does not replace a weapon when the actor is not defined', () => {
+        const scenario = {
+            actors: [
+                {name: 'Marco', type: 'PF Squad Soldier', health: 1, weapon: 'generic gun'},
+                {name: 'RAS1', type: 'Rebel Army soldier', health: 1, weapon: 'generic gun'}
+            ],
+        };
+        const scenarioHandler = new ScenarioHandler(scenario);
+        const newWeapon = {name: 'handgun', power: 1, xScope: 1, yScope: 1};
+
+        scenarioHandler.replaceWeapon(newWeapon, 'NodDefinedActor');
+        expect(scenarioHandler.scenario).toEqual(scenario);
+    });
+
+    test('throws error when the actors attribute is not defined', () => {
+        const scenarioHandler = new ScenarioHandler();
+        const newWeapon = {name: 'handgun', power: 1, xScope: 1, yScope: 1};
+        expect(() => {
+            scenarioHandler.replaceWeapon(newWeapon, 'Marco');
+        }).toThrow(Error);
+    });
 });
