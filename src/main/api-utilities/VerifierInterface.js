@@ -1,3 +1,8 @@
+import {
+    AttributesVerifier,
+    ActorVerifier
+} from './../../main/api-utilities/PropertyVerifier';
+
 export class VerifierInterface {
     constructor(scenario, type) {
         if (scenario && type) {
@@ -8,14 +13,18 @@ export class VerifierInterface {
         }
     }
 
-    check() {
+    check(obj) {
         switch (this.type) {
         case 'weapon':
+            var result = true;
+            result = AttributesVerifier.check(obj, ['actor', 'name', 'power', 'xScope', 'yScope']);
+            if (result == true) result = AttributesVerifier.check(this.scenario, 'actors');
+            if (result == true) result = ActorVerifier.check(this.scenario, obj.actor);
 
-            break;
+            return result;
 
         default:
-            throw new Error('Type of verifier does not existe');
+            throw new Error('Type of verifier does not exist');
         }
     }
 }
