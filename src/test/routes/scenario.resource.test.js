@@ -1,5 +1,6 @@
 import request from 'supertest';
-import app from '../../main/app.js';
+import makeApp from '../../main/app.js';
+
 const exampleErrorScenario = {
     'actors': [{
         'name': 'Marco',
@@ -60,37 +61,42 @@ const expectedErrorActorDoesntExist = {
     'error': 'RAT1 actor does not exist'
 };
 
-test('the PUT request should respond a 200 status with the ID generated', async() => {
-    const res = await request(app)
-        .put('/scenario')
-        .send(exampleValidScenario);
-    expect(res.status).toEqual(200);
-    expect(res.body).toHaveProperty('id');
+const app = makeApp({
+    add() {
+        return 'generatedFakeID';
+    },
+    get() {
+        const persistedScenario = { 'data': expectedExecutedScenario };
+        return persistedScenario;
+    }
 });
 
-test('the PUT request should respond a 200 status with the error message that the actor RAT1 doesnt exists', async() => {
-    const res = await request(app)
-        .put('/scenario')
-        .send(exampleErrorScenario);
-    expect(res.status).toEqual(200);
-    expect(res.body).toEqual(expectedErrorActorDoesntExist);
+describe('PUT /scenario request', () => {
+    test('should respond 200 status with the ID generated', async() => {
+        const res = await request(app)
+            .put('/scenario')
+            .send(exampleValidScenario);
+        expect(res.status).toEqual(200);
+        expect(res.body).toHaveProperty('id');
+        expect(res.body['id']).toBe('generatedFakeID');
+    });
+
+    test('should respond 400 code with the error message that the actor RAT1 doesnt exists', async() => {
+        const res = await request(app)
+            .put('/scenario')
+            .send(exampleErrorScenario);
+        expect(res.body['code']).toEqual(400);
+        expect(res.body).toEqual(expectedErrorActorDoesntExist);
+    });
 });
 
-test('the POST request should respond a 200 status and a JSON object with the the executed scenario', async() => {
-    const res = await request(app)
-        .post('/scenario')
-        .send(exampleValidScenario);
-    expect(res.status).toEqual(200);
-    expect(res.body).toEqual(expectedExecutedScenario);
-});
 
-
-test('the GET request should return the executed scenario persisted in that ID', async() => {
-    const resCreateScenario = await request(app)
-        .put('/scenario')
-        .send(exampleValidScenario);
-    const expectedGeneratedID = resCreateScenario.body['id'];
-    const res = await request(app).get('/scenario/' + expectedGeneratedID);
-    expect(res.status).toEqual(200);
-    expect(res.body).toEqual(expectedExecutedScenario);
+describe('POST /scenario request', () => {
+    test('should respond a 200 status and a JSON object with the the executed scenario', async() => {
+        const res = await request(app)
+            .post('/scenario')
+            .send(exampleValidScenario);
+        expect(res.status).toEqual(200);
+        expect(res.body).toEqual(expectedExecutedScenario);
+    });
 });
