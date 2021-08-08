@@ -31,6 +31,9 @@ export class VerifierInterface {
 
             return result;
 
+        case 'actor':
+            return AttributesVerifier.check(obj, ['health', 'name', 'weapon', 'type', 'position']);
+
         default:
             throw new Error('Type of verifier does not exist');
         }

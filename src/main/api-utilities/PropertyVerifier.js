@@ -52,7 +52,6 @@ export class ActionVerifier extends PropertyVerifier {
 
     static check(Obj) {
         var result = (Obj['element'] != undefined);
-        console.log('========================> ' + result);
         if(result == false) result = (Obj['from'] != undefined);
         if(result == false) {
             if(Obj['target'] != undefined) {

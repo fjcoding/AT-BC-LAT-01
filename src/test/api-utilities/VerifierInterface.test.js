@@ -83,6 +83,65 @@ describe('Verify that the verifier interface class', () => {
             const action = {actor: 'Marco', action: 'shoot shotgun', target: 'front'};
             expect(verifier.check(action)).toBe('target defined in an unavailable direction');
         });
+    });
 
+    describe('with actor type', () => {
+        const verifier = new VerifierInterface({}, 'actor');
+
+        test('returns true when the type, name, health, weapon and position is declared in the actor', () => {
+            const actor = {
+                name: 'Marco',
+                type: 'PF Squad Soldier',
+                health: 1,
+                weapon: 'shotgun',
+                position: {'xPos': 0, 'yPos': 0}};
+            expect(verifier.check(actor)).toBe(true);
+        });
+
+        test('returns string when the type is not declared in the actor', () => {
+            const actor = {
+                name: 'Marco',
+                health: 1,
+                weapon: 'shotgun',
+                position: {'xPos': 0, 'yPos': 0}};
+            expect(verifier.check(actor)).toBe('type does not exist');
+        });
+
+        test('returns string when the name is not declared in the actor', () => {
+            const actor = {
+                type: 'PF Squad Soldier',
+                health: 1,
+                weapon: 'shotgun',
+                position: {'xPos': 0, 'yPos': 0}};
+            expect(verifier.check(actor)).toBe('name does not exist');
+        });
+
+        test('returns string when the health is not declared in the actor', () => {
+            const actor = {
+                name: 'Marco',
+                type: 'PF Squad Soldier',
+                weapon: 'shotgun',
+                position: {'xPos': 0, 'yPos': 0}};
+            expect(verifier.check(actor)).toBe('health does not exist');
+        });
+
+        test('returns string when the weapon is not declared in the actor', () => {
+            const actor = {
+                name: 'Marco',
+                type: 'PF Squad Soldier',
+                health: 1,
+                position: {'xPos': 0, 'yPos': 0}};
+            expect(verifier.check(actor)).toBe('weapon does not exist');
+        });
+
+        test('returns string when the position is not declared in the actor', () => {
+            const actor = {
+                name: 'Marco',
+                type: 'PF Squad Soldier',
+                health: 1,
+                weapon: 'shotgun'
+            };
+            expect(verifier.check(actor)).toBe('position does not exist');
+        });
     });
 });
