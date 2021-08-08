@@ -47,3 +47,30 @@ export class ActorVerifier extends PropertyVerifier {
             : inputName + ' does not exist';
     }
 }
+
+export class ActionVerifier extends PropertyVerifier {
+
+    static check(Obj) {
+        var result = (Obj['element'] != undefined);
+        console.log('========================> ' + result);
+        if(result == false) result = (Obj['from'] != undefined);
+        if(result == false) {
+            if(Obj['target'] != undefined) {
+                switch (Obj['target']) {
+                case 'north':
+                    return true;
+                case 'east':
+                    return true;
+                case 'west':
+                    return true;
+                case 'south':
+                    return true;
+                default:
+                    return 'target defined in an unavailable direction';
+                }
+            }
+            return 'Element, from or target not defined in action';
+        }
+        return result;
+    }
+}

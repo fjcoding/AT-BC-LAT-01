@@ -1,7 +1,8 @@
 import {
     AttributesVerifier,
     PropertyVerifier,
-    ActorVerifier
+    ActorVerifier,
+    ActionVerifier
 } from './../../main/api-utilities/PropertyVerifier';
 
 describe('Verify that PropertyVerifier class', () => {
@@ -35,5 +36,32 @@ describe('Verify that ActorVerifier', () => {
 
     test('returns string when an specified actor does not exist in the actors attribute', () => {
         expect(ActorVerifier.check(scenario, 'InexistentActor')).toBe('InexistentActor does not exist');
+    });
+});
+
+describe('Verify that ActionVerifier', () => {
+    test('returns true when the element attribute is defined in the action', () => {
+        const action = {actor: 'Marco', action: 'Pick Weapon', element: 'Weapon'};
+        expect(ActionVerifier.check(action)).toBe(true);
+    });
+
+    test('returns true when the from attribute is defined in the action', () => {
+        const action = {actor: 'Marco', action: 'receive attack', from: 'RA2'};
+        expect(ActionVerifier.check(action)).toBe(true);
+    });
+
+    test('returns true when the target attribute is defined in the action', () => {
+        const action = {actor: 'Marco', action: 'shot Weapon', target: 'west'};
+        expect(ActionVerifier.check(action)).toBe(true);
+    });
+
+    test('returns string when the from, element or target attributes are not defined in the action', () => {
+        const action = {actor: 'Marco', action: 'shot Weapon'};
+        expect(ActionVerifier.check(action)).toBe('Element, from or target not defined in action');
+    });
+
+    test('returns string when the target attribute is defined in a unavailable direction', () => {
+        const action = {actor: 'Marco', action: 'shot Weapon', target: 'front'};
+        expect(ActionVerifier.check(action)).toBe('target defined in an unavailable direction');
     });
 });

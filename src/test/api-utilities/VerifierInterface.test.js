@@ -22,7 +22,6 @@ describe('Verify that the verifier interface class', () => {
         });
     });
 
-
     describe('with weapon type', () => {
         const scenario = {
             actors: [
@@ -49,6 +48,40 @@ describe('Verify that the verifier interface class', () => {
         test('checks that a weapon can not be replaced when the actor does not exist', () => {
             const weapon = {actor: 'InexistentActor', name: 'shotgun', power: 10, xScope: 10, yScope: 5};
             expect(verifier.check(weapon)).toBe('InexistentActor does not exist');
+        });
+    });
+
+    describe('with action type', () => {
+        const scenario = {
+            actors: [
+                {name: 'Marco', type: 'PF Squad Soldier', weapon: 'Handgun'},
+                {name: 'RAS1', type: 'Rebel Army soldier', weapon: 'rifle'}],
+        };
+        const verifier = new VerifierInterface(scenario, 'action');
+
+        test('returns true when the action can be executed in the escenario', () => {
+            const action = {actor: 'Marco', action: 'shoot weapon', target: 'east', };
+            expect(verifier.check(action)).toBe(true);
+        });
+
+        test('returns string when the attributes actor and action are not defined in the action', () => {
+            const action = 'genericAction';
+            expect(verifier.check(action)).toBe('actor does not exist');
+        });
+
+        test('return string when an action does not have element, from or target attributes are not defined', () => {
+            const action = {actor: 'Marco', action: 'Pick shotgun'};
+            expect(verifier.check(action)).toBe('Element, from or target not defined in action');
+        });
+
+        test('return string when the actor in the action does not exist', () => {
+            const action = {actor: 'Inexistent Actor', action: 'Pick shotgun', element: 'shotgun'};
+            expect(verifier.check(action)).toBe('Inexistent Actor does not exist');
+        });
+
+        test('return string when the target is unavailable', () => {
+            const action = {actor: 'Marco', action: 'shoot shotgun', target: 'front'};
+            expect(verifier.check(action)).toBe('target defined in an unavailable direction');
         });
 
     });

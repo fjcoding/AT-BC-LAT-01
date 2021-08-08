@@ -1,6 +1,7 @@
 import {
     AttributesVerifier,
-    ActorVerifier
+    ActorVerifier,
+    ActionVerifier
 } from './../../main/api-utilities/PropertyVerifier';
 
 export class VerifierInterface {
@@ -19,6 +20,13 @@ export class VerifierInterface {
             var result = true;
             result = AttributesVerifier.check(obj, ['actor', 'name', 'power', 'xScope', 'yScope']);
             if (result == true) result = AttributesVerifier.check(this.scenario, 'actors');
+            if (result == true) result = ActorVerifier.check(this.scenario, obj.actor);
+
+            return result;
+
+        case 'action':
+            result = AttributesVerifier.check(obj, ['actor', 'action']);
+            if (result == true) result = ActionVerifier.check(obj);
             if (result == true) result = ActorVerifier.check(this.scenario, obj.actor);
 
             return result;
