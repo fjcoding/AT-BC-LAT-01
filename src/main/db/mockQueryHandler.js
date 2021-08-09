@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 admin.initializeApp(); //SDK started on offline mode
+const collection = 'MSM-Scenario';
 const mockDBConnection = admin.firestore();
 
 export class mockQueryHandler { //a carbon copy of the QueryHandler class
