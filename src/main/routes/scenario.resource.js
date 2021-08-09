@@ -3,6 +3,7 @@ import { TemplateVerifier } from '../api-utilities/TemplateVerifier';
 import { ActorsOfActions } from '../api-utilities/SinglePropertyVerifier';
 import { Runner } from '../modules/Runner';
 import express from 'express';
+import { VerifierInterface } from '../api-utilities/VerifierInterface';
 
 export default function(QueryHandler) {
     const router = express.Router();
@@ -10,17 +11,8 @@ export default function(QueryHandler) {
     // HTTP Methods
     router.put('/', async(req, res) => {
         const scenario = req.body;
-        const scenarioVerifier = new ScenarioVerifier([
-            new TemplateVerifier(scenario),
-            new ActorsOfActions(scenario),
-        ]);
-        const checkScenarioRespone = scenarioVerifier.check();
-        if (checkScenarioRespone == true) {
-            const scenario = await QueryHandler.add(req.body);
-            res.send({ code: 200, id: scenario });
-        } else {
-            res.send({ code: 400, error: checkScenarioRespone });
-        }
+        const id = await QueryHandler.add(req.body);
+        res.send({ code: 200, id: id });
     });
 
     router.post('/', (req, res) => {
