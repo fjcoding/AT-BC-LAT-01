@@ -38,7 +38,7 @@ class Articles extends Article {
 
 class MensajeArticuloNuevo {
     notificar(articulos) {
-        console.log(`El nuevo articulo es ${articulos.datos[articulos.datos.length-1]}`);        
+        console.log(`El nuevo articulo es ${articulos.datos[articulos.datos.length-1]}`);
     }
 }
 
@@ -48,10 +48,10 @@ class MensajeListaActualizada {
     }
 }
 
-    // Instanciamos al sujeto
+// Instanciamos al sujeto
 let dataExample = new Articles();
 
-    // Le suscribimos sus suscriptores o listeners
+// Le suscribimos sus suscriptores o listeners
 dataExample.observar(new MensajeArticuloNuevo());
 dataExample.observar(new MensajeListaActualizada());
 

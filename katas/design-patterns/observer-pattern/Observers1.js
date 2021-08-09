@@ -20,33 +20,33 @@ class Observable {
         });
     }
 }
-    class NumberExample extends Observable {
-        constructor() {
-            super();
-            this.value = 0;
-        }
-    
-        increment() {
-            this.value++;
-    
-            // Llama a los suscriptores
-            this.notify(this);
-        }
+class NumberExample extends Observable {
+    constructor() {
+        super();
+        this.value = 0;
     }
 
-    class NumberExampleSpanishConsole {
-        notify(model) {
-            console.log(`El nuevo número es ${model.value}`);
-        }
-    }
-    
-    class NumberExampleEnglishConsole {
-        notify(model) {
-            console.log(`The new number is ${model.value}`);
-        }
-    }
+    increment() {
+        this.value++;
 
-    // Instanciamos al sujeto
+        // Llama a los suscriptores
+        this.notify(this);
+    }
+}
+
+class NumberExampleSpanishConsole {
+    notify(model) {
+        console.log(`El nuevo número es ${model.value}`);
+    }
+}
+
+class NumberExampleEnglishConsole {
+    notify(model) {
+        console.log(`The new number is ${model.value}`);
+    }
+}
+
+// Instanciamos al sujeto
 let numberExample = new NumberExample();
 
 // Le suscribimos sus suscriptores o listeners
