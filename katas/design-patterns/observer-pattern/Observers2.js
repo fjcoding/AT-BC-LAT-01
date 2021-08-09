@@ -47,7 +47,7 @@ class UpdatedListMessage {
 // Instanciate the Subject
 let dataExample = new Articles();
 
-// Subscribe to notifications 
+// Subscribe to notifications
 dataExample.stayTuned(new NewArticleMessage());
 dataExample.stayTuned(new UpdatedListMessage());
 
