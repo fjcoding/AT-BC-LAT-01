@@ -1,17 +1,14 @@
 import express, { json, urlencoded } from 'express';
 import resourceScenario from './routes/scenario.resource';
-//import resourceActor from './routes/actor.resource';
-//import resourceAction from './routes/action.resource';
-//import resourceWeapon from './routes/weapon.resource';
-import routerActor from './routes/actor.resource';
-import routerAction from './routes/action.resource';
-import routerWeapon from './routes/weapon.resource';
+import resourceActor from './routes/actor.resource';
+import resourceAction from './routes/action.resource';
+import resourceWeapon from './routes/weapon.resource';
 
 export default function(QueryHandler) {
     const routerScenario = resourceScenario(QueryHandler);
-    /*const routerActor = resourceActor(QueryHandler);
+    const routerActor = resourceActor(QueryHandler);
     const routerAction = resourceAction(QueryHandler);
-    const routerWeapon = resourceWeapon(QueryHandler);*/
+    const routerWeapon = resourceWeapon(QueryHandler);
 
     // Express configuration
     const app = express();
@@ -24,9 +21,6 @@ export default function(QueryHandler) {
 
     //Routes
     app.use('/scenario', routerScenario);
-    /* app.use('/actor', routerActor);
-    app.use('/action', routerAction);
-    app.use('/weapon', routerWeapon);*/
     app.use('/actor', routerActor);
     app.use('/action', routerAction);
     app.use('/weapon', routerWeapon);
