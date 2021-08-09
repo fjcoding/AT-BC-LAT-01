@@ -32,13 +32,13 @@ export class Execution {
                             let indexFin = parserActorsArray[index2].weapon.xScope + parserActorsArray[index2].position.xPos;// indexation related to Weapon Scope
                             for (indexPos; indexPos <= indexFin; indexPos++) { // Throug positions involved
                                 for (indexAct = 0; indexAct < parserActorsArray.length; indexAct++) { // verifiy Actors positions in positions involved
-                                    if (parserActorsArray[indexAct].position.xPos == indexPos && parserActorsArray[indexAct].name !== parserActionsArray[index].actionActor) { // Validation of deal damage
-                                        parserActorsArray[indexAct].health -= parserActorsArray[index].weapon.power;
+                                    if (parserActorsArray[indexAct].position.xPos == indexPos &&
+                                        parserActorsArray[indexAct].name !== parserActionsArray[index].actionActor) { // Validation of deal damage
+                                        parserActorsArray[indexAct].health -= parserActorsArray[index2].weapon.power;
                                     }
                                 }
                             }
                         }
-                        console.log(parserActorsArray[index2].health);
                     }
                     break;
                 case 'west':
@@ -48,13 +48,13 @@ export class Execution {
                             let indexFin = parserActorsArray[index2].position.xPos - parserActorsArray[index2].weapon.xScope;// indexation related to Weapon Scope
                             for (indexPos; indexPos >= indexFin; indexPos--) { // Throug positions involved
                                 for (indexAct = 0; indexAct < parserActorsArray.length; indexAct++) { // verifiy Actors positions in positions involved
-                                    if (parserActorsArray[indexAct].position.xPos == indexPos && parserActorsArray[indexAct].name !== parserActionsArray[index].actionActor) { // Validation of deal damage
-                                        parserActorsArray[indexAct].health -= parserActorsArray[index].weapon.power;
+                                    if (parserActorsArray[indexAct].position.xPos == indexPos &&
+                                        parserActorsArray[indexAct].name !== parserActionsArray[index].actionActor) { // Validation of deal damage
+                                        parserActorsArray[indexAct].health -= parserActorsArray[index2].weapon.power;
                                     }
                                 }
                             }
                         }
-                        console.log(parserActorsArray[index2].health);
                     }
                     break;
                 case 'north':
@@ -64,13 +64,13 @@ export class Execution {
                             let indexFin = parserActorsArray[index2].weapon.yScope + parserActorsArray[index2].position.yPos;// indexation related to Weapon Scope
                             for (indexPos; indexPos <= indexFin; indexPos++) { // Throug positions involved
                                 for (indexAct = 0; indexAct < parserActorsArray.length; indexAct++) { // verifiy Actors positions in positions involved
-                                    if (parserActorsArray[indexAct].position.yPos == indexPos && parserActorsArray[indexAct].name !== parserActionsArray[index].actionActor) { // Validation of deal damage
-                                        parserActorsArray[indexAct].health -= parserActorsArray[index].weapon.power;
+                                    if (parserActorsArray[indexAct].position.yPos == indexPos &&
+                                        parserActorsArray[indexAct].name !== parserActionsArray[index].actionActor) { // Validation of deal damage
+                                        parserActorsArray[indexAct].health -= parserActorsArray[index2].weapon.power;
                                     }
                                 }
                             }
                         }
-                        console.log(parserActorsArray[index2].health);
                     }
                     break;
                 case 'south':
@@ -80,28 +80,22 @@ export class Execution {
                             let indexFin = parserActorsArray[index2].position.yPos - parserActorsArray[index2].weapon.yScope ;// indexation related to Weapon Scope
                             for (indexPos; indexPos >= indexFin; indexPos--) { // Throug positions involved
                                 for (indexAct = 0; indexAct < parserActorsArray.length; indexAct++) { // verifiy Actors positions in positions involved
-                                    if (parserActorsArray[indexAct].position.yPos == indexPos && parserActorsArray[indexAct].name !== parserActionsArray[index].actionActor) { // Validation of deal damage
-                                        parserActorsArray[indexAct].health -= parserActorsArray[index].weapon.power;
+                                    if (parserActorsArray[indexAct].position.yPos == indexPos &&
+                                        parserActorsArray[indexAct].name !== parserActionsArray[index].actionActor) { // Validation of deal damage
+                                        parserActorsArray[indexAct].health -= parserActorsArray[index2].weapon.power;
                                     }
                                 }
                             }
                         }
-                        console.log(parserActorsArray[index2].health);
                     }
                     break;
                 }
                 break;
-            case 'Receive Attack':
-                for (index2 = 0; index2 < parserActorsArray.length; index2++) {
-                    if (parserActorsArray[index2].name == parserActionsArray[index].actionActor) {
-                        parserActorsArray[index2].health--;
-                    }
-                }
-                break;
             default:
+                break;
             }
         }
-        return parserActionsArray, parserActorsArray;
+        return parserActorsArray;
     }
 
 }
