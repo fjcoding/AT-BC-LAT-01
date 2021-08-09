@@ -82,5 +82,6 @@ As reviewers, a PR should be only approved if following conditions are met (In o
 
 ## Database connection
 1. Create a folder named `keys` at the same level of the project folder.
-2. Ask for the database key and install it.
-3. Put the key inside the folder `keys`.
+2. Ask for the database key.
+3. Download the provided database key.
+4. Store the key inside the folder `keys`.
