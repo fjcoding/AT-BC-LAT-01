@@ -1,24 +1,20 @@
 class Article {
     constructor (){
-        this.observadores = [];
+        this.observers = [];
     }
 
-    observar(ojos){
-        this.observadores.push(ojos);
+    stayTuned(eyes){
+        this.observers.push(eyes);
     }
 
-    dejarDeObservar(ojos){
-        //console.log( this.observadores )
-        //console.log("Ojos "+ojos)
-        this.observadores = this.observadores.filter(
-            observador => observador instanceof ojos !== true);
-        //console.log( this.observadores[1] instanceof ojos )
-        //console.log(this.observadores)
+    stopStayTuned(eyes){
+        this.observers = this.observers.filter(
+            observer => observer instanceof eyes !== true);
     }
 
-    notificar (articulos){
-        this.observadores.forEach(observador => {
-            observador.notificar(articulos);
+    notify (articles){
+        this.observers.forEach(observer => {
+            observer.notify(articles);
         });
     }
 }
@@ -26,39 +22,40 @@ class Article {
 class Articles extends Article {
     constructor(){
         super();
-        this.datos = [];
+        this.data = [];
     }
 
-    agregarNuevo (article){
-        this.datos[this.datos.length]=article;
-        this.notificar(this);
+    addNew (article){
+        this.data[this.data.length]=article;
+        this.notify(this);
     }
 
 }
 
-class MensajeArticuloNuevo {
-    notificar(articulos) {
-        console.log(`El nuevo articulo es ${articulos.datos[articulos.datos.length-1]}`);
+class NewArticleMessage {
+    notify(articles) {
+        console.log(`The new article is ${articles.data[articles.data.length-1]}`);
     }
 }
 
-class MensajeListaActualizada {
-    notificar(articulos) {
-        console.log(`La lista de articulos actuales es ${articulos.datos}`);
+class UpdatedListMessage {
+    notify(articles) {
+        console.log(`The article's list is ${articles.data}`);
     }
 }
 
-// Instanciamos al sujeto
+// Instanciate the Subject
 let dataExample = new Articles();
 
-// Le suscribimos sus suscriptores o listeners
-dataExample.observar(new MensajeArticuloNuevo());
-dataExample.observar(new MensajeListaActualizada());
+// Subscribe to notifications 
+dataExample.stayTuned(new NewArticleMessage());
+dataExample.stayTuned(new UpdatedListMessage());
 
-dataExample.agregarNuevo('Manzana');
-dataExample.agregarNuevo('Pera');
+dataExample.addNew('Manzana');
+dataExample.addNew('Pera');
 
-dataExample.dejarDeObservar(MensajeListaActualizada);
-dataExample.agregarNuevo('Durazno');
-dataExample.agregarNuevo('Mango');
+// Unsubscribe to notifications of list message
+dataExample.stopStayTuned(UpdatedListMessage);
+dataExample.addNew('Durazno');
+dataExample.addNew('Mango');
 
