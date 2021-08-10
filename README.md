@@ -81,10 +81,7 @@ As reviewers, a PR should be only approved if following conditions are met (In o
 - git pull
 
 ## Database connection
-1. Configure the service account (in first iterations we will use a default credential)
-2. Ask for the database key and install it.
-3. Create a folder inside the folder where you put the project cloned folder and named it keys.
-4. Inside the keys folder move the json key.
-5. For initilize the app change the import that you see below with the name of the json key:
-
-import serviceAccount from `'../../../keys/jsonKeyName'`;
+1. Create a folder named `keys` at the same level of the project folder.
+2. Ask for the database key.
+3. Download the provided database key.
+4. Store the key inside the folder `keys`.

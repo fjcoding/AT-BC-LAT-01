@@ -1,8 +1,9 @@
 import express from 'express';
+import { VerifierInterface } from '../api-utilities/VerifierInterface';
+import { ScenarioHandler } from '../api-utilities/ScenarioHandler';
 const router = express.Router();
 
-//export default function(QueryHandler) {
-export default function() {
+export default function(QueryHandler) {
     //POST
     /*{
         "scenario": "exampleScenarioID",
@@ -12,66 +13,29 @@ export default function() {
         "xScope": 10,
         "yScope": 5
     }*/
-    router.post('/', (req, res) => {
-        const scenarioID = req.body.scenario;
-        const existingActor = req.body.actor;
-        const newGun = req.body.name;
-        const newPower = req.body.power;
-        const newXscope = req.body.xScope;
-        const newYscope = req.body.yScope;
-        const actorExists = true;
-        const result = {
-            scenario: scenarioID,
-            actors: [{
-                'name': existingActor,
-                'type': 'PF Squad Soldier',
-                'health': 1,
-                'weapon': {
-                    'name': newGun,
-                    'power': newPower,
-                    'xScope': newXscope,
-                    'yScope': newYscope,
-                },
-                'position': {
-                    'xPos': 0,
-                    'yPos': 0
-                }
-            }, {
-                'name': 'RAS1',
-                'type': 'Rebel Army soldier',
-                'health': 1,
-                'weapon': {
-                    'name': 'rifle',
-                    'power': 1,
-                    'xScope': 1,
-                    'yScope': 1
-                },
-                'position': {
-                    'xPos': 100,
-                    'yPos': 0
-                }
-            }, {
-                'name': 'RAS2',
-                'type': 'Rebel Army soldier',
-                'health': 1,
-                'weapon': {
-                    'name': 'rifle',
-                    'power': 1,
-                    'xScope': 1,
-                    'yScope': 1
-                },
-                'position': {
-                    'xPos': 5,
-                    'yPos': 5
-                }
-            }]
-        };
+    router.post('/', async (req, res) => {
+        if (!req.body.scenario) res.send({status: 400, error: 'No scenario specidied'});
+        const idScenario = req.body.scenario;
+        const weapon = req.body;
 
-        if (actorExists) {
-            res.send({ result });
-        } else {
-            res.send({ code: 400, error: 'Actor does not exists' });
+        const scenario = await QueryHandler.get(idScenario);
+        if (scenario.data()) {
+            const verifier = new VerifierInterface(scenario.data(), 'weapon');
+            console.log(scenario.data());
+            var response = verifier.check(weapon);
+            if (response == true) {
+                const handler = new ScenarioHandler(scenario.data());
+                const actor = weapon.actor;
+                delete weapon.scenario;
+                delete weapon.actor;
+                handler.replaceWeapon(weapon, actor);
+                await QueryHandler.set(idScenario, handler.scenario);
+                res.send({code: 202, scenario: handler.scenario});
+            }
+
+            res.send({code: 400, error: response});
         }
+        res.send({status: 400, error: 'Scenario does not exist'});
     });
 
     return router;
