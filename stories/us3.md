@@ -17,7 +17,7 @@ POST /scenario
             "name": "handgun",
             "power": 1,
             "xScope": 1,
-            "yScope": 1,
+            "yScope": 0,
         },
         "position": {
             "xPos": 0,
@@ -58,7 +58,7 @@ Response
 }
 ```
 
-How did this happen? lets imagine that example below represents the scene five scenes, initial scene shows scenario with actors without any actions run. Second scene executes the first round of actions (the example only shows "0" for axis Y):
+How did this happen? lets imagine that example below represents the scene five scenes, initial scene shows scenario with actors without any actions run. Second scene executes the first round of actions (the example only shows "0" for axis Y). Notice that weapon's yScope is 0, so bullet movement never changes for Y axis:
 
 Scene 1, initial scene, no actions executed, Marco in (0,0) position and RAS1 in (5,0) position
 
