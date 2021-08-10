@@ -24,8 +24,8 @@ export default function(QueryHandler) {
 
     router.get('/:id', async(req, res) => {
         const scenarioPersisted = await QueryHandler.get(req.params.id);
-        const actors = scenarioPersisted.data().actors;
-        const actions = scenarioPersisted.data().actions;
+        const actors = scenarioPersisted.actors;
+        const actions = scenarioPersisted.actions;
         const runner = new Runner();
         const result = runner.follow(actors, actions);
         res.send({ code: 202, result: result });

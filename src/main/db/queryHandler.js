@@ -9,7 +9,7 @@ export class QueryHandler {
 
     static async get(docId) {
         const scenario = await db.collection(collection).doc(docId).get();
-        return scenario;
+        return scenario.data();
     }
 
     static async set(docId, newData) {
