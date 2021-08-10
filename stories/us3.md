@@ -67,10 +67,10 @@ Scene 1, initial scene, no actions executed, Marco in (0,0) position and RAS1 in
 ```
 
 
-Scene 2, first round of actions run, for example above, only one action run (Marco uses weapon pointing to east). Assume \> symbol represents bullet from handgun
+Scene 2, first round of actions run, for example above, only one action run (Marco uses weapon pointing to east). Assume ">" symbol represents bullet from handgun
 
 ```
-[Marco]  \>  .  .  .  [RAS1]
+[Marco]  >  .  .  .  [RAS1]
 ```
 
 NOTE: action.scenes=99
@@ -85,7 +85,7 @@ In this case, since we have only one action, scenes after scene 2 only runs the 
 Scene 3, bullet travels bulletXPos + xScope
 
 ```
-[Marco]  .  \>  .  .  [RAS1]
+[Marco]  .  >  .  .  [RAS1]
 ```
 
 NOTE: action.scenes=98
@@ -93,7 +93,7 @@ NOTE: action.scenes=98
 Scene 4, bullet travels bulletXPos + xScope
 
 ```
-[Marco]  .  .  \>  .  [RAS1]
+[Marco]  .  .  >  .  [RAS1]
 ```
 
 NOTE: action.scenes=97
@@ -101,7 +101,7 @@ NOTE: action.scenes=97
 Scene 5, bullet travels bulletXPos + xScope
 
 ```
-[Marco]  .  .  .  \>  [RAS1]
+[Marco]  .  .  .  >  [RAS1]
 ```
 
 NOTE: action.scenes=96
