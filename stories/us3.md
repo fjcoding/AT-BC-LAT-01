@@ -61,11 +61,17 @@ Response
 How did this happen? lets imagine that example below represents the scene five scenes, initial scene shows scenario with actors without any actions run. Second scene executes the first round of actions (the example only shows "0" for axis Y):
 
 Scene 1, initial scene, no actions executed, Marco in (0,0) position and RAS1 in (5,0) position
+
+```
 [Marco]  .  .  .  .  [RAS1]
+```
 
 
 Scene 2, first round of actions run, for example above, only one action run (Marco uses weapon pointing to east). Assume \> symbol represents bullet from handgun
+
+```
 [Marco]  \>  .  .  .  [RAS1]
+```
 
 NOTE: action.scenes=99
 
@@ -77,17 +83,26 @@ Since scenario has defined "scenes: 5", then the scenario will run with 5 scenes
 In this case, since we have only one action, scenes after scene 2 only runs the "scenes" remaining for the action executed, which is, shoot the handun
 
 Scene 3, bullet travels bulletXPos + xScope
+
+```
 [Marco]  .  \>  .  .  [RAS1]
+```
 
 NOTE: action.scenes=98
 
 Scene 4, bullet travels bulletXPos + xScope
+
+```
 [Marco]  .  .  \>  .  [RAS1]
+```
 
 NOTE: action.scenes=97
 
 Scene 5, bullet travels bulletXPos + xScope
+
+```
 [Marco]  .  .  .  \>  [RAS1]
+```
 
 NOTE: action.scenes=96
 
