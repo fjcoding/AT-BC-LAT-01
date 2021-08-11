@@ -13,29 +13,29 @@ export default function(QueryHandler) {
         "xScope": 10,
         "yScope": 5
     }*/
-    router.post('/', async (req, res) => {
-        if (!req.body.scenario) res.send({status: 400, error: 'No scenario specidied'});
+    router.post('/', async(req, res) => {
+        if (!req.body.scenario) res.send({ status: 400, error: 'No scenario specidied' });
         const idScenario = req.body.scenario;
         const weapon = req.body;
 
         const scenario = await QueryHandler.get(idScenario);
-        if (scenario.data()) {
-            const verifier = new VerifierInterface(scenario.data(), 'weapon');
-            console.log(scenario.data());
+        if (scenario) {
+            const verifier = new VerifierInterface(scenario, 'weapon');
+            console.log(scenario);
             var response = verifier.check(weapon);
             if (response == true) {
-                const handler = new ScenarioHandler(scenario.data());
+                const handler = new ScenarioHandler(scenario);
                 const actor = weapon.actor;
                 delete weapon.scenario;
                 delete weapon.actor;
                 handler.replaceWeapon(weapon, actor);
                 await QueryHandler.set(idScenario, handler.scenario);
-                res.send({code: 202, scenario: handler.scenario});
+                res.send({ code: 202, scenario: handler.scenario });
             }
 
-            res.send({code: 400, error: response});
+            res.send({ code: 400, error: response });
         }
-        res.send({status: 400, error: 'Scenario does not exist'});
+        res.send({ status: 400, error: 'Scenario does not exist' });
     });
 
     return router;

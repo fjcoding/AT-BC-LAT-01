@@ -4,13 +4,13 @@ import { ScenarioHandler } from '../api-utilities/ScenarioHandler';
 const router = express.Router();
 
 export default function(QueryHandler) {
-    router.put('/', async (req, res) => {
+    router.put('/', async(req, res) => {
         var scenario = {};
         var idScenario = undefined;
         if (req.body.scenario != undefined) {
             idScenario = req.body.scenario;
             const scenarioBD = await QueryHandler.get(idScenario);
-            scenario = scenarioBD.data();
+            scenario = scenarioBD;
         }
         const actor = req.body;
         const verifier = new VerifierInterface(scenario, 'actor');
@@ -24,10 +24,10 @@ export default function(QueryHandler) {
             } else {
                 await QueryHandler.add(handler.scenario);
             }
-            res.send({code: 202, scenario: handler.scenario});
+            res.send({ code: 202, scenario: handler.scenario });
         }
 
-        res.send({code: 400, error: response});
+        res.send({ code: 400, error: response });
     });
 
     return router;
