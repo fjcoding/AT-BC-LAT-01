@@ -27,7 +27,6 @@ export default function(QueryHandler) {
         try {
             const scenario = await QueryHandler.get(req.params.id);
             const verifier = new VerifierInterface(scenario, 'scenario');
-            console.log(verifier.check());
             if (verifier.check() == true) {
                 const runner = new Runner();
                 const result = runner.follow(scenario.actors, scenario.actions);
@@ -36,7 +35,7 @@ export default function(QueryHandler) {
                 res.send({ code:400, error: verifier.check() });
             }
         } catch {
-            res.send({ code: 400, error: 'no scenario specified'});
+            res.send({ code: 400, error: 'scenario could not be executed'});
         }
     });
 
