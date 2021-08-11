@@ -1,18 +1,17 @@
-import { db } from '../db/databaseStart.js';
-const collection = 'MSM-Scenario';
+import { Add } from './add.js';
+import { Get } from './get.js';
+import { Set } from './set.js';
 
 export class QueryHandler {
-    static async add(data) {
-        const scenario = await db.collection(collection).add(data);
-        return scenario.id;
+    static add(data) {
+        return Add.add(data);
     }
 
-    static async get(docId) {
-        const scenario = await db.collection(collection).doc(docId).get();
-        return scenario.data();
+    static get(docId) {
+        return Get.get(docId);
     }
 
-    static async set(docId, newData) {
-        await db.collection(collection).doc(docId).set(newData);
+    static set(docId, newData) {
+        return Set.set(docId, newData);
     }
 }
