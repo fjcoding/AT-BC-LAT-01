@@ -1,4 +1,4 @@
-import express, { response } from 'express';
+import express from 'express';
 import { VerifierInterface } from '../api-utilities/VerifierInterface';
 import { ScenarioHandler } from './../api-utilities/ScenarioHandler';
 import { Runner } from '../modules/Runner';
@@ -38,8 +38,10 @@ export default function(QueryHandler) {
                 const runner = new Runner();
                 const result = runner.follow(scenario.actors, [req.body]);
                 response = { code: 202, result: result };
-            } else { response = { status: 400, error: verifier.check(req.body) }; }
-            
+            } else {
+                response = { status: 400, error: verifier.check(req.body) };
+            }
+
         } catch {
             response = { status: 400, error: 'Scenario does not exist' };
         } finally {
