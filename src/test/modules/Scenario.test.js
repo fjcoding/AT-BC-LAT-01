@@ -3,6 +3,9 @@ import { Scenario } from '../../main/modules/Scenario.js';
 
 const testScenario = new Scenario ();
 
+test('Scenes number need to be added as a numeric attribute in Scenario class', () =>{
+    expect(testScenario.setScenes(2)).toEqual(2);
+});
 test('The actors need to be parsed as new classes correctly into an array', () => {
     var actorObjects = [
         {
@@ -90,11 +93,12 @@ test('Actions need to be parsedas new classes correctly into a new array separat
             element: 'Shotgun'},
         {actor: 'RAT1',
             action: 'Receive Attack',
-            target: 'Marco'}];
+            target: 'Marco',
+            scenes: 3}];
     expect(testScenario.createActions(actionObjects)).toEqual([
         {'actionActor': 'Marco', 'actionType': 'Pick Weapon', 'element': 'Shotgun'},
         {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'element': 'Shotgun'},
-        {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'target': 'Marco'}]
+        {'actionActor': 'RAT1', 'actionType': 'Receive Attack', 'target': 'Marco', 'scenes': 3}]
     );
 });
 test('Actions need to be parsed as new instances correctly into an array without action "from" attribute in the Object', () => {

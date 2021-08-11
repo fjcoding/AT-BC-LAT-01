@@ -6,6 +6,14 @@ var parserActorsArray = [];
 var parserActionsArray = [];
 
 export class Scenario {
+    constructor(scenes){
+        this.scenes = scenes;
+    }
+
+    setScenes (scenes){
+        this.scenes = scenes;
+        return this.scenes;
+    }
 
     createActor(actorObjects) {
         for (var index = 0; index < (actorObjects.length);) {
@@ -26,7 +34,8 @@ export class Scenario {
                 parserActionsArray[index] = new InteractiveActions(
                     actionObjects[index].actor,
                     actionObjects[index].action,
-                    actionObjects[index].target);
+                    actionObjects[index].target,
+                    actionObjects[index].scenes);
             }
             if (actionObjects[index].element !== undefined) {
                 parserActionsArray[index] = new IndividualActions(
