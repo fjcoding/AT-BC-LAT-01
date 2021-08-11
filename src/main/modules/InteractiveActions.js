@@ -1,8 +1,9 @@
 export class InteractiveActions {
-    constructor(actionActor, actionType, target) {
+    constructor(actionActor, actionType, target, scenes) {
         this.actionActor = actionActor;
         this.actionType = actionType;
         this.target = target;
+        this.scenes = scenes;
     }
 
     getactionActor() {
