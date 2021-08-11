@@ -1,6 +1,7 @@
-import { Runner } from '../modules/Runner';
 import express from 'express';
+import { Runner } from '../modules/Runner';
 import { VerifierInterface } from '../api-utilities/VerifierInterface';
+import { ScenarioHandler } from '../api-utilities/ScenarioHandler';
 
 export default function(QueryHandler) {
     const router = express.Router();
@@ -23,12 +24,33 @@ export default function(QueryHandler) {
     });
 
     router.get('/:id', async(req, res) => {
-        const scenarioPersisted = await QueryHandler.get(req.params.id);
-        const actors = scenarioPersisted.actors;
-        const actions = scenarioPersisted.actions;
-        const runner = new Runner();
-        const result = runner.follow(actors, actions);
-        res.send({ code: 202, result: result });
+        try {
+            const scenario = await QueryHandler.get(req.params.id);
+            const verifier = new VerifierInterface(scenario, 'scenario');
+            if (verifier.check() == true) {
+                const runner = new Runner();
+                const result = runner.follow(scenario.actors, scenario.actions);
+                res.send({ code: 202, result: result });
+            } else {
+                res.send({ code:400, error: verifier.check() });
+            }
+        } catch {
+            res.send({ code: 400, error: 'scenario could not be executed'});
+        }
+    });
+
+    router.patch('/', async(req, res) => {
+        const id = req.body.scenario;
+        try {
+            const scenario = await QueryHandler.get(id);
+            if (!scenario) res.send({code: 400, error: 'Scenario does not exist'});
+            const scenarioHandler = new ScenarioHandler(scenario);
+            scenarioHandler.replaceAttribute(req.body.value, req.body.attribute);
+            await QueryHandler.set(id, scenarioHandler.scenario);
+            res.send(scenarioHandler.scenario);
+        } catch {
+            res.send({ code: 400, error: 'No scenario specified'});
+        }
     });
 
     return router;

@@ -111,4 +111,32 @@ describe('Verify that ScenarioHandler', () => {
             scenarioHandler.replaceWeapon(newWeapon, 'Marco');
         }).toThrow(Error);
     });
+
+    test('replaces an specified attribute in the scenario', () => {
+        const scenario = { actors: [], actions: [], scenes: 0 };
+        const handler = new ScenarioHandler(scenario);
+        const newScenes = 5;
+        handler.replaceAttribute(newScenes, 'scenes');
+        expect(handler.scenario)
+            .toEqual({ actors: [], actions: [], scenes: newScenes });
+    });
+
+    test('creates a new attribute in the scenario when it did not existed', () => {
+        const scenario = { actors: [], actions: [] };
+        const handler = new ScenarioHandler(scenario);
+        const newScenes = 5;
+        handler.replaceAttribute(newScenes, 'scenes');
+        expect(handler.scenario)
+            .toEqual({ actors: [], actions: [], scenes: newScenes });
+    });
+
+    test('throws error when try to replace a not specified attribute in the scenario', () => {
+        const scenario = { actors: [], actions: [], scenes: undefined };
+        const handler = new ScenarioHandler(scenario);
+        const newScenes = 5;
+
+        expect(() => {
+            handler.replaceAttribute(newScenes);
+        }).toThrow(Error);
+    });
 });
