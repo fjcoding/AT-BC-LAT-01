@@ -16,4 +16,9 @@ export class ScenarioHandler {
             if (actor.name == actorName) actor.weapon = weapon;
         });
     }
+
+    replaceAttribute(newObj, attribute) {
+        if(!attribute) throw new Error('No attribute specified');
+        this.scenario[attribute] = newObj;
+    }
 }
