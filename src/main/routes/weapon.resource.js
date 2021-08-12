@@ -13,7 +13,7 @@ export default function(QueryHandler) {
         "xScope": 10,
         "yScope": 5
     }*/
-    router.post('/', async(req, res) => {
+    router.patch('/', async(req, res) => {
         var response = {};
         try {
             const idScenario = req.body.scenario;
