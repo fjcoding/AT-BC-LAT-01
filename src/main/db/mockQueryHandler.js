@@ -21,7 +21,7 @@ const mockQueryData = {
         action: 'receive attack',
         from: 'Marco'
     }]
-};  
+};
 
 const setMockQueryData = {
     actors: [{
@@ -50,20 +50,23 @@ const setMockQueryData = {
         action: 'receive attack',
         from: 'Marco'
     }]
-};  
-
-export class mockQueryHandler { //a carbon copy of the QueryHandler class
+};
+console.log(setMockQueryData);
+export class mockQueryHandler { //a custom mock of the QueryHandler class
     static async add(data) {
         const mockPromise = new Promise(function(resolve, reject) {
-            console.log(data);//here we mock the actual query
-            setTimeout(() => resolve('00kEXu7aRQr35ymqAqH2'), 500);
+            if (typeof data == 'object') {
+                resolve('00kEXu7aRQr35ymqAqH2');
+            } else {
+                reject('Invalid Data Object');
+            }
         });
         return mockPromise; //if the promise is solved, it returns a String
     }
 
     static async get(docId) {
         const mockPromise = new Promise(function(resolve, reject) {
-            console.log(docId);//here we mock the query by returning a set object
+            console.log(docId);//here we mock the query by returning a preset object
             setTimeout(() => resolve(mockQueryData), 1000);
         });
         return mockPromise; //if the promise is solved, it returns a Javascript Object
