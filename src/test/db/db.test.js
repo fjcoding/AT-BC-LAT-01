@@ -34,16 +34,28 @@ describe('Tests for Create, Read and Update operations', () => {
     });
 
     test('the MSM is able to return an error when it receives an invalid format', async () => {
+        let error = 0;
         try {
             await mockQueryHandler.add('');
-        } catch(e) {
-            expect(e).toBe('Invalid Data Object'); //use toBe to compare values
+        } catch(event) {
+            error = event;
         }
+        expect(error).toBe('Invalid Data Object'); //use toBe to compare values
     });
 
     test('the MSM is able to read existing data', async () => {
         const queryReturn = await mockQueryHandler.get(testScenarioID);
-        expect(queryReturn).toEqual(testScenarioData); //we use toEqual to compare objects and return to confirm queryReturn is completed before the assertion
+        expect(queryReturn).toEqual(testScenarioData); //we use toEqual to compare objects
+    });
+
+    test('the MSM is able to to return an error when it cannot read existing data', async () => {
+        let error = 0;
+        try {
+            await mockQueryHandler.get('');
+        } catch(event) {
+            error = event;
+        }
+        expect(error).toBe('query data not found'); //use toBe to compare values
     });
 
     test('the MSM is able to update existing data', async () => { //set doesn't return a response to the MSM app
