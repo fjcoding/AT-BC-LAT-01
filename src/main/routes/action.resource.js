@@ -36,7 +36,7 @@ export default function(QueryHandler) {
             const verifier = new VerifierInterface(scenario, 'action');
             if (verifier.check(req.body) == true) {
                 const runner = new Runner();
-                const result = runner.follow(scenario.actors, [req.body]);
+                const result = runner.follow(scenario.actors, [req.body], scenario.scenes);
                 response = { code: 202, result: result };
             } else {
                 response = { status: 400, error: verifier.check(req.body) };
