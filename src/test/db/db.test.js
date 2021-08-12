@@ -33,6 +33,14 @@ describe('Tests for Create, Read and Update operations', () => {
         expect(queryReturn).toBe(testScenarioID); //use toBe to compare values
     });
 
+    test('the MSM is able to return an error when it receives an invalid format', async () => {
+        try {
+            await mockQueryHandler.add('');
+        } catch(e) {
+            expect(e).toBe('Invalid Data Object'); //use toBe to compare values
+        }
+    });
+
     test('the MSM is able to read existing data', async () => {
         const queryReturn = await mockQueryHandler.get(testScenarioID);
         expect(queryReturn).toEqual(testScenarioData); //we use toEqual to compare objects and return to confirm queryReturn is completed before the assertion
@@ -43,7 +51,7 @@ describe('Tests for Create, Read and Update operations', () => {
             name: 'RAS2',
             type: 'Rebel Army soldier',
             weapon: 'shotgun'
-        } 
+        };
         const queryReturn = await mockQueryHandler.set(testScenarioID, newActor);
         expect(queryReturn).toEqual({
             actors: [{
