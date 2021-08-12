@@ -6,8 +6,8 @@ var parserActionssArray = [
     {'actionActor': 'RAS1', 'actionType': 'Shoot Weapon', 'target': 'north', 'scenes': 3},
     {'actionActor': 'RAT1', 'actionType': 'Shoot Weapon', 'target': 'south', 'scenes': 11},
     {'actionActor': 'RAT1', 'actionType': 'Shoot Weapon', 'target': 'east', 'scenes': 10},
-    {'actionActor': 'RAT1', 'actionType': 'Shoot Weapon', 'target': 'west', 'scenes': 10}
-];
+    {'actionActor': 'RAT1', 'actionType': 'Shoot Weapon', 'target': 'west', 'scenes': 10},
+    {}];
 
 var parserActorssArray = [
     {'health': 10,

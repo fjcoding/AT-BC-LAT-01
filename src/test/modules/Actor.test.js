@@ -28,5 +28,4 @@ describe('class constructor should recibe data to build a Actors', () => {
         actor.setHealth(122);
         expect(actor.getHealth()).toEqual(122);
     });
-
 });

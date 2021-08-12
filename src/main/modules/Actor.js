@@ -38,13 +38,4 @@ export class Actor {
     setWeapon(weaponType) {
         this.weapon = weaponType;
     }
-
-    getXPosition() {
-        return this.position.xPos;
-    }
-
-    getYPosition() {
-        return this.position.yPos;
-    }
-
 }
