@@ -30,3 +30,14 @@ export class ActorAttributeVerifier extends ScenarioAttributeVerifier {
         return result;
     }
 }
+
+export class ActionAttributeVerifier extends ScenarioAttributeVerifier {
+
+    check(scenario, action) {
+        var result = this.attributeVerifier.check(action, ['actor', 'action', 'scenes']);
+        if (result == true) result = this.actionVerifier.check(action);
+        if (result == true) result = this.actorVerifier.check(scenario, action.actor);
+
+        return result;
+    }
+}

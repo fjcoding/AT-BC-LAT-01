@@ -69,10 +69,10 @@ describe('Verify that ActionVerifier', () => {
 
 describe('Verifiy that ValueVerifier', () => {
     test('returns true when the inserted value is in the defined range', () => {
-        expect(ValueVerifier.check(2,0,100)).toBe(true);
+        expect(ValueVerifier.check(2, 0, 100)).toBe(true);
     });
-    
+
     test('returns string when the inserted value is not in the defined range', () => {
-        expect(ValueVerifier.check(0,1,100)).toBe('value out of range');
+        expect(ValueVerifier.check(0, 1, 100)).toBe('value out of range');
     });
 });

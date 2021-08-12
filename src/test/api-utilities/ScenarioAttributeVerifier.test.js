@@ -1,6 +1,7 @@
-import { 
+import {
     ScenarioAttributeVerifier,
-    ActorAttributeVerifier } from '../../main/api-utilities/ScenarioAttributeVerifier';
+    ActorAttributeVerifier,
+    ActionAttributeVerifier } from '../../main/api-utilities/ScenarioAttributeVerifier';
 
 
 describe('Verify that ScenarioAttributeVerifier', () => {
@@ -87,5 +88,44 @@ describe('Verify that ActorsAttributeVerifier', () => {
             weapon: 'shotgun',
             position: {'xPos': 101, 'yPos': 0}};
         expect(verifier.check(actor)).toBe('value out of range');
-    })
+    });
+});
+
+describe('Verify that ActionAttributeVerifier', () => {
+    const scenario = {
+        actors: [
+            {name: 'Marco', type: 'PF Squad Soldier', weapon: 'Handgun'},
+            {name: 'RAS1', type: 'Rebel Army soldier', weapon: 'rifle'}],
+    };
+    const verifier = new ActionAttributeVerifier;
+
+    test('returns true when the action can be executed in the escenario', () => {
+        const action = {actor: 'Marco', action: 'shoot weapon', target: 'east', scenes: 100};
+        expect(verifier.check(scenario, action)).toBe(true);
+    });
+
+    test('returns string when the attributes actor and action are not defined in the action', () => {
+        const action = 'genericAction';
+        expect(verifier.check(scenario, action)).toBe('actor does not exist');
+    });
+
+    test('return string when an action does not have element, from or target attributes are not defined', () => {
+        const action = {actor: 'Marco', action: 'Pick shotgun', scenes: 100};
+        expect(verifier.check(scenario, action)).toBe('Element, from or target not defined in action');
+    });
+
+    test('return string when the actor in the action does not exist', () => {
+        const action = {actor: 'Inexistent Actor', action: 'Pick shotgun', element: 'shotgun', scenes: 100};
+        expect(verifier.check(scenario, action)).toBe('Inexistent Actor does not exist');
+    });
+
+    test('return string when the target is unavailable', () => {
+        const action = {actor: 'Marco', action: 'shoot shotgun', target: 'front', scenes: 100};
+        expect(verifier.check(scenario, action)).toBe('target defined in an unavailable direction');
+    });
+
+    test('return string when the scenes attribute is not defined', () => {
+        const action = {actor: 'Marco', action: 'shoot shotgun', target: 'west'};
+        expect(verifier.check(scenario, action)).toBe('scenes does not exist');
+    });
 });
