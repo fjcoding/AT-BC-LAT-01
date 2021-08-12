@@ -73,3 +73,11 @@ export class ActionVerifier extends PropertyVerifier {
         return result;
     }
 }
+
+export class ValueVerifier extends PropertyVerifier {
+
+    static check(value, lowerBoundary, upperBoundary) {
+        if (value >= lowerBoundary && value <= upperBoundary) return true;
+        return 'value out of range';
+    }
+}
