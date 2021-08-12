@@ -35,7 +35,7 @@ export class VerifierInterface {
             return AttributesVerifier.check(obj, ['health', 'name', 'weapon', 'type', 'position']);
 
         case 'scenario':
-            result = AttributesVerifier.check(this.scenario, ['actors', 'actions']);
+            result = AttributesVerifier.check(this.scenario, ['actors', 'actions', 'scenes']);
 
             if (result == true) {
                 this.scenario.actors.forEach(actor => {

@@ -148,6 +148,7 @@ describe('Verify that the verifier interface class', () => {
     describe('with scenario type', () => {
         test('returns true when the scenario is able to execute', () => {
             const scenario = {
+                scenes: 5,
                 actors: [{
                     name: 'Marco',
                     type: 'PF Squad Soldier',
@@ -179,6 +180,7 @@ describe('Verify that the verifier interface class', () => {
 
         test('returns string when the actors attribute in scenario does not exist', () => {
             const scenario = {
+                scenes: 5,
                 actions: [
                     {actor: 'Marco', action: 'shoot weapon', target: 'east'}
                 ]
@@ -190,6 +192,7 @@ describe('Verify that the verifier interface class', () => {
 
         test('returns string when the action has an actor that does not exist', () => {
             const scenario = {
+                scenes: 5,
                 actors: [{
                     name: 'Marco',
                     type: 'PF Squad Soldier',
@@ -215,6 +218,7 @@ describe('Verify that the verifier interface class', () => {
 
         test('returns string when the actions attribute in scenario does not exist', () => {
             const scenario = {
+                scenes: 5,
                 actors: [{
                     name: 'Marco',
                     type: 'PF Squad Soldier',
@@ -242,6 +246,7 @@ describe('Verify that the verifier interface class', () => {
 
         test('returns string when any attribute in actors does not exist', () => {
             const scenario = {
+                scenes: 5,
                 actors: [{
                     name: 'Marco',
                     type: 'PF Squad Soldier',
@@ -266,7 +271,9 @@ describe('Verify that the verifier interface class', () => {
         });
 
         test('returns string when the weapon of any actor is not an object', () => {
+
             const scenario = {
+                scenes: 5,
                 actors: [{
                     name: 'Marco',
                     type: 'PF Squad Soldier',
@@ -292,6 +299,7 @@ describe('Verify that the verifier interface class', () => {
 
         test('returns string when any attribute in action does not exist', () => {
             const scenario = {
+                scenes: 5,
                 actors: [{
                     name: 'Marco',
                     type: 'PF Squad Soldier',
@@ -319,6 +327,37 @@ describe('Verify that the verifier interface class', () => {
             const verifier = new VerifierInterface(scenario, 'scenario');
 
             expect(verifier.check()).toBe('Element, from or target not defined in action');
+        });
+
+        test('returns string when scenes attribute is not defined', () => {
+            const scenario = {
+                actors: [{
+                    name: 'Marco',
+                    type: 'PF Squad Soldier',
+                    health: 1,
+                    weapon: {name: 'shotgun', power: 10, xScope: 10, yScope: 5},
+                    position: {xPos: 0, yPos: 0}
+                }, {
+                    name: 'RAS1',
+                    type: 'Rebel Army soldier',
+                    health: 1,
+                    weapon: {name: 'rifle', power: 1, xScope: 1, yScope: 1},
+                    position: { xPos: 100, yPos: 0}
+                }, {
+                    name: 'RAS2',
+                    type: 'Rebel Army soldier',
+                    health: 1,
+                    weapon: {name: 'rifle', power: 1, xScope: 1, yScope: 1},
+                    position: {xPos: 5, yPos: 5}
+                }],
+
+                actions: [
+                    {actor: 'Marco', action: 'shoot weapon', target: 'west'}
+                ]
+            };
+            const verifier = new VerifierInterface(scenario, 'scenario');
+
+            expect(verifier.check()).toBe('scenes does not exist');
         });
     });
 });
