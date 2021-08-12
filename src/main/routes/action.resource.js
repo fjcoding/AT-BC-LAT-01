@@ -35,9 +35,15 @@ export default function(QueryHandler) {
             const scenario = await QueryHandler.get(req.params.scenarioID);
             const verifier = new VerifierInterface(scenario, 'action');
             if (verifier.check(req.body) == true) {
-                const runner = new Runner();
-                const result = runner.follow(scenario.actors, [req.body], scenario.scenes);
-                response = { code: 202, result: result };
+                scenario.actions = [req.body];
+                const scenarioVerifier = new VerifierInterface(scenario, 'scenario');
+                if (scenarioVerifier.check() == true) {
+                    const runner = new Runner();
+                    const result = runner.follow(scenario.actors, scenario.actions, scenario.scenes);
+                    response = { code: 202, result: result };
+                } else {
+                    response = { status: 400, error: scenarioVerifier.check(req.body) };
+                }
             } else {
                 response = { status: 400, error: verifier.check(req.body) };
             }
