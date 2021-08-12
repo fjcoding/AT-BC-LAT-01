@@ -4,15 +4,6 @@ import { ScenarioHandler } from '../api-utilities/ScenarioHandler';
 const router = express.Router();
 
 export default function(QueryHandler) {
-    //POST
-    /*{
-        "scenario": "exampleScenarioID",
-        "actor": "Marco",
-        "name": "shotgun",
-        "power": 10,
-        "xScope": 10,
-        "yScope": 5
-    }*/
     router.patch('/', async(req, res) => {
         var response = {};
         try {
