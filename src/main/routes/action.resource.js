@@ -5,8 +5,8 @@ import { Runner } from '../modules/Runner';
 
 const router = express.Router();
 
-export default function(QueryHandler) {
-    router.put('/', async(req, res) => {
+export default function (QueryHandler) {
+    router.put('/', async (req, res) => {
         const idScenario = req.body.scenario;
         const action = req.body;
         var response = {};
@@ -18,7 +18,11 @@ export default function(QueryHandler) {
                 delete action.scenario;
                 handler.pushAttribute(action, 'actions');
                 await QueryHandler.set(idScenario, handler.scenario);
-                response = { code: 202, scenario: handler.scenario };
+                response = {
+                    code: 200,
+                    action: req.body.action,
+                    scenario: idScenario,
+                };
             } else {
                 response = { code: 400, error: verifier.check(action) };
             }
@@ -29,25 +33,34 @@ export default function(QueryHandler) {
         }
     });
 
-    router.post('/:scenarioID', async(req, res) => {
+    router.post('/:scenarioID', async (req, res) => {
         var response = {};
         try {
             const scenario = await QueryHandler.get(req.params.scenarioID);
             const verifier = new VerifierInterface(scenario, 'action');
             if (verifier.check(req.body) == true) {
                 scenario.actions = [req.body];
-                const scenarioVerifier = new VerifierInterface(scenario, 'scenario');
+                const scenarioVerifier = new VerifierInterface(
+                    scenario,
+                    'scenario'
+                );
                 if (scenarioVerifier.check() == true) {
                     const runner = new Runner();
-                    const result = runner.follow(scenario.actors, scenario.actions, scenario.scenes);
-                    response = { code: 202, result: result };
+                    const result = runner.follow(
+                        scenario.actors,
+                        scenario.actions,
+                        scenario.scenes
+                    );
+                    response = { code: 200, result: result };
                 } else {
-                    response = { status: 400, error: scenarioVerifier.check(req.body) };
+                    response = {
+                        status: 400,
+                        error: scenarioVerifier.check(req.body),
+                    };
                 }
             } else {
                 response = { status: 400, error: verifier.check(req.body) };
             }
-
         } catch {
             response = { status: 400, error: 'Scenario does not exist' };
         } finally {

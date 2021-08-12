@@ -3,8 +3,8 @@ import { VerifierInterface } from '../api-utilities/VerifierInterface';
 import { ScenarioHandler } from '../api-utilities/ScenarioHandler';
 const router = express.Router();
 
-export default function(QueryHandler) {
-    router.put('/', async(req, res) => {
+export default function (QueryHandler) {
+    router.put('/', async (req, res) => {
         var response = {};
         try {
             var scenario = {};
@@ -25,14 +25,16 @@ export default function(QueryHandler) {
                 } else {
                     id = await QueryHandler.add(handler.scenario);
                 }
-                response = { code: 202, id: id, scenario: handler.scenario };
-
+                response = {
+                    code: 200,
+                    actor: req.body.name,
+                    scenario: id,
+                };
             } else {
                 response = { code: 400, error: verifier.check(actor) };
             }
-
         } catch {
-            response = {code: 400, error: 'Could not reach any scenario'};
+            response = { code: 400, error: 'Could not reach any scenario' };
         } finally {
             res.send(response);
         }
