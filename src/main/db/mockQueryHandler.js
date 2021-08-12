@@ -1,62 +1,11 @@
-const mockQueryData = {
-    actors: [{
-        name: 'Marco',
-        type: 'PF Squad Soldier',
-        weapon: 'Handgun'
-    }, {
-        name: 'RAS1',
-        type: 'Rebel Army soldier',
-        weapon: 'rifle'
-    }],
-    actions: [{
-        actor: 'Marco',
-        action: 'Pick Shotgun',
-        element: 'Shotgun'
-    }, {
-        actor: 'Marco',
-        action: 'Shoot Weapon',
-        element: 'Shotgun'
-    }, {
-        actor: 'RAS1',
-        action: 'receive attack',
-        from: 'Marco'
-    }]
-};
-const mockQueryID ='00kEXu7aRQr35ymqAqH2';
-const setMockQueryData = {
-    actors: [{
-        name: 'Marco',
-        type: 'PF Squad Soldier',
-        weapon: 'Handgun'
-    }, {
-        name: 'RAS1',
-        type: 'Rebel Army soldier',
-        weapon: 'rifle'
-    }, {
-        name: 'RAS2',
-        type: 'Rebel Army soldier',
-        weapon: 'shotgun'
-    }],
-    actions: [{
-        actor: 'Marco',
-        action: 'Pick Shotgun',
-        element: 'Shotgun'
-    }, {
-        actor: 'Marco',
-        action: 'Shoot Weapon',
-        element: 'Shotgun'
-    }, {
-        actor: 'RAS1',
-        action: 'receive attack',
-        from: 'Marco'
-    }]
-};
+import { testScenarioData, testScenarioID } from '../../test/db/dbTestConstants';
+
 
 export class mockQueryHandler { //a custom mock of the QueryHandler class
     static async add(data) {
         const mockPromise = new Promise(function(resolve, reject) {
             if (typeof data == 'object') {
-                resolve(mockQueryID);
+                resolve(testScenarioID);
             } else {
                 reject('Invalid Data Object');
             }
@@ -66,8 +15,8 @@ export class mockQueryHandler { //a custom mock of the QueryHandler class
 
     static async get(docId) {
         const mockPromise = new Promise(function(resolve, reject) {
-            if (docId == mockQueryID) {
-                resolve(mockQueryData);
+            if (docId == testScenarioID) {
+                resolve(testScenarioData);
             } else {
                 reject('query data not found');
             }
@@ -77,8 +26,12 @@ export class mockQueryHandler { //a custom mock of the QueryHandler class
 
     static async set(docId, newData) {
         const mockPromise2 = new Promise(function(resolve, reject) {
-            console.log(docId);//here we mock the query by returning a set object
-            setTimeout(() => resolve(setMockQueryData), 1000);
+            if (docId == testScenarioID) {
+                resolve(newData);
+            } else {
+                console.log('new register added'); // query data not found
+                reject('new register added');
+            }
         });
         return mockPromise2;
     }
