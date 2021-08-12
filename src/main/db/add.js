@@ -1,9 +1,9 @@
-import { db } from '../db/databaseStart.js';
-const collection = 'MSM-Scenario';
+import { CollectionCall } from './collectionCall';
 
-export class Add {
+
+export class Add extends CollectionCall{
     static async add(data) {
-        const scenario = await db.collection(collection).add(data);
+        const scenario = await this.dbCall.add(data);
         return scenario.id;
     }
 }

@@ -1,8 +1,8 @@
-import { db } from '../db/databaseStart.js';
-const collection = 'MSM-Scenario';
+import { CollectionCall } from './collectionCall';
 
-export class Set {
+
+export class Set extends CollectionCall{
     static async set(docId, newData) {
-        await db.collection(collection).doc(docId).set(newData);
+        await this.dbCall.doc(docId).set(newData);
     }
 }
