@@ -41,3 +41,16 @@ export class ActionAttributeVerifier extends ScenarioAttributeVerifier {
         return result;
     }
 }
+
+export class WeaponAttributeVerifier extends ScenarioAttributeVerifier {
+
+    check(scenario, weapon) {
+        var result = this.attributeVerifier.check(weapon, ['actor', 'name', 'power', 'xScope', 'yScope']);
+        if (result == true) result = this.attributeVerifier.check(scenario, 'actors');
+        if (result == true) result = this.actorVerifier.check(scenario, weapon.actor);
+        if (result == true) result = this.valueVerifier.check(weapon.xScope, 1, 100);
+        if (result == true) result = this.valueVerifier.check(weapon.yScope, 1, 100);
+
+        return result;
+    }
+}

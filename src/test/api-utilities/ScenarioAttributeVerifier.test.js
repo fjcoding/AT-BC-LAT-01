@@ -1,7 +1,8 @@
 import {
     ScenarioAttributeVerifier,
     ActorAttributeVerifier,
-    ActionAttributeVerifier } from '../../main/api-utilities/ScenarioAttributeVerifier';
+    ActionAttributeVerifier,
+    WeaponAttributeVerifier } from '../../main/api-utilities/ScenarioAttributeVerifier';
 
 
 describe('Verify that ScenarioAttributeVerifier', () => {
@@ -127,5 +128,44 @@ describe('Verify that ActionAttributeVerifier', () => {
     test('return string when the scenes attribute is not defined', () => {
         const action = {actor: 'Marco', action: 'shoot shotgun', target: 'west'};
         expect(verifier.check(scenario, action)).toBe('scenes does not exist');
+    });
+});
+
+describe('Verify that WeaponAttributeVerifier', () => {
+    const scenario = {
+        actors: [
+            {name: 'Marco', type: 'PF Squad Soldier', weapon: 'Handgun'},
+            {name: 'RAS1', type: 'Rebel Army soldier', weapon: 'rifle'}],
+    };
+    const verifier = new WeaponAttributeVerifier;
+
+    test('returns true when the weapon can be replaced in a defined actor', () => {
+        const weapon = {actor: 'Marco', name: 'shotgun', power: 10, xScope: 10, yScope: 5};
+        expect(verifier.check(scenario, weapon)).toBe(true);
+    });
+
+    test('returns string when the attributes actor, power and scope are not defined in the weapon', () => {
+        const weapon = 'gun';
+        expect(verifier.check(scenario, weapon)).toBe('actor does not exist');
+    });
+
+    test('checks that a weapon can not be replaced in an undefined actor', () => {
+        const weapon = {name: 'shotgun', power: 10, xScope: 10, yScope: 5};
+        expect(verifier.check(scenario, weapon)).toBe('actor does not exist');
+    });
+
+    test('checks that a weapon can not be replaced when the actor does not exist', () => {
+        const weapon = {actor: 'InexistentActor', name: 'shotgun', power: 10, xScope: 10, yScope: 5};
+        expect(verifier.check(scenario, weapon)).toBe('InexistentActor does not exist');
+    });
+
+    test('returns string when xScope is out of range (0, 100)', () => {
+        const weapon = {actor: 'Marco', name: 'shotgun', power: 10, xScope: 0, yScope: 5};
+        expect(verifier.check(scenario, weapon)).toBe('value out of range');
+    });
+
+    test('returns string when yScope is out of range (0, 100)', () => {
+        const weapon = {actor: 'Marco', name: 'shotgun', power: 10, xScope: 10, yScope: -1};
+        expect(verifier.check(scenario, weapon)).toBe('value out of range');
     });
 });

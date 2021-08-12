@@ -24,7 +24,7 @@ export class AttributesVerifier extends PropertyVerifier {
     }
 
     static isUndefined(Obj, attribute) {
-        if (Obj[attribute]) {
+        if (Obj[attribute] != undefined) {
             return true;
         }
 
