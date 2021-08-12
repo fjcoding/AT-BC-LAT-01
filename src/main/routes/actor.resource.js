@@ -5,29 +5,37 @@ const router = express.Router();
 
 export default function(QueryHandler) {
     router.put('/', async(req, res) => {
-        var scenario = {};
-        var idScenario = undefined;
-        if (req.body.scenario != undefined) {
-            idScenario = req.body.scenario;
-            const scenarioBD = await QueryHandler.get(idScenario);
-            scenario = scenarioBD;
-        }
-        const actor = req.body;
-        const verifier = new VerifierInterface(scenario, 'actor');
-        var response = verifier.check(actor);
-        if (response == true) {
-            const handler = new ScenarioHandler(scenario);
-            delete actor.scenario;
-            handler.pushAttribute(actor, 'actors');
-            if (idScenario) {
-                await QueryHandler.set(idScenario, handler.scenario);
-            } else {
-                await QueryHandler.add(handler.scenario);
+        var response = {};
+        try {
+            var scenario = {};
+            var id = undefined;
+            if (req.body.scenario != undefined) {
+                id = req.body.scenario;
+                scenario = await QueryHandler.get(id);
             }
-            res.send({ code: 202, scenario: handler.scenario });
-        }
 
-        res.send({ code: 400, error: response });
+            const actor = req.body;
+            const verifier = new VerifierInterface(scenario, 'actor');
+            if (verifier.check(actor) == true) {
+                const handler = new ScenarioHandler(scenario);
+                delete actor.scenario;
+                handler.pushAttribute(actor, 'actors');
+                if (id) {
+                    await QueryHandler.set(id, handler.scenario);
+                } else {
+                    id = await QueryHandler.add(handler.scenario);
+                }
+                response = { code: 202, id: id, scenario: handler.scenario };
+
+            } else {
+                response = { code: 400, error: verifier.check(actor) };
+            }
+
+        } catch {
+            response = {code: 400, error: 'Could not reach any scenario'};
+        } finally {
+            res.send(response);
+        }
     });
 
     return router;

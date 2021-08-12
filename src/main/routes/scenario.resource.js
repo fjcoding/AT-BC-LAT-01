@@ -16,7 +16,7 @@ export default function(QueryHandler) {
         const verifier = new VerifierInterface(req.body, 'scenario');
         if (verifier.check() == true) {
             const runner = new Runner();
-            const result = runner.follow(req.body.actors, req.body.actions);
+            const result = runner.follow(req.body.actors, req.body.actions, req.body.scenes);
             res.send({ code: 202, result: result });
         } else {
             res.send({ code: 400, error: verifier.check() });
@@ -29,7 +29,7 @@ export default function(QueryHandler) {
             const verifier = new VerifierInterface(scenario, 'scenario');
             if (verifier.check() == true) {
                 const runner = new Runner();
-                const result = runner.follow(scenario.actors, scenario.actions);
+                const result = runner.follow(scenario.actors, scenario.actions, scenario.scenes);
                 res.send({ code: 202, result: result });
             } else {
                 res.send({ code:400, error: verifier.check() });
@@ -49,7 +49,7 @@ export default function(QueryHandler) {
             await QueryHandler.set(id, scenarioHandler.scenario);
             res.send(scenarioHandler.scenario);
         } catch {
-            res.send({ code: 400, error: 'No scenario specified'});
+            res.send({ code: 400, error: 'Could not reach scenario'});
         }
     });
 

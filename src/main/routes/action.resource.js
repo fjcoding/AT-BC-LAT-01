@@ -7,56 +7,52 @@ const router = express.Router();
 
 export default function(QueryHandler) {
     router.put('/', async(req, res) => {
-        if (!req.body.scenario) res.send({ status: 400, error: 'No scenario specidied' });
         const idScenario = req.body.scenario;
         const action = req.body;
-
-        const scenario = await QueryHandler.get(idScenario);
-        if (scenario) {
+        var response = {};
+        try {
+            const scenario = await QueryHandler.get(idScenario);
             const verifier = new VerifierInterface(scenario, 'action');
-
-            var response = verifier.check(action);
-            if (response == true) {
+            if (verifier.check(action) == true) {
                 const handler = new ScenarioHandler(scenario);
                 delete action.scenario;
-                console.log(handler.scenario);
                 handler.pushAttribute(action, 'actions');
-                // console.log(handler.scenario);
                 await QueryHandler.set(idScenario, handler.scenario);
-                res.send({ code: 202, scenario: handler.scenario });
+                response = { code: 202, scenario: handler.scenario };
+            } else {
+                response = { code: 400, error: verifier.check(action) };
             }
-
-            res.send({ code: 400, error: response });
+        } catch {
+            response = { status: 400, error: 'Could not reach the scenario' };
+        } finally {
+            res.send(response);
         }
-        res.send({ status: 400, error: 'Scenario does not exist' });
     });
 
-    //POST:scenarioID
-    /*{
-        "actor": "RAS1",
-        "use": "weapon",
-        "target": "west"
-    }
-    {
-        "actor": "RAS2",
-        "use": "weapon",
-        "target": "west"
-    }*/
     router.post('/:scenarioID', async(req, res) => {
-        const scenarioID = req.params.scenarioID;
-        const scenario = await QueryHandler.get(scenarioID);
-        if (scenario) {
+        var response = {};
+        try {
+            const scenario = await QueryHandler.get(req.params.scenarioID);
             const verifier = new VerifierInterface(scenario, 'action');
             if (verifier.check(req.body) == true) {
-                const runner = new Runner();
-                console.log(scenario.actors);
-                console.log(req.body);
-                const result = runner.follow(scenario.actors, [req.body]);
-                res.send({ code: 202, result: result });
+                scenario.actions = [req.body];
+                const scenarioVerifier = new VerifierInterface(scenario, 'scenario');
+                if (scenarioVerifier.check() == true) {
+                    const runner = new Runner();
+                    const result = runner.follow(scenario.actors, scenario.actions, scenario.scenes);
+                    response = { code: 202, result: result };
+                } else {
+                    response = { status: 400, error: scenarioVerifier.check(req.body) };
+                }
+            } else {
+                response = { status: 400, error: verifier.check(req.body) };
             }
-            res.send({ status: 400, error: verifier.check(req.body) });
+
+        } catch {
+            response = { status: 400, error: 'Scenario does not exist' };
+        } finally {
+            res.send(response);
         }
-        res.send({ status: 400, error: 'Scenario does not exist' });
     });
 
     return router;

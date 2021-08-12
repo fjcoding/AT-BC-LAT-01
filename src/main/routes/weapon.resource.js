@@ -4,38 +4,31 @@ import { ScenarioHandler } from '../api-utilities/ScenarioHandler';
 const router = express.Router();
 
 export default function(QueryHandler) {
-    //POST
-    /*{
-        "scenario": "exampleScenarioID",
-        "actor": "Marco",
-        "name": "shotgun",
-        "power": 10,
-        "xScope": 10,
-        "yScope": 5
-    }*/
-    router.post('/', async(req, res) => {
-        if (!req.body.scenario) res.send({ status: 400, error: 'No scenario specidied' });
-        const idScenario = req.body.scenario;
-        const weapon = req.body;
+    router.patch('/', async(req, res) => {
+        var response = {};
+        try {
+            const idScenario = req.body.scenario;
+            const weapon = req.body;
+            const scenario = await QueryHandler.get(idScenario);
 
-        const scenario = await QueryHandler.get(idScenario);
-        if (scenario) {
             const verifier = new VerifierInterface(scenario, 'weapon');
-            console.log(scenario);
-            var response = verifier.check(weapon);
-            if (response == true) {
+            if (verifier.check(weapon) == true) {
                 const handler = new ScenarioHandler(scenario);
                 const actor = weapon.actor;
                 delete weapon.scenario;
                 delete weapon.actor;
                 handler.replaceWeapon(weapon, actor);
                 await QueryHandler.set(idScenario, handler.scenario);
-                res.send({ code: 202, scenario: handler.scenario });
+                response = { code: 202, scenario: handler.scenario };
+            } else {
+                response = { code: 400, error: verifier.check(weapon) };
             }
 
-            res.send({ code: 400, error: response });
+        } catch {
+            response = { code: 400, error: 'Could not reach the scenario'};
+        } finally {
+            res.send(response);
         }
-        res.send({ status: 400, error: 'Scenario does not exist' });
     });
 
     return router;
