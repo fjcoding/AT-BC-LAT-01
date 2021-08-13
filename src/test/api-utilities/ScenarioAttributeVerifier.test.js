@@ -196,6 +196,11 @@ describe('Verify that ScenesAttributeVerifier', () => {
         expect(verifier.check(scenes)).toBe('value out of range');
     });
 
+    test('returns string when the scenes is a negative number', () => {
+        const scenes = -1;
+        expect(verifier.check(scenes)).toBe('value out of range');
+    });
+
     test('returns string when the scenes are not defined', () => {
         const scenes = undefined;
         expect(verifier.check(scenes)).toBe('value out of range');
