@@ -175,7 +175,7 @@ describe('Verify that the verifier interface class', () => {
                 }],
 
                 actions: [
-                    {actor: 'Marco', action: 'shot weapon', target: 'east'}
+                    {actor: 'Marco', action: 'shot weapon', target: 'east', scenes: 5}
                 ]
             };
             const verifier = new VerifierInterface(scenario, 'scenario');
@@ -187,7 +187,7 @@ describe('Verify that the verifier interface class', () => {
             const scenario = {
                 scenes: 5,
                 actions: [
-                    {actor: 'Marco', action: 'shoot weapon', target: 'east'}
+                    {actor: 'Marco', action: 'shoot weapon', target: 'east', scenes: 5}
                 ]
             };
             const verifier = new VerifierInterface(scenario, 'scenario');
@@ -213,7 +213,7 @@ describe('Verify that the verifier interface class', () => {
                 }],
 
                 actions: [
-                    {actor: 'Inexistent Actor', action: 'shoot weapon', target: 'east'}
+                    {actor: 'Inexistent Actor', action: 'shoot weapon', target: 'east', scenes: 5}
                 ]
             };
             const verifier = new VerifierInterface(scenario, 'scenario');
@@ -267,7 +267,7 @@ describe('Verify that the verifier interface class', () => {
                 }],
 
                 actions: [
-                    {actor: 'Marco', action: 'shoot weapon', target: 'east'}
+                    {actor: 'Marco', action: 'shoot weapon', target: 'east', scenes: 5}
                 ]
             };
             const verifier = new VerifierInterface(scenario, 'scenario');
@@ -299,7 +299,7 @@ describe('Verify that the verifier interface class', () => {
             };
             const verifier = new VerifierInterface(scenario, 'scenario');
 
-            expect(verifier.check()).toBe('power does not exist');
+            expect(verifier.check()).toBe('weapon is not an objec');
         });
 
         test('returns string when any attribute in action does not exist', () => {
@@ -326,7 +326,7 @@ describe('Verify that the verifier interface class', () => {
                 }],
 
                 actions: [
-                    {actor: 'Marco', action: 'shoot weapon'}
+                    {actor: 'Marco', action: 'shoot weapon', scenes: 5}
                 ]
             };
             const verifier = new VerifierInterface(scenario, 'scenario');
@@ -357,7 +357,7 @@ describe('Verify that the verifier interface class', () => {
                 }],
 
                 actions: [
-                    {actor: 'Marco', action: 'shoot weapon', target: 'west'}
+                    {actor: 'Marco', action: 'shoot weapon', target: 'west', scenes: 5}
                 ]
             };
             const verifier = new VerifierInterface(scenario, 'scenario');
