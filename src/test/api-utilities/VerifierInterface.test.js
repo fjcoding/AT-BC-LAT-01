@@ -98,7 +98,7 @@ describe('Verify that the verifier interface class', () => {
                 name: 'Marco',
                 type: 'PF Squad Soldier',
                 health: 1,
-                weapon: 'shotgun',
+                weapon: {name: 'shotgun', power: 5, xScope: 0, yScope:0},
                 position: {'xPos': 0, 'yPos': 0}};
             expect(verifier.check(actor)).toBe(true);
         });

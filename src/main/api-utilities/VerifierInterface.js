@@ -24,6 +24,7 @@ export class VerifierInterface {
     }
 
     check(obj) {
+        var result = true;
         switch (this.type) {
         case 'weapon':
             return this.weaponVerifier.check(this.scenario, obj);
@@ -32,10 +33,19 @@ export class VerifierInterface {
             return this.actionVerifier.check(this.scenario, obj);
 
         case 'actor':
-            return this.actorVerifier.check(obj);
+            result = this.actorVerifier.check(obj);
+            if (result == true) {
+                if (typeof obj.weapon === 'object') {
+                    obj.weapon.actor = obj.name;
+                    result = this.weaponVerifier.check({actors: [obj]}, obj.weapon);
+                } else {
+                    result = 'weapon is not an objec';
+                }
+            }
+            return result;
 
         case 'scenario':
-            var result = this.scenarioVerifier.check(this.scenario);
+            result = this.scenarioVerifier.check(this.scenario);
             if (result == true) result = this.scenesVerifier.check(this.scenario.scenes);
 
             if (result == true) {
