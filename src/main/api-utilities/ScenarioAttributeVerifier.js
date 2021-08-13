@@ -40,7 +40,6 @@ export class ActionAttributeVerifier extends ScenarioAttributeVerifier {
         if (result == true) result = this.actionVerifier.check(action);
         if (result == true) result = this.actorVerifier.check(scenario, action.actor);
         if (result == true) result = this.valueVerifier.check(action.scenes, 0, 9999);
-
         return result;
     }
 }
@@ -54,7 +53,6 @@ export class WeaponAttributeVerifier extends ScenarioAttributeVerifier {
         if (result == true) result = this.valueVerifier.check(weapon.xScope, 0, 100);
         if (result == true) result = this.valueVerifier.check(weapon.yScope, 0, 100);
         if (result == true) result = this.valueVerifier.check(weapon.power, 0, 9999);
-
         return result;
     }
 }

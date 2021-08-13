@@ -299,7 +299,7 @@ describe('Verify that the verifier interface class', () => {
             };
             const verifier = new VerifierInterface(scenario, 'scenario');
 
-            expect(verifier.check()).toBe('weapon is not an objec');
+            expect(verifier.check()).toBe('weapon is not an object');
         });
 
         test('returns string when any attribute in action does not exist', () => {

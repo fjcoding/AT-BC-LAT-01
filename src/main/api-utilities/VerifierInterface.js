@@ -39,7 +39,7 @@ export class VerifierInterface {
                     obj.weapon.actor = obj.name;
                     result = this.weaponVerifier.check({actors: [obj]}, obj.weapon);
                 } else {
-                    result = 'weapon is not an objec';
+                    result = 'weapon is not an object';
                 }
             }
             return result;
@@ -57,7 +57,7 @@ export class VerifierInterface {
                                 actor.weapon.actor = actor.name;
                                 result = this.weaponVerifier.check(this.scenario, actor.weapon);
                             } else {
-                                result = 'weapon is not an objec';
+                                result = 'weapon is not an object';
                             }
                         }
                     }
