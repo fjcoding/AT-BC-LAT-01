@@ -1,12 +1,12 @@
 export class Output {
 
-    generateResults(parserActorsArray) {
+    generateResults(actorsArray) {
         var results = new Object();
-        for (var index = 0; index < parserActorsArray.length; index++) {
-            if (parserActorsArray[index].health > 0) {
-                results[parserActorsArray[index].name] = 'Alive';
+        for (var index = 0; index < actorsArray.length; index++) {
+            if (actorsArray[index].health > 0) {
+                results[actorsArray[index].name] = 'Alive';
             } else {
-                results[parserActorsArray[index].name] = 'Dead';
+                results[actorsArray[index].name] = 'Dead';
             }
         }
         return results;

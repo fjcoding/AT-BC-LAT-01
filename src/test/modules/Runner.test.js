@@ -2,16 +2,16 @@ import { Runner } from '../../main/modules/Runner';
 
 const mainTest = new Runner();
 
-test('Obtain the results as an object called results with Actor name and the status, enemies do not survive', () => {
+test('Obtain the results as an object called results with Actor name and the status, enemies do not survive, because they are just 1 space from the main actor, and the scenes are 2 or more', () => {
     var actorObjects = [
         {'health': 10,
             'name': 'Marco',
             'type': 'PF Squad Soldier',
             'weapon': {
                 'name': 'handgun',
-                'power': 1,
-                'xScope': 1,
-                'yScope': 1
+                'power': 2,
+                'xRange': 1,
+                'yRange': 1
             },
             'position': {
                 'xPos': 1,
@@ -23,8 +23,8 @@ test('Obtain the results as an object called results with Actor name and the sta
             'weapon': {
                 'name': 'shotgun',
                 'power': 5,
-                'xScope': 2,
-                'yScope': 2
+                'xRange': 2,
+                'yRange': 2
             },
             'position': {
                 'xPos': 2,
@@ -36,8 +36,8 @@ test('Obtain the results as an object called results with Actor name and the sta
             'weapon': {
                 'name': 'Rocket Launcher',
                 'power': 10,
-                'xScope': 10,
-                'yScope': 10
+                'xRange': 10,
+                'yRange': 10
             }, 'position': {
                 'xPos': 0,
                 'yPos': 15
@@ -46,10 +46,10 @@ test('Obtain the results as an object called results with Actor name and the sta
     var actionObjects = [
         {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'east', 'scenes': 2},
         {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'west', 'scenes': 2},
-        {'actor': 'RAS1', 'action': 'Shoot Weapon', 'target': 'north', 'scenes': 3},
-        {'actor': 'RAT1', 'action': 'Shoot Weapon', 'target': 'south', 'scenes': 11}];
+        {'actor': 'RAS1', 'action': 'Shoot Weapon', 'target': 'north', 'scenes': 2},
+        {'actor': 'RAT1', 'action': 'Shoot Weapon', 'target': 'south', 'scenes': 2}];
 
-    expect(mainTest.follow(actorObjects, actionObjects, 5)).toEqual(
+    expect(mainTest.follow(actorObjects, actionObjects, 2)).toEqual(
         {
             'Marco': 'Alive',
             'RAS1': 'Dead',
@@ -57,16 +57,17 @@ test('Obtain the results as an object called results with Actor name and the sta
         });
 });
 
-test('Obtain the results as an object called results with Actor name and the status, everyone survives', () => {
+test('Obtain the results as an object called results with Actor name and the status, everybody survives because the Runner has just 1 scene, and none action is executed', () => {
+    const mainTest1 = new Runner();
     var actorObjects = [
         {'health': 10,
             'name': 'Marco',
             'type': 'PF Squad Soldier',
             'weapon': {
                 'name': 'handgun',
-                'power': 1,
-                'xScope': 1,
-                'yScope': 1
+                'power': 2,
+                'xRange': 1,
+                'yRange': 1
             },
             'position': {
                 'xPos': 1,
@@ -78,8 +79,8 @@ test('Obtain the results as an object called results with Actor name and the sta
             'weapon': {
                 'name': 'shotgun',
                 'power': 5,
-                'xScope': 2,
-                'yScope': 2
+                'xRange': 2,
+                'yRange': 2
             },
             'position': {
                 'xPos': 2,
@@ -91,20 +92,20 @@ test('Obtain the results as an object called results with Actor name and the sta
             'weapon': {
                 'name': 'Rocket Launcher',
                 'power': 10,
-                'xScope': 10,
-                'yScope': 10
+                'xRange': 10,
+                'yRange': 10
             }, 'position': {
                 'xPos': 0,
-                'yPos': 10
+                'yPos': 15
             }}];
 
     var actionObjects = [
-        {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'east'},
-        {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'west'},
-        {'actor': 'RAS1', 'action': 'Shoot Weapon', 'target': 'north'},
-        {'actor': 'RAT1', 'action': 'Shoot Weapon', 'target': 'south'}];
+        {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'east', 'scenes': 2},
+        {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'west', 'scenes': 2},
+        {'actor': 'RAS1', 'action': 'Shoot Weapon', 'target': 'north', 'scenes': 2},
+        {'actor': 'RAT1', 'action': 'Shoot Weapon', 'target': 'south', 'scenes': 2}];
 
-    expect(mainTest.follow(actorObjects, actionObjects)).toEqual(
+    expect(mainTest1.follow(actorObjects, actionObjects, 1)).toEqual(
         {
             'Marco': 'Alive',
             'RAS1': 'Alive',
