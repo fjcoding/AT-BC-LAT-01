@@ -160,12 +160,17 @@ describe('Verify that WeaponAttributeVerifier', () => {
     });
 
     test('returns string when xScope is out of range (0, 100)', () => {
-        const weapon = {actor: 'Marco', name: 'shotgun', power: 10, xScope: 0, yScope: 5};
+        const weapon = {actor: 'Marco', name: 'shotgun', power: 10, xScope: 0, yScope: 1000};
         expect(verifier.check(scenario, weapon)).toBe('value out of range');
     });
 
     test('returns string when yScope is out of range (0, 100)', () => {
         const weapon = {actor: 'Marco', name: 'shotgun', power: 10, xScope: 10, yScope: -1};
+        expect(verifier.check(scenario, weapon)).toBe('value out of range');
+    });
+
+    test('returns true when yScope is in range (0, 100)', () => {
+        const weapon = {actor: 'Marco', name: 'shotgun', power: 0, xScope: 0, yScope: -1};
         expect(verifier.check(scenario, weapon)).toBe('value out of range');
     });
 });
