@@ -14,6 +14,20 @@ describe('Verify that ScenarioAttributeVerifier', () => {
         expect(verifier.actorVerifier).not.toBe(undefined);
         expect(verifier.actionVerifier).not.toBe(undefined);
     });
+
+    test('returns true when the scenario has actors, actions and scenes attribute', () => {
+        const scenario = {
+            actors: [{name: 'Marco', type: 'Soldier'}],
+            actions: [{actor: 'Marco', action: 'Shoot Weapon', target: 'west'}],
+            scenes: 5}
+        expect(verifier.check(scenario)).toBe(true);
+    });
+    test('returns string when any of actors, actions or scene attribute is not defined', () => {
+        const scenario = {
+            actors: [{name: 'Marco', type: 'Soldier'}],
+            actions: [{actor: 'Marco', action: 'Shoot Weapon', target: 'west'}]}
+        expect(verifier.check(scenario)).toBe('scenes does not exist');
+    });
 });
 
 describe('Verify that ActorsAttributeVerifier', () => {

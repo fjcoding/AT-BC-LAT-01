@@ -18,7 +18,9 @@ export class ScenarioAttributeVerifier {
         this.actionVerifier = actionVerifier;
     }
 
-    check() {}
+    check(scenario) {
+        return this.attributeVerifier.check(scenario, ['actors', 'actions', 'scenes']);
+    }
 }
 
 export class ActorAttributeVerifier extends ScenarioAttributeVerifier {
