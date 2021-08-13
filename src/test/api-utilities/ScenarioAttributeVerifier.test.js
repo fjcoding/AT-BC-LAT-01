@@ -2,7 +2,8 @@ import {
     ScenarioAttributeVerifier,
     ActorAttributeVerifier,
     ActionAttributeVerifier,
-    WeaponAttributeVerifier } from '../../main/api-utilities/ScenarioAttributeVerifier';
+    WeaponAttributeVerifier,
+    ScenesAttributeVerifier } from '../../main/api-utilities/ScenarioAttributeVerifier';
 
 
 describe('Verify that ScenarioAttributeVerifier', () => {
@@ -172,5 +173,31 @@ describe('Verify that WeaponAttributeVerifier', () => {
     test('returns true when yScope is in range (0, 100)', () => {
         const weapon = {actor: 'Marco', name: 'shotgun', power: 0, xScope: 0, yScope: -1};
         expect(verifier.check(scenario, weapon)).toBe('value out of range');
+    });
+});
+
+describe('Verify that ScenesAttributeVerifier', () => {
+    const verifier = new ScenesAttributeVerifier;
+
+    test('has attribute, value, actor, action attributes', () => {
+        expect(verifier.attributeVerifier).not.toBe(undefined);
+        expect(verifier.valueVerifier).not.toBe(undefined);
+        expect(verifier.actorVerifier).not.toBe(undefined);
+        expect(verifier.actionVerifier).not.toBe(undefined);
+    });
+
+    test('returns true when the scenes are defined and in the range', () => {
+        const scenes = 5;
+        expect(verifier.check(scenes)).toBe(true);
+    });
+
+    test('returns string when the scenes are not in the range', () => {
+        const scenes = 0;
+        expect(verifier.check(scenes)).toBe('value out of range');
+    });
+
+    test('returns string when the scenes are not defined', () => {
+        const scenes = undefined;
+        expect(verifier.check(scenes)).toBe('value out of range');
     });
 });

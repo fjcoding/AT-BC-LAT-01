@@ -54,3 +54,10 @@ export class WeaponAttributeVerifier extends ScenarioAttributeVerifier {
         return result;
     }
 }
+
+export class ScenesAttributeVerifier extends ScenarioAttributeVerifier {
+
+    check(scenes) {
+        return this.valueVerifier.check(scenes, 1, 9999);
+    }
+}
