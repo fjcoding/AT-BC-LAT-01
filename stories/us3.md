@@ -82,7 +82,7 @@ Since scenario has defined "scenes: 5", then the scenario will run with 5 scenes
 
 In this case, since we have only one action, scenes after scene 2 only runs the "scenes" remaining for the action executed, which is, shoot the handun
 
-Scene 3, bullet travels bulletXPos + xScope
+Scene 3, bullet travels bulletPos = bulletPos + 1
 
 ```
 [Marco]  .  >  .  .  [RAS1]
@@ -90,7 +90,7 @@ Scene 3, bullet travels bulletXPos + xScope
 
 NOTE: action.scenes=98
 
-Scene 4, bullet travels bulletXPos + xScope
+Scene 4, bullet travels bulletPos = bulletPos + 1
 
 ```
 [Marco]  .  .  >  .  [RAS1]
@@ -98,7 +98,7 @@ Scene 4, bullet travels bulletXPos + xScope
 
 NOTE: action.scenes=97
 
-Scene 5, bullet travels bulletXPos + xScope
+Scene 5, bullet travels bulletPos = bulletPos + 1
 
 ```
 [Marco]  .  .  .  >  [RAS1]
@@ -122,7 +122,7 @@ POST /scenario
             "name": "handgun",
             "power": 1,
             "xScope": 1,
-            "yScope": 1,
+            "yScope": 0,
         },
         "position": {
             "xPos": 0,
@@ -217,6 +217,13 @@ Response
     }
 }
 ```
+
+### Notes
+
+* Each scene moves a bullet by 1
+* xScope and yScope does not affect the movement, but defines the area that is affected by the bullet based on current's bullet position
+* Initial scene will set bullet's position same as Actor position
+* The bullet moves depending on the target. Example: "east", then xPos++, "west" is xPos--, "north" is yPos++ and "south" is yPos--
 
 ## Nice to have!
 This is an optional requirement. Add a graphical user interface (GUI) that shows the execution of an scenario showing each scene. For this user interface, 
