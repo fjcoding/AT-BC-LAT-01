@@ -44,10 +44,10 @@ test('Obtain the results as an object called results with Actor name and the sta
             }}];
 
     var actionObjects = [
-        {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'east', 'scenes': 2},
-        {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'west', 'scenes': 2},
-        {'actor': 'RAS1', 'action': 'Shoot Weapon', 'target': 'north', 'scenes': 2},
-        {'actor': 'RAT1', 'action': 'Shoot Weapon', 'target': 'south', 'scenes': 2}];
+        {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'east', 'scenes': 1},
+        {'actor': 'Marco', 'action': 'Shoot Weapon', 'target': 'west', 'scenes': 1},
+        {'actor': 'RAS1', 'action': 'Shoot Weapon', 'target': 'north', 'scenes': 1},
+        {'actor': 'RAT1', 'action': 'Shoot Weapon', 'target': 'south', 'scenes': 1}];
 
     expect(mainTest.follow(actorObjects, actionObjects, 2)).toEqual(
         {

@@ -29,7 +29,6 @@ export class Execution {
                                         actualActor);
                                 }
                             }
-                            actionsArray[actualAction].scenes--;
                         }
                         break;
                     case 'west':
@@ -45,7 +44,7 @@ export class Execution {
                                         actualActor);
                                 }
                             }
-                            actionsArray[actualAction].scenes--;
+
                         }
                         break;
                     case 'north':
@@ -62,7 +61,7 @@ export class Execution {
                                 }
                             }
 
-                            actionsArray[actualAction].scenes--;
+
                         }
                         break;
                     case 'south':
@@ -79,7 +78,7 @@ export class Execution {
                                 }
                             }
 
-                            actionsArray[actualAction].scenes--;
+
                         }
 
                         break;

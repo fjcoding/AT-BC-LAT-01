@@ -17,6 +17,7 @@ export class Validation {
                 }
                 bulletPos[actualAction]++;
             }
+            actionsArray[actualAction].scenes--;
         } else {
 
             for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
@@ -26,7 +27,9 @@ export class Validation {
                 }
             }
             bulletPos[actualAction]++;
+            actionsArray[actualAction].scenes--;
         }
+
         return (actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor);
     }
 
@@ -45,6 +48,7 @@ export class Validation {
                 }
                 bulletPos[actualAction]--;
             }
+            actionsArray[actualAction].scenes--;
         } else {
             for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
                 if (actorsArray[actorAffected].position.xPos == bulletPos[actualAction] &&
@@ -53,7 +57,9 @@ export class Validation {
                 }
             }
             bulletPos[actualAction]--;
+            actionsArray[actualAction].scenes--;
         }
+
         return (actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor);
     }
 
@@ -73,6 +79,7 @@ export class Validation {
                 }
                 bulletPos[actualAction]++;
             }
+            actionsArray[actualAction].scenes--;
         } else{
             for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
                 if (actorsArray[actorAffected].position.yPos == bulletPos[actualAction] &&
@@ -81,8 +88,8 @@ export class Validation {
                 }
             }
             bulletPos[actualAction]++;
+            actionsArray[actualAction].scenes--;
         }
-
         return (actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor);
     }
 
@@ -102,6 +109,7 @@ export class Validation {
                 }
                 bulletPos[actualAction]--;
             }
+            actionsArray[actualAction].scenes--;
         } else {
             for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
                 if (actorsArray[actorAffected].position.yPos == bulletPos[actualAction] &&
@@ -110,6 +118,7 @@ export class Validation {
                 }
             }
             bulletPos[actualAction]--;
+            actionsArray[actualAction].scenes--;
         }
         return (actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor);
     }
