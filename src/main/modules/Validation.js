@@ -1,66 +1,116 @@
 export class Validation {
 
-    East(parserActorsArray, parserActionsArray, actualAction, actualScene, bulletPos, bulletRange, actualActor){
-        if (actualScene == 0){ //first iteration bullet pos need to be iniatilized in actor pos
-            bulletPos[actualAction] = parserActorsArray[actualActor].position.xPos; // actualActionation related to Actor executor position
-            bulletRange[actualAction] = parserActorsArray[actualActor].weapon.xScope + parserActorsArray[actualActor].position.xPos;// actualActionation related to Weapon Scope
+    East(actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor){
+
+        if (actualScene == 0){ //first iteration bullet pos need to be iniatilized in actor position
+            bulletPos[actualAction] = actorsArray[actualActor].position.xPos;
+            bulletPos[actualAction]++;
+            return; //jump to next scene
         }
-        if (bulletPos[actualAction] <= bulletRange[actualAction]) { // Throug positions involved
-            for (let actorAffected = 0; actorAffected < parserActorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
-                if (parserActorsArray[actorAffected].position.xPos == bulletPos[actualAction] &&
-                    parserActorsArray[actorAffected].name !== parserActionsArray[actualAction].actionActor) { // Validation of deal damage
-                    parserActorsArray[actorAffected].health -= parserActorsArray[actualActor].weapon.power;
+        if (actorsArray[actualActor].weapon.xScope > 1) {
+            for (let advance = 0; advance < actorsArray[actualActor].weapon.xScope; advance++){
+                for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
+                    if (actorsArray[actorAffected].position.xPos == bulletPos[actualAction] &&
+                        actorsArray[actorAffected].name !== actionsArray[actualAction].actionActor) { // Validation of deal damage
+                        actorsArray[actorAffected].health -= actorsArray[actualActor].weapon.power;
+                    }
+                }
+                bulletPos[actualAction]++;
+            }
+        } else {
+
+            for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
+                if (actorsArray[actorAffected].position.xPos == bulletPos[actualAction] &&
+                    actorsArray[actorAffected].name !== actionsArray[actualAction].actionActor) { // Validation of deal damage
+                    actorsArray[actorAffected].health -= actorsArray[actualActor].weapon.power;
                 }
             }
+            bulletPos[actualAction]++;
         }
-        return (parserActorsArray, parserActionsArray, actualAction, actualScene, bulletPos, bulletRange, actualActor);
+        return (actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor);
     }
 
-    West(parserActorsArray, parserActionsArray, actualAction, actualScene, bulletPos, bulletRange, actualActor){
+    West(actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor){
         if (actualScene == 0){ //first iteration bullet pos need to be iniatilized in actor pos
-            bulletPos[actualAction] = parserActorsArray[actualActor].position.xPos; // actualActionation related to Actor executor position
-            bulletRange[actualAction] =  parserActorsArray[actualActor].position.xPos - parserActorsArray[actualActor].weapon.xScope;// actualActionation related to Weapon Scope
-        }
-        if (bulletPos[actualAction] >= bulletRange[actualAction]) { // Throug positions involved
-            for (let actorAffected = 0; actorAffected < parserActorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
-                if (parserActorsArray[actorAffected].position.xPos == bulletPos[actualAction] &&
-                    parserActorsArray[actorAffected].name !== parserActionsArray[actualAction].actionActor) { // Validation of deal damage
-                    parserActorsArray[actorAffected].health -= parserActorsArray[actualActor].weapon.power;
+            bulletPos[actualAction] = actorsArray[actualActor].position.xPos; // actualActionation related to Actor executor position
+            bulletPos[actualAction]--;
+            return; //jump to next scene
+        }if (actorsArray[actualActor].weapon.xScope > 1){
+            for (let advance = 0; advance < actorsArray[actualActor].weapon.xScope; advance++){
+                for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
+                    if (actorsArray[actorAffected].position.xPos == bulletPos[actualAction] &&
+                    actorsArray[actorAffected].name !== actionsArray[actualAction].actionActor) { // Validation of deal damage
+                        actorsArray[actorAffected].health -= actorsArray[actualActor].weapon.power;
+                    }
+                }
+                bulletPos[actualAction]--;
+            }
+        } else {
+            for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
+                if (actorsArray[actorAffected].position.xPos == bulletPos[actualAction] &&
+                actorsArray[actorAffected].name !== actionsArray[actualAction].actionActor) { // Validation of deal damage
+                    actorsArray[actorAffected].health -= actorsArray[actualActor].weapon.power;
                 }
             }
+            bulletPos[actualAction]--;
         }
-        return (parserActorsArray, parserActionsArray, actualAction, actualScene, bulletPos, bulletRange, actualActor);
+        return (actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor);
     }
 
-    North(parserActorsArray, parserActionsArray, actualAction, actualScene, bulletPos, bulletRange, actualActor){
+    North(actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor){
         if (actualScene == 0){ //first iteration bullet pos need to be iniatilized in actor pos
-            bulletPos[actualAction] = parserActorsArray[actualActor].position.yPos; // actualActionation related to Actor executor position
-            bulletRange[actualAction] = parserActorsArray[actualActor].weapon.yScope + parserActorsArray[actualActor].position.yPos;// actualActionation related to Weapon Scope
+            bulletPos[actualAction] = actorsArray[actualActor].position.yPos; // actualActionation related to Actor executor position
+            bulletPos[actualAction]++;
+            return; //jump to next scene
         }
-        if (bulletPos[actualAction] <= bulletRange[actualAction]) { // Throug positions involved
-            for (let actorAffected = 0; actorAffected < parserActorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
-                if (parserActorsArray[actorAffected].position.yPos == bulletPos[actualAction] &&
-                    parserActorsArray[actorAffected].name !== parserActionsArray[actualAction].actionActor) { // Validation of deal damage
-                    parserActorsArray[actorAffected].health -= parserActorsArray[actualActor].weapon.power;
+        if (actorsArray[actualActor].weapon.yScope > 1){
+            for (let advance = 0; advance < actorsArray[actualActor].weapon.yScope; advance++){
+                for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
+                    if (actorsArray[actorAffected].position.yPos == bulletPos[actualAction] &&
+                    actorsArray[actorAffected].name !== actionsArray[actualAction].actionActor) { // Validation of deal damage
+                        actorsArray[actorAffected].health -= actorsArray[actualActor].weapon.power;
+                    }
+                }
+                bulletPos[actualAction]++;
+            }
+        } else{
+            for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
+                if (actorsArray[actorAffected].position.yPos == bulletPos[actualAction] &&
+                    actorsArray[actorAffected].name !== actionsArray[actualAction].actionActor) { // Validation of deal damage
+                    actorsArray[actorAffected].health -= actorsArray[actualActor].weapon.power;
                 }
             }
+            bulletPos[actualAction]++;
         }
-        return (parserActorsArray, parserActionsArray, actualAction, actualScene, bulletPos, bulletRange, actualActor);
+
+        return (actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor);
     }
 
-    South(parserActorsArray, parserActionsArray, actualAction, actualScene, bulletPos, bulletRange, actualActor){
+    South(actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor){
         if (actualScene == 0){ //first iteration bullet pos need to be iniatilized in actor pos
-            bulletPos[actualAction] = parserActorsArray[actualActor].position.yPos; // actualActionation related to Actor executor position
-            bulletRange[actualAction] =  parserActorsArray[actualActor].position.yPos - parserActorsArray[actualActor].weapon.yScope;// actualActionation related to Weapon Scope
+            bulletPos[actualAction] = actorsArray[actualActor].position.yPos; // actualActionation related to Actor executor position
+            bulletPos[actualAction]--;
+            return; //jump to next scene
         }
-        if (bulletPos[actualAction] >= bulletRange[actualAction]) { // Throug positions involved
-            for (let actorAffected = 0; actorAffected < parserActorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
-                if (parserActorsArray[actorAffected].position.yPos == bulletPos[actualAction] &&
-                    parserActorsArray[actorAffected].name !== parserActionsArray[actualAction].actionActor) { // Validation of deal damage
-                    parserActorsArray[actorAffected].health -= parserActorsArray[actualActor].weapon.power;
+        if (actorsArray[actualActor].weapon.yScope > 1){
+            for (let advance = 0; advance < actorsArray[actualActor].weapon.yScope; advance++){
+                for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
+                    if (actorsArray[actorAffected].position.yPos == bulletPos[actualAction] &&
+                    actorsArray[actorAffected].name !== actionsArray[actualAction].actionActor) { // Validation of deal damage
+                        actorsArray[actorAffected].health -= actorsArray[actualActor].weapon.power;
+                    }
+                }
+                bulletPos[actualAction]--;
+            }
+        } else {
+            for (let actorAffected = 0; actorAffected < actorsArray.length; actorAffected++) { // verifiy Actors positions in positions involved
+                if (actorsArray[actorAffected].position.yPos == bulletPos[actualAction] &&
+                actorsArray[actorAffected].name !== actionsArray[actualAction].actionActor) { // Validation of deal damage
+                    actorsArray[actorAffected].health -= actorsArray[actualActor].weapon.power;
                 }
             }
+            bulletPos[actualAction]--;
         }
-        return (parserActorsArray, parserActionsArray, actualAction, actualScene, bulletPos, bulletRange, actualActor);
+        return (actorsArray, actionsArray, actualAction, actualScene, bulletPos, actualActor);
     }
 }

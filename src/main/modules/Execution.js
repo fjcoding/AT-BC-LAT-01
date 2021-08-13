@@ -3,90 +3,83 @@ import { Validation } from './Validation';
 var actualActor = 0;
 var validationExectute = new Validation;
 export class Execution {
-    constructor(parserActionsArray, parserActorsArray, scenes) {
-        this.parserActionsArray = parserActionsArray;
-        this.parserActorsArray = parserActorsArray;
+    constructor(actionsArray, actorsArray, scenes) {
+        this. actionsArray =  actionsArray;
+        this. actorsArray =  actorsArray;
         this.scenes = scenes;
     }
 
-    execute(parserActionsArray, parserActorsArray, scenes) {
+    execute(actionsArray, actorsArray, scenes) {
         let bulletPos = [];
-        let bulletRange = [];
         for (let actualScene = 0; actualScene < scenes; actualScene++){
-            for (var actualAction = 0; actualAction < (parserActionsArray.length); actualAction++) { // Through the actions lenght
-                switch (parserActionsArray[actualAction].actionType) {
+            for (var actualAction = 0; actualAction < (actionsArray.length); actualAction++) { // Through the actions lenght
+                switch (actionsArray[actualAction].actionType) {
                 case 'Shoot Weapon':
-                    switch (parserActionsArray[actualAction].target) {
+                    switch (actionsArray[actualAction].target) {
                     case 'east':
-                        if (parserActionsArray[actualAction].scenes > 0){
-                            for (actualActor = 0; actualActor < parserActorsArray.length; actualActor++) { // Throug all actors
-                                if (parserActorsArray[actualActor].name == parserActionsArray[actualAction].actionActor) { // Validate actor executor
+                        if (actionsArray[actualAction].scenes > 0){
+                            for (actualActor = 0; actualActor <  actorsArray.length; actualActor++) { // Throug all actors
+                                if (actorsArray[actualActor].name ==  actionsArray[actualAction].actionActor) { // Validate actor executor
                                     validationExectute.East(
-                                        parserActorsArray,
-                                        parserActionsArray,
+                                        actorsArray,
+                                        actionsArray,
                                         actualAction,
                                         actualScene,
                                         bulletPos,
-                                        bulletRange,
                                         actualActor);
                                 }
                             }
-                            bulletPos[actualAction]++;
-                            parserActionsArray[actualAction].scenes--;
+                            actionsArray[actualAction].scenes--;
                         }
                         break;
                     case 'west':
-                        if (parserActionsArray[actualAction].scenes > 0){
-                            for (actualActor = 0; actualActor < parserActorsArray.length; actualActor++) { // Throug all actors
-                                if (parserActorsArray[actualActor].name == parserActionsArray[actualAction].actionActor) { // Validate actor executor
+                        if (actionsArray[actualAction].scenes > 0){
+                            for (actualActor = 0; actualActor <  actorsArray.length; actualActor++) { // Throug all actors
+                                if (actorsArray[actualActor].name ==  actionsArray[actualAction].actionActor) { // Validate actor executor
                                     validationExectute.West(
-                                        parserActorsArray,
-                                        parserActionsArray,
+                                        actorsArray,
+                                        actionsArray,
                                         actualAction,
                                         actualScene,
                                         bulletPos,
-                                        bulletRange,
                                         actualActor);
                                 }
                             }
-                            bulletPos[actualAction]--;
-                            parserActionsArray[actualAction].scenes--;
+                            actionsArray[actualAction].scenes--;
                         }
                         break;
                     case 'north':
-                        if (parserActionsArray[actualAction].scenes > 0){
-                            for (actualActor = 0; actualActor < parserActorsArray.length; actualActor++) { // Throug all actors
-                                if (parserActorsArray[actualActor].name == parserActionsArray[actualAction].actionActor) { // Validate actor executor
+                        if (actionsArray[actualAction].scenes > 0){
+                            for (actualActor = 0; actualActor <  actorsArray.length; actualActor++) { // Throug all actors
+                                if (actorsArray[actualActor].name ==  actionsArray[actualAction].actionActor) { // Validate actor executor
                                     validationExectute.North(
-                                        parserActorsArray,
-                                        parserActionsArray,
+                                        actorsArray,
+                                        actionsArray,
                                         actualAction,
                                         actualScene,
                                         bulletPos,
-                                        bulletRange,
                                         actualActor);
                                 }
                             }
-                            bulletPos[actualAction]++;
-                            parserActionsArray[actualAction].scenes--;
+
+                            actionsArray[actualAction].scenes--;
                         }
                         break;
                     case 'south':
-                        if (parserActionsArray[actualAction].scenes > 0){
-                            for (actualActor = 0; actualActor < parserActorsArray.length; actualActor++) { // Throug all actors
-                                if (parserActorsArray[actualActor].name == parserActionsArray[actualAction].actionActor) { // Validate actor executor
+                        if (actionsArray[actualAction].scenes > 0){
+                            for (actualActor = 0; actualActor <  actorsArray.length; actualActor++) { // Throug all actors
+                                if (actorsArray[actualActor].name ==  actionsArray[actualAction].actionActor) { // Validate actor executor
                                     validationExectute.South(
-                                        parserActorsArray,
-                                        parserActionsArray,
+                                        actorsArray,
+                                        actionsArray,
                                         actualAction,
                                         actualScene,
                                         bulletPos,
-                                        bulletRange,
                                         actualActor);
                                 }
                             }
-                            bulletPos[actualAction]--;
-                            parserActionsArray[actualAction].scenes--;
+
+                            actionsArray[actualAction].scenes--;
                         }
 
                         break;
@@ -97,6 +90,6 @@ export class Execution {
                 }
             }
         }
-        return parserActorsArray;
+        return  actorsArray;
     }
 }

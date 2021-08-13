@@ -1,16 +1,16 @@
 import { Execution } from '../../main/modules/Execution.js';
 
-var parserActionssArray = [
-    {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'target': 'east', 'scenes': 2},
-    {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'target': 'west', 'scenes': 2},
-    {'actionActor': 'RAS1', 'actionType': 'Shoot Weapon', 'target': 'north', 'scenes': 3},
+var actionsArray = [
+    {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'target': 'east', 'scenes': 4},
+    {'actionActor': 'Marco', 'actionType': 'Shoot Weapon', 'target': 'west', 'scenes': 5},
+    {'actionActor': 'RAS1', 'actionType': 'Shoot Weapon', 'target': 'north', 'scenes': 2},
     {'actionActor': 'RAT1', 'actionType': 'Shoot Weapon', 'target': 'south', 'scenes': 11},
-    {'actionActor': 'RAT1', 'actionType': 'Shoot Weapon', 'target': 'east', 'scenes': 10},
-    {'actionActor': 'RAT1', 'actionType': 'Shoot Weapon', 'target': 'west', 'scenes': 10},
+    {'actionActor': 'RAS1', 'actionType': 'Shoot Weapon', 'target': 'east', 'scenes': 5},
+    {'actionActor': 'RAT1', 'actionType': 'Shoot Weapon', 'target': 'west', 'scenes': 5},
     {}
 ];
 
-var parserActorssArray = [
+var actorsArray = [
     {'health': 10,
         'name': 'Marco',
         'type': 'PF Squad Soldier',
@@ -46,13 +46,13 @@ var parserActorssArray = [
             'xScope': 10,
             'yScope': 10
         }, 'position': {
-            'xPos': 0,
+            'xPos': 10,
             'yPos': 15
         }}];
 
 const testExecution = new Execution ();
-test('The execution of scenario need to return the actual status of the actors instances after actions being executed', () => {
-    expect(testExecution.execute(parserActionssArray, parserActorssArray, 18)).toEqual([
+test('The execution of scenario need to return the actual status of the actors instances after actions being executed, all actions are executed after 5 scene, using a minor value in Execution scenes attributes will return an unexpected value in health for RAT1', () => {
+    expect(testExecution.execute(actionsArray, actorsArray, 5)).toEqual([
         {'health': -10,
             'name': 'Marco',
             'type': 'PF Squad Soldier',
@@ -78,7 +78,7 @@ test('The execution of scenario need to return the actual status of the actors i
                 'xPos': 2,
                 'yPos': 13
             }},
-        {'health': 0,
+        {'health': -4,
             'name': 'RAT1',
             'type': 'Rebel Army Tank',
             'weapon': {
@@ -87,7 +87,7 @@ test('The execution of scenario need to return the actual status of the actors i
                 'xScope': 10,
                 'yScope': 10
             }, 'position': {
-                'xPos': 0,
+                'xPos': 10,
                 'yPos': 15
             }
         }]);

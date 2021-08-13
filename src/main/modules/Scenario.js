@@ -2,8 +2,8 @@ import { Actor } from './Actor.js';
 import { IndividualActions } from './IndividualActions.js';
 import { InteractiveActions } from './InteractiveActions.js';
 
-var parserActorsArray = [];
-var parserActionsArray = [];
+var actorsArray = [];
+var actionsArray = [];
 
 export class Scenario {
     constructor(scenes){
@@ -17,7 +17,7 @@ export class Scenario {
 
     createActor(actorObjects) {
         for (var index = 0; index < (actorObjects.length);) {
-            parserActorsArray[index] = new Actor(
+            actorsArray[index] = new Actor(
                 actorObjects[index].name,
                 actorObjects[index].type,
                 actorObjects[index].weapon,
@@ -25,26 +25,26 @@ export class Scenario {
                 actorObjects[index].position);
             index++;
         }
-        return parserActorsArray;
+        return actorsArray;
     }
 
     createActions(actionObjects) {
         for (var index = 0; index < (Object.keys(actionObjects).length);) {
             if (actionObjects[index].target !== undefined) {
-                parserActionsArray[index] = new InteractiveActions(
+                actionsArray[index] = new InteractiveActions(
                     actionObjects[index].actor,
                     actionObjects[index].action,
                     actionObjects[index].target,
                     actionObjects[index].scenes);
             }
             if (actionObjects[index].element !== undefined) {
-                parserActionsArray[index] = new IndividualActions(
+                actionsArray[index] = new IndividualActions(
                     actionObjects[index].actor,
                     actionObjects[index].action,
                     actionObjects[index].element);
             }
             index++;
         }
-        return parserActionsArray;
+        return actionsArray;
     }
 }
