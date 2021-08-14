@@ -2,7 +2,8 @@ import {
     AttributesVerifier,
     PropertyVerifier,
     ActorVerifier,
-    ActionVerifier
+    ActionVerifier,
+    ValueVerifier
 } from './../../main/api-utilities/PropertyVerifier';
 
 describe('Verify that PropertyVerifier class', () => {
@@ -63,5 +64,15 @@ describe('Verify that ActionVerifier', () => {
     test('returns string when the target attribute is defined in a unavailable direction', () => {
         const action = {actor: 'Marco', action: 'shot Weapon', target: 'front'};
         expect(ActionVerifier.check(action)).toBe('target defined in an unavailable direction');
+    });
+});
+
+describe('Verifiy that ValueVerifier', () => {
+    test('returns true when the inserted value is in the defined range', () => {
+        expect(ValueVerifier.check(2, 0, 100)).toBe(true);
+    });
+
+    test('returns string when the inserted value is not in the defined range', () => {
+        expect(ValueVerifier.check(0, 1, 100)).toBe('value out of range');
     });
 });

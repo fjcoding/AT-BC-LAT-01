@@ -1,14 +1,23 @@
 import {
-    AttributesVerifier,
-    ActorVerifier,
-    ActionVerifier
-} from './../../main/api-utilities/PropertyVerifier';
+    ScenarioAttributeVerifier,
+    ActionAttributeVerifier,
+    ActorAttributeVerifier,
+    ScenesAttributeVerifier,
+    WeaponAttributeVerifier
+} from './ScenarioAttributeVerifier';
 
 export class VerifierInterface {
     constructor(scenario, type) {
         if (scenario && type) {
             this.scenario = scenario;
             this.type = type;
+
+            this.scenarioVerifier = new ScenarioAttributeVerifier;
+            this.actorVerifier = new ActorAttributeVerifier;
+            this.actionVerifier = new ActionAttributeVerifier;
+            this.scenesVerifier = new ScenesAttributeVerifier;
+            this.weaponVerifier = new WeaponAttributeVerifier;
+
         } else {
             throw new Error('Scenario and Type must be defined');
         }
@@ -18,43 +27,49 @@ export class VerifierInterface {
         var result = true;
         switch (this.type) {
         case 'weapon':
-            result = AttributesVerifier.check(obj, ['actor', 'name', 'power', 'xScope', 'yScope']);
-            if (result == true) result = AttributesVerifier.check(this.scenario, 'actors');
-            if (result == true) result = ActorVerifier.check(this.scenario, obj.actor);
-
-            return result;
+            return this.weaponVerifier.check(this.scenario, obj);
 
         case 'action':
-            result = AttributesVerifier.check(obj, ['actor', 'action', 'scenes']);
-            if (result == true) result = ActionVerifier.check(obj);
-            if (result == true) result = ActorVerifier.check(this.scenario, obj.actor);
-
-            return result;
+            return this.actionVerifier.check(this.scenario, obj);
 
         case 'actor':
-            return AttributesVerifier.check(obj, ['health', 'name', 'weapon', 'type', 'position']);
+            result = this.actorVerifier.check(obj);
+            if (result == true) {
+                if (typeof obj.weapon === 'object') {
+                    obj.weapon.actor = obj.name;
+                    result = this.weaponVerifier.check({actors: [obj]}, obj.weapon);
+                } else {
+                    result = 'weapon is not an object';
+                }
+            }
+            return result;
 
         case 'scenario':
-            result = AttributesVerifier.check(this.scenario, ['actors', 'actions', 'scenes']);
+            result = this.scenarioVerifier.check(this.scenario);
+            if (result == true) result = this.scenesVerifier.check(this.scenario.scenes);
 
             if (result == true) {
                 this.scenario.actors.forEach(actor => {
                     if (result == true) {
-                        result = AttributesVerifier.check(actor, ['health', 'name', 'weapon', 'type', 'position']);
-                        if (result == true) result = AttributesVerifier.check(actor.weapon, ['power', 'xScope', 'yScope']);
+                        result = this.actorVerifier.check(actor);
+                        if (result == true) {
+                            if (typeof actor.weapon === 'object') {
+                                actor.weapon.actor = actor.name;
+                                result = this.weaponVerifier.check(this.scenario, actor.weapon);
+                            } else {
+                                result = 'weapon is not an object';
+                            }
+                        }
                     }
                 });
             }
 
             if (result == true) {
                 this.scenario.actions.forEach(action => {
-                    if (result == true) {
-                        result = AttributesVerifier.check(action, ['actor', 'action']);
-                        if (result == true) result = ActionVerifier.check(action);
-                        if (result == true) result = ActorVerifier.check(this.scenario, action.actor);
-                    }
+                    if (result == true) result = this.actionVerifier.check(this.scenario, action);
                 });
             }
+
             return result;
 
         default:

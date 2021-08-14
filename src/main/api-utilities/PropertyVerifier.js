@@ -24,7 +24,7 @@ export class AttributesVerifier extends PropertyVerifier {
     }
 
     static isUndefined(Obj, attribute) {
-        if (Obj[attribute]) {
+        if (Obj[attribute] != undefined) {
             return true;
         }
 
@@ -71,5 +71,13 @@ export class ActionVerifier extends PropertyVerifier {
             return 'Element, from or target not defined in action';
         }
         return result;
+    }
+}
+
+export class ValueVerifier extends PropertyVerifier {
+
+    static check(value, lowerBoundary, upperBoundary) {
+        if (value >= lowerBoundary && value <= upperBoundary) return true;
+        return 'value out of range';
     }
 }
