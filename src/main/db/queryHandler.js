@@ -1,17 +1,17 @@
-import { Add } from './add.js';
-import { Get } from './get.js';
-import { Set } from './set.js';
+import { AddCall } from './add.js';
+import { GetCall } from './get.js';
+import { SetCall } from './set.js';
 
 export class QueryHandler {
     static add(data) {
-        return Add.add(data);
+        return AddCall.add(data);
     }
 
     static get(docId) {
-        return Get.get(docId);
+        return GetCall.get(docId);
     }
 
     static set(docId, newData) {
-        return Set.set(docId, newData);
+        return SetCall.set(docId, newData);
     }
 }
