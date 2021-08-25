@@ -1,6 +1,6 @@
-import { Execution } from './Execution';
-import { Output } from './Output';
-import { Scenario } from './Scenario';
+import { Execution } from './Execution.js';
+import { Output } from './Output.js';
+import { Scenario } from './Scenario.js';
 
 export class Runner {
     follow(actorsArray, actionsArray, scenes) {

@@ -1,4 +1,4 @@
-import { Validation } from './Validation';
+import { Validation } from './Validation.js';
 
 var actualActor = 0;
 var validationExectute = new Validation;
