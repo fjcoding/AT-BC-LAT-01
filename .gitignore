@@ -105,3 +105,6 @@ dist
 
 #vscode settings
 .vscode/
+
+# key files
+keys/
