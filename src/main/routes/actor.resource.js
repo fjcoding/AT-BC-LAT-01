@@ -1,6 +1,6 @@
 import express from 'express';
-import { VerifierInterface } from '../api-utilities/VerifierInterface';
-import { ScenarioHandler } from '../api-utilities/ScenarioHandler';
+import { VerifierInterface } from '../api-utilities/VerifierInterface.js';
+import { ScenarioHandler } from '../api-utilities/ScenarioHandler.js';
 const router = express.Router();
 
 export default function (QueryHandler) {
