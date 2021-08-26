@@ -1,8 +1,8 @@
 FROM alpine:latest
-WORKDIR /usr/src/app
 COPY ./package.json .
 RUN apk add --update nodejs npm
 RUN npm install
-COPY . .
+COPY ./src ./app
 EXPOSE 3000
-CMD [ "node", "app/src/main/server.js" ]
+ENTRYPOINT [ "node" ]
+CMD [ "--experimental-json-modules", "app/main/server.js" ]
