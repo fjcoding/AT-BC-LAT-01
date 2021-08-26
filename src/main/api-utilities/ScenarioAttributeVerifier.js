@@ -3,7 +3,7 @@ import {
     ValueVerifier,
     ActorVerifier,
     ActionVerifier
-} from './../../main/api-utilities/PropertyVerifier';
+} from './../../main/api-utilities/PropertyVerifier.js';
 
 export class ScenarioAttributeVerifier {
     constructor(

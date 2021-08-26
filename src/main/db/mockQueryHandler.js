@@ -1,4 +1,4 @@
-import { testScenarioData, testScenarioID } from '../../test/db/dbTestConstants';
+import { testScenarioData, testScenarioID } from '../../test/db/dbTestConstants.js';
 
 
 export class mockQueryHandler { //a custom mock of the QueryHandler class

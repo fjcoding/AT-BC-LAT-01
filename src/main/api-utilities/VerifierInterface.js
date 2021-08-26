@@ -4,7 +4,7 @@ import {
     ActorAttributeVerifier,
     ScenesAttributeVerifier,
     WeaponAttributeVerifier
-} from './ScenarioAttributeVerifier';
+} from './ScenarioAttributeVerifier.js';
 
 export class VerifierInterface {
     constructor(scenario, type) {
