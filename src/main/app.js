@@ -1,8 +1,8 @@
 import express, { json, urlencoded } from 'express';
-import resourceScenario from './routes/scenario.resource';
-import resourceActor from './routes/actor.resource';
-import resourceAction from './routes/action.resource';
-import resourceWeapon from './routes/weapon.resource';
+import resourceScenario from './routes/scenario.resource.js';
+import resourceActor from './routes/actor.resource.js';
+import resourceAction from './routes/action.resource.js';
+import resourceWeapon from './routes/weapon.resource.js';
 
 export default function(QueryHandler) {
     const routerScenario = resourceScenario(QueryHandler);

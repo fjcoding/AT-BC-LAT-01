@@ -1,7 +1,7 @@
 import express from 'express';
-import { VerifierInterface } from '../api-utilities/VerifierInterface';
-import { ScenarioHandler } from './../api-utilities/ScenarioHandler';
-import { Runner } from '../modules/Runner';
+import { VerifierInterface } from '../api-utilities/VerifierInterface.js';
+import { ScenarioHandler } from './../api-utilities/ScenarioHandler.js';
+import { Runner } from '../modules/Runner.js';
 
 const router = express.Router();
 

@@ -1,4 +1,4 @@
-import { CollectionCall } from './collectionCall';
+import { CollectionCall } from './collectionCall.js';
 
 export class GetCall extends CollectionCall{
     static async get(docId) {
