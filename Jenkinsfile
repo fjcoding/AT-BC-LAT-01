@@ -35,6 +35,7 @@ pipeline {
             post {
                 always {
                     script {
+                        sh "sudo docker push $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
                         sh "sudo docker rmi -f $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
                         sh "sudo docker logout"
                     }
