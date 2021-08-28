@@ -25,18 +25,18 @@ pipeline {
         }
         stage('build Image') {
             steps {
-                sh "docker build -t $DOCKER_IMAGE_NAME:$BUILD_NUMBER ."
+                sh "sudo docker build -t $DOCKER_IMAGE_NAME:$BUILD_NUMBER ."
             }
         }
         stage('push Image') {
             steps {
-                sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
+                sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
             }
             post {
                 always {
                     script {
-                        sh "docker rmi -f $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
-                        sh "docker logout"
+                        sh "sudo docker rmi -f $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                        sh "sudo docker logout"
                     }
                 }
             }
