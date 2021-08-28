@@ -13,9 +13,14 @@ pipeline {
                 sh "npm install"
             }
         }
-        stage('execute unit tests') {
+        stage('run unit tests') {
             steps {
                 sh "npm test"
+            }
+        }
+        stage('run lint validation') {
+            steps {
+                sh "npm run lint"
             }
         }
         stage('build Image') {
