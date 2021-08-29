@@ -1,10 +1,10 @@
 pipeline {
     agent {label 'linux'}
-    parameters {
+    /*parameters {
         string(name: 'image-name', defaultValue: 'msmapp')
 
         string(name: 'target-image', defaultValue: 'samsta/practice_jenkins')
-    }
+    }*/
     tools {
         nodejs 'NodeJS 14.17.5'
     }
@@ -17,7 +17,7 @@ pipeline {
 
         stage('build app image') {
             steps {
-                sh "sudo docker build -t ${params.image-name}:$BUILD_NUMBER ."
+                sh "sudo docker build -t msmapp:1 ."
             }
         }
 
@@ -32,19 +32,19 @@ pipeline {
 
         stage('tag image') {
             steps {
-                sh "sudo docker tag ${params.image-name}:$BUILD_NUMBER ${params.target-image}:${params.image-name}$BUILD_NUMBER"
+                sh "sudo docker tag msmapp:1 samsta/practice_jenkins:msmapp1"
             }
         }
 
         stage('push image') {
             steps {
-                sh "sudo docker push ${params.target-image}:${params.image-name}$BUILD_NUMBER"
+                sh "sudo docker push samsta/practice_jenkins:msmapp1"
             }
             post {
                 always {
                     script {
-                        sh "sudo docker rmi -f ${params.target-image}:${params.image-name}$BUILD_NUMBER"
-                        sh "sudo docker rmi -f ${params.image-name}:$BUILD_NUMBER"
+                        sh "sudo docker rmi -f samsta/practice_jenkins:msmapp1"
+                        sh "sudo docker rmi -f msmapp:1"
                         sh "sudo docker logout"
                     }
                 }
