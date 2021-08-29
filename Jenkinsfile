@@ -17,7 +17,6 @@ pipeline {
 
         stage('build app image') {
             steps {
-                sh "docker --version"
                 sh "sudo docker build -t ${params.image-name}:$BUILD_NUMBER ."
             }
         }
