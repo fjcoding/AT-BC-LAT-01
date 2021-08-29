@@ -17,7 +17,7 @@ pipeline {
 
         stage('build app image') {
             steps {
-                sh "sudo docker build -t msmapp:1 ."
+                sh "sudo docker build -t msmapp:$BUILD_NUMBER ."
             }
         }
 
@@ -32,19 +32,19 @@ pipeline {
 
         stage('tag image') {
             steps {
-                sh "sudo docker tag msmapp:1 samsta/practice_jenkins:msmapp1"
+                sh "sudo docker tag msmapp:$BUILD_NUMBER samsta/practice_jenkins:msmapp$BUILD_NUMBER"
             }
         }
 
         stage('push image') {
             steps {
-                sh "sudo docker push samsta/practice_jenkins:msmapp1"
+                sh "sudo docker push samsta/practice_jenkins:msmapp$BUILD_NUMBER"
             }
             post {
                 always {
                     script {
-                        sh "sudo docker rmi -f samsta/practice_jenkins:msmapp1"
-                        sh "sudo docker rmi -f msmapp:1"
+                        sh "sudo docker rmi -f samsta/practice_jenkins:msmapp$BUILD_NUMBER"
+                        sh "sudo docker rmi -f msmapp:$BUILD_NUMBER"
                         sh "sudo docker logout"
                     }
                 }
