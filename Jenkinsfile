@@ -1,5 +1,5 @@
 pipeline {
-    agent {label 'linux' }
+    agent {label 'LinuxK' }
     tools {
         nodejs 'NodeJS version 16.8.0'
     }
