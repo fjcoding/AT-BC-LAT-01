@@ -1,11 +1,11 @@
 pipeline {
-    agent {label 'LinuxK' }
+    agent {label 'LinuxAgent_JP' }
     tools {
-        nodejs 'NodeJS version 16.8.0'
+        nodejs 'NodeJs 16.8.0'
     }
     environment {
         DOCKER_HUB_CREDENTIALS = credentials("dockerhub")
-        DOCKER_IMAGE_NAME = "zkpain/msm-rest_api:$BUILD_NUMBER"
+        DOCKER_IMAGE_NAME = "jeanpeare/msmaker:$BUILD_NUMBER"
     }
     stages {
         stage('Install') {
