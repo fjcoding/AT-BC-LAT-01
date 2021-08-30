@@ -1,7 +1,7 @@
 pipeline {
     agent {label 'linux' }
     tools {
-        nodejs 'NodeJs 16.8.0'
+        nodejs 'NodeJS version 16.8.0'
     }
     environment {
         DOCKER_HUB_CREDENTIALS = credentials("dockerhub")
