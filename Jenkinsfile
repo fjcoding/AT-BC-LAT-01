@@ -21,9 +21,6 @@ pipeline {
         }
 
         stage('docker-hub login') {
-            when {
-                branch: "main"
-            }
             environment {
                 DOCKERHUB_CREDS = credentials('Dockerhub-login')
             }
@@ -33,18 +30,12 @@ pipeline {
         }
 
         stage('tag image') {
-            when {
-                branch: "main"
-            }
             steps {
                 sh "sudo docker tag $IMAGE_NAME:$BUILD_NUMBER $TARGET_IMAGE:$IMAGE_NAME$BUILD_NUMBER"
             }
         }
 
         stage('push image') {
-            when {
-                branch: "main"
-            }
             steps {
                 sh "sudo docker push $TARGET_IMAGE:$IMAGE_NAME$BUILD_NUMBER"
             }
