@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         DOCKER_HUB_CREDENTIALS = credentials("dockerhub")
-        DOCKER_IMAGE_NAME = "'$DOCKER_HUB_CREDENTIALS_USR'/metal-slug-maker"
+        DOCKER_IMAGE_NAME = "daniel33gomez/metal-slug-maker"
     }
     stages {
         stage('install packages') {
@@ -25,7 +25,7 @@ pipeline {
         }
         stage('build Image') {
             steps {
-                sh "sudo docker build -t $DOCKER_IMAGE_NAME:$BUILD_NUMBER ."
+                sh "sudo docker build -t '$DOCKER_HUB_CREDENTIALS_USR'/metal-slug-maker:$BUILD_NUMBER ."
             }
         }
         stage('push Image') {
