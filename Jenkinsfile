@@ -21,8 +21,11 @@ pipeline {
         }
 
         stage('docker-hub login') {
+            environment {
+                DOCKERHUB_CREDS = credentials('Dockerhub-login')
+            }
             steps {
-                sh "cat /home/vagrant/stack/dockerpsw.txt | sudo docker login -u samsta --password-stdin"
+                sh "sudo docker login -u $DOCKERHUB_CREDS_USR -p $DOCKERHUB_CREDS_PSW"
             }
         }
 
