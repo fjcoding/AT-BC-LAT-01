@@ -1,11 +1,11 @@
 pipeline {
-    agent {label 'linux' }
+    agent {label 'LinuxK' }
     tools {
-        nodejs 'Node'
+        nodejs 'NodeJS version 16.8.0'
     }
     environment {
         DOCKER_HUB_CREDENTIALS = credentials("dockerhub")
-        DOCKER_IMAGE_NAME = "itcr00w/msmim_git:$BUILD_NUMBER"
+        DOCKER_IMAGE_NAME = "zkpain/msm-rest_api:$BUILD_NUMBER"
     }
     stages {
         stage('Install') {
