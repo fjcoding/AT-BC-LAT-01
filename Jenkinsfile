@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         DOCKER_HUB_CREDENTIALS = credentials("dockerhub")
-        DOCKER_IMAGE_NAME = "daniel33gomez/metal-slug-maker"
+        DOCKER_IMAGE_NAME = "'$DOCKER_HUB_CREDENTIALS_USR'/metal-slug-maker"
     }
     stages {
         stage('install packages') {
