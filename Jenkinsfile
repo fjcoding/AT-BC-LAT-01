@@ -24,11 +24,13 @@ pipeline {
             }
         }
         stage('build Image') {
+            when { branch 'main'}
             steps {
                 sh "sudo docker build -t $DOCKER_IMAGE_NAME:$BUILD_NUMBER ."
             }
         }
         stage('push Image') {
+            when { branch 'main'}
             steps {
                 sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
             }
