@@ -42,10 +42,10 @@ pipeline {
                 }
             }
         }
-        stage('SonarQube analysis') {
-            steps {
-                withSonarQubeEnv('SonarQube'){
-                    sh "./gradlew sonarqube"
+        stage("build & SonarQube analysis") {
+            node {
+                withSonarQubeEnv('My SonarQube Server') {
+                   sh 'mvn clean package sonar:sonar'
                 }
             }
         }
