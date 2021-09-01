@@ -62,7 +62,7 @@ pipeline {
             // when { branch 'main'}
             steps {
                 // sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
-                sh "echo '$NEXUS_CREDENTIALS_PSW' | sudo docker login -u $NEXUS_CREDENTIALS_USR --password-stdin NEXUS_URL"
+                sh "echo '$NEXUS_CREDENTIALS_PSW' | sudo docker login -u $NEXUS_CREDENTIALS_USR --password-stdin $NEXUS_URL"
                 sh "sudo docker push $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
             }
             post {
