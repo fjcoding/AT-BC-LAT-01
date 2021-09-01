@@ -6,6 +6,7 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS = credentials("dockerhub")
         DOCKER_IMAGE_NAME = "$DOCKER_HUB_CREDENTIALS_USR/metal-slug-maker"
+        PROJECT_NAME = "metal-slug-maker"
     }
     stages {
         stage('install packages') {
@@ -21,6 +22,19 @@ pipeline {
         stage('run lint validation') {
             steps {
                 sh "npm run lint"
+            }
+        }
+        stage('Static Code Analysis') {
+            steps {
+                script {
+                    def scannerHome = tool 'sonarscanner4.6.2'
+                    def scannerParameters = "-Dsonar.projectName=$PROJECT_NAME " +
+                        "-Dsonar.projectKey=$PROJECT_NAME -Dsonar.sources=. " +
+                        "-Dsonar.javascript.lcov.reportPaths=coverage/lcov.info"
+                    withSonarQubeEnv('sonarqube-automation') {
+                        sh "${scannerHome}/bin/sonar-scanner ${scannerParameters}"
+                    }
+                }
             }
         }
         stage('build Image') {
