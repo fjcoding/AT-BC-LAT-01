@@ -17,13 +17,9 @@ pipeline {
                 sh "npm install"
             }
         }
-        stage('run unit tests') {
+        stage('run unit tests adn lint validation') {
             steps {
                 sh "npm test"
-            }
-        }
-        stage('run lint validation') {
-            steps {
                 sh "npm run lint"
             }
         }
@@ -61,7 +57,7 @@ pipeline {
                 }
             }
         }
-        stage('push Image') {
+        stage('push image to private repo') {
             when { branch 'main'}
             steps {
                 sh "echo '$NEXUS_CREDENTIALS_PSW' | sudo docker login -u $NEXUS_CREDENTIALS_USR --password-stdin $NEXUS_URL"
@@ -76,9 +72,9 @@ pipeline {
                 }
             }
         }
-        // end continuous integration
+        // ends continuous integration
 
-        // start continuous deployment
+        // starts continuous delivery
         stage ('deploy to staging') {
             // when { branch 'main' }
             steps {
@@ -89,19 +85,25 @@ pipeline {
         }
         stage ('run user acceptance tests') {
             // when { branch 'main'}
+            environment {
+                API_URL = "10.0.2.15:3000"
+            }
             steps {
-                sh "echo 'acteptance tests pending'"
+                sh """
+                sudo docker ps
+                curl -X PUT -H "Content-Type: application/json" -d '{}' http://$API_URL/scenario | grep 200
+                """
             }
         }
         stage ('tag production image') {
-            // when { branch 'main' }
+            when { branch 'main' }
             steps {
                 sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
                 sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
             }
         }
-        stage('Deliver Image for Production') {
-            // when { branch 'main' }
+        stage('push image to production') {
+            when { branch 'main' }
             steps {
                 sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                 sh "sudo docker push $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
