@@ -51,7 +51,6 @@ pipeline {
             post { 
                 failure{
                     script {
-                        sh "docker tag $PROJECT_NAME:$BUILD_NUMBER $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
                         sh "docker rmi \$(docker images --filter dangling=true -q)"
                     }
                 }
@@ -60,8 +59,11 @@ pipeline {
         stage('push image to private repo') {
             // when { branch 'main'}
             steps {
-                sh "echo '$NEXUS_CREDENTIALS_PSW' | sudo docker login -u $NEXUS_CREDENTIALS_USR --password-stdin $NEXUS_URL"
-                sh "sudo docker push $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
+                sh """
+                sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $PRIVATE_IMAGE_NAME:$BUILD_NUMBER
+                echo '$NEXUS_CREDENTIALS_PSW' | sudo docker login -u $NEXUS_CREDENTIALS_USR --password-stdin $NEXUS_URL
+                sudo docker push $PRIVATE_IMAGE_NAME:$BUILD_NUMBER
+                """
             }
             post {
                 always {
