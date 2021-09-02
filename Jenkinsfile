@@ -43,7 +43,7 @@ pipeline {
                 }
             }
         }
-        stage('build Image') {
+        stage('build image') {
             // when { branch 'main'}
             steps {
                 sh "sudo docker build -t $PROJECT_NAME:$BUILD_NUMBER ."
@@ -58,7 +58,7 @@ pipeline {
             }
         }
         stage('push image to private repo') {
-            when { branch 'main'}
+            // when { branch 'main'}
             steps {
                 sh "echo '$NEXUS_CREDENTIALS_PSW' | sudo docker login -u $NEXUS_CREDENTIALS_USR --password-stdin $NEXUS_URL"
                 sh "sudo docker push $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
@@ -99,14 +99,14 @@ pipeline {
             }
         }
         stage ('tag production image') {
-            when { branch 'main' }
+            // when { branch 'main' }
             steps {
                 sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
                 sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
             }
         }
         stage('push image to production') {
-            when { branch 'main' }
+            // when { branch 'main' }
             steps {
                 sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                 sh "sudo docker push $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
