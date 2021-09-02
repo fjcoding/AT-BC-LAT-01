@@ -7,8 +7,8 @@ pipeline {
         NEXUS_URL = "10.0.2.15:8082"
         NEXUS_CREDENTIALS = credentials("nexus")
         DOCKER_HUB_CREDENTIALS = credentials("dockerhub")
-        DOCKER_IMAGE_NAME = "$DOCKER_HUB_CREDENTIALS_USR/metal-slug-maker"
         PROJECT_NAME = "metal-slug-maker"
+        DOCKER_IMAGE_NAME = "$DOCKER_HUB_CREDENTIALS_USR/$PROJECT_NAME"
         PRIVATE_IMAGE_NAME = "$NEXUS_URL/$PROJECT_NAME"
     }
     stages {
@@ -40,7 +40,7 @@ pipeline {
                 }
             }
         }
-        stage('quality gate') {
+        stage ('quality gate') {
             steps {
                 timeout(time: 1, unit: 'HOURS') {
                     waitForQualityGate abortPipeline: true
@@ -48,7 +48,7 @@ pipeline {
             }
         }
         stage('build Image') {
-            when { branch 'main'}
+            // when { branch 'main'}
             steps {
                 sh "sudo docker build -t $PRIVATE_IMAGE_NAME:$BUILD_NUMBER ."
             }
@@ -71,6 +71,46 @@ pipeline {
                     script {
                         sh "sudo docker rmi -f $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
                         sh "sudo docker logout"
+                    }
+                }
+            }
+        }
+        // end continuous integration
+
+        // start continuous deployment
+        stage ('deploy to staging') {
+            // when { branch 'main' }
+            steps {
+                sh "sudo docker run --name msm -p 3000:3000 -d -v /home/vagrant/keys:/keys/ $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
+                sleep 15
+            }
+        }
+        stage ('run user acceptance tests') {
+            // when { branch 'main'}
+            steps {
+                sh "echo 'acteptance tests pending'"
+            }
+        }
+        stage ('tag production image') {
+            // when { branch 'main' }
+            steps {
+                sh "docker tag $PRIVATE_IMAGE_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                sh "docker tag $PRIVATE_IMAGE_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
+            }
+        }
+        stage('Deliver Image for Production') {
+            // when { branch 'main' }
+            steps {
+                sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
+                sh "docker push $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                sh "docker push $DOCKER_IMAGE_NAME:latest"
+            }
+            post {
+                always {
+                    script {
+                        sh "docker rmi -f $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                        sh "docker rmi -f $DOCKER_IMAGE_NAME:latest"
+                        sh "docker logout"
                     }
                 }
             }
