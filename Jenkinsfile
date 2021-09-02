@@ -17,7 +17,7 @@ pipeline {
                 sh "npm install"
             }
         }
-        stage('run unit tests adn lint validation') {
+        stage('run unit tests and lint validation') {
             steps {
                 sh "npm test"
                 sh "npm run lint"
@@ -57,7 +57,7 @@ pipeline {
             }
         }
         stage('push image to private repo') {
-            // when { branch 'main'}
+            when { branch 'main'}
             steps {
                 sh """
                 sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $PRIVATE_IMAGE_NAME:$BUILD_NUMBER
