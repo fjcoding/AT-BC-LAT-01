@@ -96,23 +96,23 @@ pipeline {
         stage ('tag production image') {
             // when { branch 'main' }
             steps {
-                sh "docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
-                sh "docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
+                sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
             }
         }
         stage('Deliver Image for Production') {
             // when { branch 'main' }
             steps {
-                sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
-                sh "docker push $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
-                sh "docker push $DOCKER_IMAGE_NAME:latest"
+                sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
+                sh "sudo docker push $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                sh "sudo docker push $DOCKER_IMAGE_NAME:latest"
             }
             post {
                 always {
                     script {
-                        sh "docker rmi -f $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
-                        sh "docker rmi -f $DOCKER_IMAGE_NAME:latest"
-                        sh "docker logout"
+                        sh "sudo docker rmi -f $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                        sh "sudo docker rmi -f $DOCKER_IMAGE_NAME:latest"
+                        sh "sudo docker logout"
                     }
                 }
             }
