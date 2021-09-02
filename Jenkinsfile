@@ -50,11 +50,12 @@ pipeline {
         stage('build Image') {
             // when { branch 'main'}
             steps {
-                sh "sudo docker build -t $PRIVATE_IMAGE_NAME:$BUILD_NUMBER ."
+                sh "sudo docker build -t $PROJECT_NAME:$BUILD_NUMBER ."
             }
             post { 
                 failure{
                     script {
+                        sh "docker tag $PROJECT_NAME:$BUILD_NUMBER $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
                         sh "docker rmi \$(docker images --filter dangling=true -q)"
                     }
                 }
@@ -94,8 +95,8 @@ pipeline {
         stage ('tag production image') {
             // when { branch 'main' }
             steps {
-                sh "docker tag $PRIVATE_IMAGE_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
-                sh "docker tag $PRIVATE_IMAGE_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
+                sh "docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
+                sh "docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
             }
         }
         stage('Deliver Image for Production') {
