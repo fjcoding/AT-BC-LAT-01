@@ -74,9 +74,9 @@ pipeline {
                 }
             }
         }
-        // ends continuous integration
+        // end continuous integration
 
-        // starts continuous delivery
+        // start continuous delivery
         stage ('deploy to staging') {
             // when { branch 'main' }
             steps {
@@ -121,6 +121,52 @@ pipeline {
                         sh "sudo docker rmi -f $DOCKER_IMAGE_NAME:latest"
                         sh "sudo docker logout"
                     }
+                }
+            }
+        }
+        // end continuous delivery
+
+        // start continuous deployment
+        stage ('create .env file') {
+            // when { branch 'main' }
+            environment{ 
+                ENV_FILE = ".env"
+                TAG = "latest"
+            }
+            steps {
+                sh """
+                echo 'FULL_IMAGE_NAME=$DOCKER_IMAGE_NAME' > $ENV_FILE
+                echo 'TAG=$TAG' >> $ENV_FILE
+                """
+            }
+        }
+        stage ('copy files to prod server') {
+            // when { branch 'main' }
+            environment {
+                DB_KEY = "/home/vagrant/keys/metal-slug-maker-firebase-adminsdk-0j54i-066b240c88.json"
+                SCRIPT = "deployment.sh"
+                ENV_FILE = ".env"
+            }
+            steps {
+                sshagent(['prod-key']) {
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER mkdir $PROJECT_NAME"
+                    sh "scp $ENV_FILE $SCRIPT $PROD_SERVER:/home/ubuntu/$PROJECT_NAME"
+                    sh "scp $DB_KEY:/home/ubuntu/keys"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER ls /home/ubuntu/keys"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER ls -a /home/ubuntu/$PROJECT_NAME"
+                }
+            }
+        }
+
+        stage ('deploy in production') {
+            // when { branch 'main' }
+            environment {
+                SCRIPT = "deployment.sh"
+            }
+            steps {
+                sshagent(['prod-key']) {
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER chmod +x /home/ubuntu/$PROJECT_NAME/$SCRIPT"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER /home/ubuntu/$PROJECT_NAME/$SCRIPT"
                 }
             }
         }
