@@ -82,6 +82,7 @@ pipeline {
         stage ('deploy to staging') {
             // when { branch 'main' }
             steps {
+                sh "sudo docker rm -f msm"
                 sh "sudo docker run --name msm -p 3000:3000 -d -v /home/vagrant/keys:/keys/ $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
                 sleep 15
             }
