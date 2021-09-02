@@ -41,7 +41,7 @@ pipeline {
             }
         }
         stage('build Image') {
-            // when { branch 'main'}
+            when { branch 'main'}
             steps {
                 sh "sudo docker build -t $PRIVATE_IMAGE_NAME:$BUILD_NUMBER ."
             }
@@ -54,7 +54,7 @@ pipeline {
             }
         }
         stage('push Image') {
-            // when { branch 'main'}
+            when { branch 'main'}
             steps {
                 sh "echo '$NEXUS_CREDENTIALS_PSW' | sudo docker login -u $NEXUS_CREDENTIALS_USR --password-stdin $NEXUS_URL"
                 sh "sudo docker push $PRIVATE_IMAGE_NAME:$BUILD_NUMBER"
