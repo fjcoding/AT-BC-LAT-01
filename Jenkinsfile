@@ -44,7 +44,7 @@ pipeline {
             }
         }
         stage('build image') {
-            // when { branch 'main'}
+            when { branch 'main'}
             steps {
                 sh "sudo docker build -t $PROJECT_NAME:$BUILD_NUMBER ."
             }
@@ -78,7 +78,7 @@ pipeline {
 
         // start continuous delivery
         stage ('deploy to staging') {
-            // when { branch 'main' }
+            when { branch 'main' }
             steps {
                 sh "sudo docker rm -f msm"
                 sh "sudo docker run --name msm -p 3000:3000 -d -v /home/vagrant/keys:/keys/ $PROJECT_NAME:$BUILD_NUMBER"
@@ -86,7 +86,7 @@ pipeline {
             }
         }
         stage ('run user acceptance tests') {
-            // when { branch 'main'}
+            when { branch 'main'}
             environment {
                 API_URL = "10.0.2.15:3000"
             }
@@ -101,14 +101,14 @@ pipeline {
             }
         }
         stage ('tag production image') {
-            // when { branch 'main' }
+            when { branch 'main' }
             steps {
                 sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
                 sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
             }
         }
         stage('push image to production') {
-            // when { branch 'main' }
+            when { branch 'main' }
             steps {
                 sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                 sh "sudo docker push $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
@@ -128,7 +128,7 @@ pipeline {
 
         // start continuous deployment
         stage ('copy files to production server') {
-            // when { branch 'main' }
+            when { branch 'main' }
             environment {
                 DB_KEY = "/home/vagrant/keys/db_key.json"
             }
@@ -142,7 +142,7 @@ pipeline {
         }
 
         stage ('deploy in production') {
-            // when { branch 'main' }
+            when { branch 'main' }
             environment {
                 FULL_IMAGE_NAME = "$DOCKER_IMAGE_NAME:latest"
             }
