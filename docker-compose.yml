@@ -1,0 +1,14 @@
+version: "3"
+
+services: 
+  msm:
+    image: $FULL_IMAGE_NAME:$TAG
+    ports: 
+      - 3000-3099:3000
+    volumes:
+            - $DB_KEY_PATH:/keys/
+    networks: 
+      - at-net
+
+networks:
+  at-net:
