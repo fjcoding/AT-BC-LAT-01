@@ -143,7 +143,7 @@ pipeline {
         stage ('copy files to prod server') {
             // when { branch 'main' }
             environment {
-                DB_KEY = "/home/vagrant/keys/metal-slug-maker-firebase-adminsdk-0j54i-066b240c88.json"
+                DB_KEY = "/home/vagrant/keys/db_key.json"
                 SCRIPT = "deployment.sh"
                 ENV_FILE = ".env"
             }
