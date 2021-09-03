@@ -178,7 +178,6 @@ pipeline {
                 always {
                     sshagent(['prod-key']) {
                         sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker logout"
-                        sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rmi $FULL_IMAGE_NAME"
                     }
                 }
             }
