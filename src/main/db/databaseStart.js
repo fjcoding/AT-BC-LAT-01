@@ -1,5 +1,5 @@
 import admin from 'firebase-admin';
-import serviceAccount from '../../../../keys/metal-slug-maker-firebase-adminsdk-0j54i-066b240c88.json';
+import serviceAccount from '../../../../keys/db_key.json';
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
