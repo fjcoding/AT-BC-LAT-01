@@ -44,7 +44,7 @@ pipeline {
             }
         }
         stage('build image') {
-            // when { branch 'main'}
+            when { branch 'main'}
             steps {
                 sh "sudo docker build -t $PROJECT_NAME:$BUILD_NUMBER ."
             }
@@ -74,11 +74,11 @@ pipeline {
                 }
             }
         }
-        // ends continuous integration
+        // end continuous integration
 
-        // starts continuous delivery
+        // start continuous delivery
         stage ('deploy to staging') {
-            // when { branch 'main' }
+            when { branch 'main' }
             steps {
                 sh "sudo docker rm -f msm"
                 sh "sudo docker run --name msm -p 3000:3000 -d -v /home/vagrant/keys:/keys/ $PROJECT_NAME:$BUILD_NUMBER"
@@ -86,7 +86,7 @@ pipeline {
             }
         }
         stage ('run user acceptance tests') {
-            // when { branch 'main'}
+            when { branch 'main'}
             environment {
                 API_URL = "10.0.2.15:3000"
             }
@@ -101,14 +101,14 @@ pipeline {
             }
         }
         stage ('tag production image') {
-            // when { branch 'main' }
+            when { branch 'main' }
             steps {
                 sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
                 sh "sudo docker tag $PROJECT_NAME:$BUILD_NUMBER $DOCKER_IMAGE_NAME:latest"
             }
         }
         stage('push image to production') {
-            // when { branch 'main' }
+            when { branch 'main' }
             steps {
                 sh "echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                 sh "sudo docker push $DOCKER_IMAGE_NAME:$BUILD_NUMBER"
@@ -124,5 +124,57 @@ pipeline {
                 }
             }
         }
+        // end continuous delivery
+
+        // start continuous deployment
+        stage ('copy files to production server') {
+            when { branch 'main' }
+            environment {
+                DB_KEY = "/home/vagrant/keys/db_key.json"
+            }
+            steps {
+                sshagent(['prod-key']) {
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER mkdir -p keys"
+                    sh "scp $DB_KEY $PROD_SERVER:/home/ubuntu/keys"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER ls /home/ubuntu/keys"
+                }
+            }
+        }
+
+        stage ('deploy in production') {
+            when { branch 'main' }
+            environment {
+                FULL_IMAGE_NAME = "$DOCKER_IMAGE_NAME:latest"
+            }
+            steps {
+                sshagent(['prod-key']) {
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rm -f msm"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER echo '$DOCKER_HUB_CREDENTIALS_PSW' | ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker pull $FULL_IMAGE_NAME"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker run --name msm -p 3000:3000 -d -v /home/ubuntu/keys:/keys/ $FULL_IMAGE_NAME"
+                }
+            }
+            post {
+                always {
+                    sshagent(['prod-key']) {
+                        sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker logout"
+                    }
+                }
+            }
+        }
+        
+    } 
+    post {
+        always {
+            mail bcc: '', body: """Hello,
+
+            Jenkins build #$BUILD_NUMBER of $PROJECT_NAME has finished!
+            Check console output at $BUILD_URL to view the results.
+
+            Do not reply, this is a notification email only,
+            Kind regards,
+            
+            AT-BOOTCAMP""", cc: '', from: '', replyTo: '', subject: "[ $PROJECT_NAME ] [ $BUILD_NUMBER ] - FINISHED", to: "$PROD_TEAM_EMAILS"
+        }       
     }
 }
