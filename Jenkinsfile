@@ -162,11 +162,14 @@ pipeline {
             // when { branch 'main' }
             environment {
                 SCRIPT = "deployment.sh"
+                FULL_IMAGE_NAME = "$DOCKER_IMAGE_NAME:latest"
             }
             steps {
                 sshagent(['prod-key']) {
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER chmod +x /home/ubuntu/$PROJECT_NAME/$SCRIPT"
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER /home/ubuntu/$PROJECT_NAME/$SCRIPT"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rm -f msm"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rmi $FULL_IMAGE_NAME"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker pull $FULL_IMAGE_NAME"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker run --name msm -p 3000:3000 -d -v \$HOME/keys:/keys/ $FULL_IMAGE_NAME"
                 }
             }
         }
