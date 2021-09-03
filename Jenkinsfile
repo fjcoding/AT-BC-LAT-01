@@ -166,16 +166,16 @@ pipeline {
     } 
     post {
         always {
-            mail bcc: '', body: '''Hello,
+            mail bcc: '', body: """Hello,
 
-            The status of the Build # ${env.BUILD_NUMBER} of ${env.PROJECT_NAME} project is: ${env.BUILD_STATUS}
+            The status of the Build #$BUILD_NUMBER of $PROJECT_NAME project is: $BUILD_STATUS
 
-            Check console output at ${env.BUILD_URL} to view the results.
+            Check console output at $BUILD_URL to view the results.
 
             Do not reply, this is a notification email only,
             Kind regards,
             
-            AT-BOOTCAMP''', cc: '', from: '', replyTo: '', subject: '[ ${env.PROJECT_NAME} ] [ ${env.BUILD_NUMBER} ] - ${env.BUILD_STATUS}', to: 'daniel33.gomez@gmail.com'
+            AT-BOOTCAMP""", cc: '', from: '', replyTo: '', subject: "[ $PROJECT_NAME ] [ $BUILD_NUMBER ] - $BUILD_STATUS", to: 'daniel33.gomez@gmail.com'
         }       
     }
 }
