@@ -182,5 +182,20 @@ pipeline {
                 }
             }
         }
+        
+    } 
+    post {
+        always {
+            mail bcc: '', body: '''Hello,
+
+            The status of the Build # $BUILD_NUMBER of $PROJECT_NAME project is: $BUILD_STATUS
+
+            Check console output at $BUILD_URL to view the results.
+
+            Do not reply, this is a notification email only,
+            Kind regards,
+            
+            AT-BOOTCAMP''', cc: '', from: '', replyTo: '', subject: '[ $PROJECT_NAME ] [ $BUILD_NUMBER ] - $BUILD_STATUS', to: 'daniel33.gomez@gmail.com'
+        }       
     }
 }
