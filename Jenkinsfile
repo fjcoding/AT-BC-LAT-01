@@ -150,6 +150,7 @@ pipeline {
             steps {
                 sshagent(['prod-key']) {
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER mkdir -p $PROJECT_NAME"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER mkdir -p keys"
                     sh "scp $ENV_FILE $SCRIPT $PROD_SERVER:/home/ubuntu/$PROJECT_NAME"
                     sh "scp $DB_KEY $PROD_SERVER:/home/ubuntu/keys"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER ls /home/ubuntu/keys"
@@ -168,8 +169,10 @@ pipeline {
                 sshagent(['prod-key']) {
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rm -f msm"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rmi $FULL_IMAGE_NAME"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER echo '$DOCKER_HUB_CREDENTIALS_PSW' | sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker pull $FULL_IMAGE_NAME"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker run --name msm -p 3000:3000 -d -v \$HOME/keys:/keys/ $FULL_IMAGE_NAME"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker logout"
                 }
             }
         }
