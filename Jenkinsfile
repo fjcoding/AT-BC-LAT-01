@@ -174,7 +174,7 @@ pipeline {
             Do not reply, this is a notification email only,
             Kind regards,
             
-            AT-BOOTCAMP""", cc: '', from: '', replyTo: '', subject: "[ $PROJECT_NAME ] [ $BUILD_NUMBER ] - FINISHED", to: 'daniel33.gomez@gmail.com'
+            AT-BOOTCAMP""", cc: '', from: '', replyTo: '', subject: "[ $PROJECT_NAME ] [ $BUILD_NUMBER ] - FINISHED", to: "$PROD_TEAM_EMAILS"
         }       
     }
 }
