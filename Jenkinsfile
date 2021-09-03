@@ -149,7 +149,7 @@ pipeline {
             }
             steps {
                 sshagent(['prod-key']) {
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER mkdir $PROJECT_NAME"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER mkdir -p $PROJECT_NAME"
                     sh "scp $ENV_FILE $SCRIPT $PROD_SERVER:/home/ubuntu/$PROJECT_NAME"
                     sh "scp $DB_KEY $PROD_SERVER:/home/ubuntu/keys"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER ls /home/ubuntu/keys"
