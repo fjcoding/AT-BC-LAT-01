@@ -132,7 +132,7 @@ pipeline {
             steps {
                 sh """
                 echo 'FULL_IMAGE_NAME=$DOCKER_IMAGE_NAME' > .env
-                echo 'TAG=$TAG' >> .env
+                echo 'TAG=latest' >> .env
                 """
             }
         }
