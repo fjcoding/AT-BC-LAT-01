@@ -133,6 +133,7 @@ pipeline {
                 sh """
                 echo 'FULL_IMAGE_NAME=$DOCKER_IMAGE_NAME' > .env
                 echo 'TAG=latest' >> .env
+                echo 'DB_KEY_PATH=/home/ubuntu/keys' >> .env
                 """
             }
         }
@@ -160,8 +161,8 @@ pipeline {
             }
             steps {
                 sshagent(['prod-key']) {
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER cd $PROJECT_NAME"
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rm -f $RUNNING_CONTAINERS"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER cd $PROJECT_NAME/"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rm -f '$(sudo docker ps -a -q)'"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER echo '$DOCKER_HUB_CREDENTIALS_PSW' | ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker-compose pull"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker-compose up -d --scale msm=2 --force-recreate"
