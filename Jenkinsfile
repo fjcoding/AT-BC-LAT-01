@@ -162,6 +162,7 @@ pipeline {
             steps {
                 sshagent(['prod-key']) {
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER cd $PROJECT_NAME/"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER ls -a"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rm -f $RUNNING_CONTAINERS"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER echo '$DOCKER_HUB_CREDENTIALS_PSW' | ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker-compose pull"
