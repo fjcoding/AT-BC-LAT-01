@@ -157,13 +157,12 @@ pipeline {
             // when { branch 'main' }
             environment {
                 FULL_IMAGE_NAME = "$DOCKER_IMAGE_NAME:latest"
-                RUNNING_CONTAINERS = '\$$(sudo docker ps -a -q)'
             }
             steps {
                 sshagent(['prod-key']) {
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER cd $PROJECT_NAME/"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER ls -a"
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rm -f $RUNNING_CONTAINERS"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker ps -a -q | ssh -o 'StrictHostKeyChecking no' $PROD_SERVER xargs docker rm -f"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER echo '$DOCKER_HUB_CREDENTIALS_PSW' | ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker-compose pull"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker-compose up -d --scale msm=2 --force-recreate"
