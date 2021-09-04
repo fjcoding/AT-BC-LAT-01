@@ -128,7 +128,7 @@ pipeline {
 
         // start continuous deployment
         stage ('create .env file') {
-            // when { branch 'main' }
+            when { branch 'main' }
             steps {
                 sh """
                 echo 'FULL_IMAGE_NAME=$DOCKER_IMAGE_NAME' > .env
@@ -138,7 +138,7 @@ pipeline {
             }
         }
         stage ('copy files to production server') {
-            // when { branch 'main' }
+            when { branch 'main' }
             environment {
                 DB_KEY = "/home/vagrant/keys/db_key.json"
             }
@@ -151,7 +151,7 @@ pipeline {
             }
         }
         stage ('deploy in production') {
-            // when { branch 'main' }
+            when { branch 'main' }
             environment {
                 FULL_IMAGE_NAME = "$DOCKER_IMAGE_NAME:latest"
             }
