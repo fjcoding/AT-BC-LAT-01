@@ -145,9 +145,9 @@ pipeline {
             }
             steps {
                 sshagent(['prod-key']) {
-                    sh "scp .env docker-compose.yml $PROD_SERVER:/home/ubuntu/"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER mkdir -p keys"
                     sh "scp $DB_KEY $PROD_SERVER:/home/ubuntu/keys"
+                    sh "scp .env docker-compose.yml $PROD_SERVER:/home/ubuntu/"
                 }
             }
         }
