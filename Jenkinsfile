@@ -127,6 +127,16 @@ pipeline {
         // end continuous delivery
 
         // start continuous deployment
+        stage ('create .env file') {
+            when { branch 'main' }
+            steps {
+                sh """
+                echo 'FULL_IMAGE_NAME=$DOCKER_IMAGE_NAME' > .env
+                echo 'TAG=latest' >> .env
+                echo 'DB_KEY_PATH=/home/ubuntu/keys' >> .env
+                """
+            }
+        }
         stage ('copy files to production server') {
             when { branch 'main' }
             environment {
@@ -134,13 +144,12 @@ pipeline {
             }
             steps {
                 sshagent(['prod-key']) {
+                    sh "scp .env docker-compose.yml $PROD_SERVER:/home/ubuntu/"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER mkdir -p keys"
                     sh "scp $DB_KEY $PROD_SERVER:/home/ubuntu/keys"
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER ls /home/ubuntu/keys"
                 }
             }
         }
-
         stage ('deploy in production') {
             when { branch 'main' }
             environment {
@@ -148,10 +157,10 @@ pipeline {
             }
             steps {
                 sshagent(['prod-key']) {
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker rm -f msm"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker ps -a -q | ssh -o 'StrictHostKeyChecking no' $PROD_SERVER xargs sudo docker rm -f"
                     sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER echo '$DOCKER_HUB_CREDENTIALS_PSW' | ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker pull $FULL_IMAGE_NAME"
-                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker run --name msm -p 3000:3000 -d -v /home/ubuntu/keys:/keys/ $FULL_IMAGE_NAME"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker-compose pull"
+                    sh "ssh -o 'StrictHostKeyChecking no' $PROD_SERVER sudo docker-compose up -d --scale msm=$NUM_SERVICES --force-recreate"
                 }
             }
             post {
@@ -168,13 +177,13 @@ pipeline {
         always {
             mail bcc: '', body: """Hello,
 
-            Jenkins build #$BUILD_NUMBER of $PROJECT_NAME has finished!
-            Check console output at $BUILD_URL to view the results.
+Jenkins build #$BUILD_NUMBER of $PROJECT_NAME has finished!
+Check console output at $BUILD_URL to view the results.
 
-            Do not reply, this is a notification email only,
-            Kind regards,
-            
-            AT-BOOTCAMP""", cc: '', from: '', replyTo: '', subject: "[ $PROJECT_NAME ] [ $BUILD_NUMBER ] - FINISHED", to: "$PROD_TEAM_EMAILS"
+Do not reply, this is a notification email only,
+Kind regards,
+
+AT-BOOTCAMP""", cc: '', from: '', replyTo: '', subject: "[ $PROJECT_NAME ] [ #$BUILD_NUMBER ] - FINISHED!", to: "$PROD_TEAM_EMAILS"
         }       
     }
 }
