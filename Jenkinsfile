@@ -134,6 +134,7 @@ pipeline {
                 echo 'FULL_IMAGE_NAME=$DOCKER_IMAGE_NAME' > .env
                 echo 'TAG=latest' >> .env
                 echo 'DB_KEY_PATH=/home/ubuntu/keys' >> .env
+                echo 'FINAL_SERVICES_PORT=$FINAL_SERVICES_PORT' >> .env
                 """
             }
         }
