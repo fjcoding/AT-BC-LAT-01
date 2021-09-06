@@ -22,7 +22,7 @@ export default function(QueryHandler) {
     //Routes
     app.use('/scenario', routerScenario);
     // app.use('/actor', routerActor);
-    // app.use('/action', routerAction);
+    app.use('/action', routerAction);
     app.use('/weapon', routerWeapon);
 
     return app;
