@@ -94,9 +94,9 @@ pipeline {
                 sh """
                 curl -X PUT -H "Content-Type: application/json" -d '{}' http://$API_URL/scenario | grep 200
                 curl -X POST http://$API_URL/scenario/notExistingId | grep 400
-                curl -X PUT -H "Content-Type: application/json" -d '{}' http://$API_URL/actor | grep 400
-                curl -X PUT -H "Content-Type: application/json" -d '{}' http://$API_URL/action | grep 400
-                curl -X POST http://$API_URL/action/notExistingId | grep 400
+                // curl -X PUT -H "Content-Type: application/json" -d '{}' http://$API_URL/actor | grep 400
+                // curl -X PUT -H "Content-Type: application/json" -d '{}' http://$API_URL/action | grep 400
+                // curl -X POST http://$API_URL/action/notExistingId | grep 400
                 """
             }
         }
